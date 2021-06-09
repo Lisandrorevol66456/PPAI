@@ -8,5 +8,6 @@ namespace Museo_pictorico_ppai.Controllers
 {
     class RegEntradaController
     {
+
     }
 }
