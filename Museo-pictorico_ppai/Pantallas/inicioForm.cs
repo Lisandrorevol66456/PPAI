@@ -16,5 +16,10 @@ namespace Museo_pictorico_ppai.Forms
         {
             InitializeComponent();
         }
+
+        private void inicioForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
