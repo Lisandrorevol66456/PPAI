@@ -12,10 +12,9 @@ namespace Museo_pictorico_ppai.DataBase
     {
         OleDbConnection conexion = new OleDbConnection();
         OleDbCommand cmd = new OleDbCommand();
+        readonly string  cadena_conexion = "Provider=SQLNCLI11;workstation id=museo-ppai.mssql.somee.com;packet size=4096;user id=Lisandro1905_;pwd=Belgrano1905;data source=museo-ppai.mssql.somee.com;persist security info=False;initial catalog=museo-ppai";
 
-        string cadena_conexion = "Provider=SQLNCLI11;workstation id=museo-ppai.mssql.somee.com;packet size=4096;user id=Lisandro1905_;pwd=Belgrano1905;data source=museo-ppai.mssql.somee.com;persist security info=False;initial catalog=museo-ppai";
-
-        private void conectar()
+        private void Conectar()
         {
 
             conexion.ConnectionString = cadena_conexion;
@@ -27,16 +26,16 @@ namespace Museo_pictorico_ppai.DataBase
             cmd.CommandType = CommandType.Text;
 
         }
-        public void cerrar()
+        public void Cerrar()
         {
 
             conexion.Close();
         }
-        public DataTable consulta(string comando)
+        public DataTable Consulta(string comando)
         {
 
             //ejecuta el procedimiento local <conectar>
-            conectar();
+            Conectar();
             //asigna a <cmd> el comando que se debe ejecutar, que viene por parámetro
             //de entrada <comando>
             cmd.CommandText = comando;
@@ -48,21 +47,21 @@ namespace Museo_pictorico_ppai.DataBase
             //<tabla.Load(. . . )>
             tabla.Load(cmd.ExecuteReader());
             //ejecuta el procedimiento <cerrar>
-            cerrar();
+            Cerrar();
             //devuelve el valor calculado a través de la función
             return tabla;
         }
 
         public bool EjecutarSQL(string comando)
         {
-            conectar();
+            Conectar();
 
             cmd.CommandText = comando;
 
             var filasAfectadas = cmd.ExecuteNonQuery(); //Cantidad de filas afectadas
 
             //ejecuta el procedimiento <cerrar>
-            cerrar();
+            Cerrar();
 
             return filasAfectadas > 0;
         }
@@ -96,21 +95,21 @@ namespace Museo_pictorico_ppai.DataBase
 
         public bool EjecutarSentenciaPreparadaSQL(string comando)
         {
-            conectar();
+            Conectar();
 
             cmd.CommandText = comando;
 
             var filasAfectadas = cmd.ExecuteNonQuery(); //Cantidad de filas afectadas
 
             //ejecuta el procedimiento <cerrar>
-            cerrar();
+            Cerrar();
 
             return filasAfectadas > 0;
         }
 
         public OleDbTransaction IniciarTransaccion()
         {
-            conectar();
+            Conectar();
             var transaccion = conexion.BeginTransaction();
             cmd.Transaction = transaccion;
             return transaccion;
