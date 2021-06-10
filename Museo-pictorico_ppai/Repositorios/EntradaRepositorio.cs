@@ -24,5 +24,18 @@ namespace Museo_pictorico_ppai.Repositorios
             var TiposDTRows = _BD.Consulta(sqlTxt);
             return TiposDTRows;
         }
+        public DataTable ObtenerEntradas()
+        {
+            string sqlTxt = $"SELECT * from Entradas";
+            var entradasDTRows = _BD.Consulta(sqlTxt);
+            return entradasDTRows;
+
+        }
+        public DataTable ObtenerTiposVisita()
+        {
+            string sqlTxt = $"SELECT * FROM TipoVisita ";
+            var TiposVisitaDTRows = _BD.Consulta(sqlTxt);
+            return TiposVisitaDTRows;
+        }
     }
 }
