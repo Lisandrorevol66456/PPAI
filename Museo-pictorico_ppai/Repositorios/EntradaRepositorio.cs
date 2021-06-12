@@ -1,4 +1,5 @@
 ﻿using Museo_pictorico_ppai.DataBase;
+using Museo_pictorico_ppai.Modelos;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -37,5 +38,13 @@ namespace Museo_pictorico_ppai.Repositorios
             var TiposVisitaDTRows = _BD.Consulta(sqlTxt);
             return TiposVisitaDTRows;
         }
+        //public bool guardar(Entrada entrada)
+        //{
+        //    string sqlTxt = $"INSERT [dbo].[Entradas] ([sede], [nombre], [apellido], " +
+        //        $"[domicilio], [fecha_Inicio],[fecha_cal],[cod_calificacion])" +
+        //        $"VALUES ('{entrada.cuit_Empresa}', '{entrada.nombre}', '{entrada.apellido}', '{entrada.domicilio}' , '{empresa.cod_calificacion}')";
+
+        //    return _BD.EjecutarSQL(sqlTxt);
+        //}
     }
 }

@@ -1,4 +1,5 @@
-﻿using Museo_pictorico_ppai.Repositorios;
+﻿using Museo_pictorico_ppai.Modelos;
+using Museo_pictorico_ppai.Repositorios;
 using Museo_pictorico_ppai.utils;
 using System;
 using System.Collections.Generic;
@@ -16,12 +17,14 @@ namespace Museo_pictorico_ppai
     {
         ValidateTextBox v;
         EntradaRepositorio _entradaRepo;
+        Sede _sede;
 
         public Form1()
         {
             InitializeComponent();
             _entradaRepo = new EntradaRepositorio();
             v = new ValidateTextBox();
+            _sede = new Sede();
         }
 
 
@@ -42,6 +45,8 @@ namespace Museo_pictorico_ppai
             labelCantEntradas.Visible = false;
             labelWarnincupo.Visible = false;
             this.ActualizarEntradas();
+            btnConfirmar.Enabled = false;
+
 
         }
 
@@ -96,11 +101,66 @@ namespace Museo_pictorico_ppai
                 dgvEntradas.Rows.Add(fila);
             } 
         }
+       
+
 
         private void BtnCheckear_Click(object sender, EventArgs e)
         {
-            checkedLogo.Visible = true;
+            if (txtCantentradas.Text != "")
+            {
+                if (_sede.CheckearCupo(long.Parse(txtCantentradas.Text)))
+                {
+                    checkedLogo.Visible = true;
+                    labelWarnincupo.Visible = false;
+                    btnConfirmar.Enabled = true;
+                }
+                else
+                {
+                    checkedLogo.Visible = false;
+                    labelWarnincupo.Visible = true;
+                    btnConfirmar.Enabled = false;
+                }
+            }else
+            {
+                MessageBox.Show("complete campo cantidad de entradas");
+                txtCantentradas.Focus();
+            }
+            
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnConfirmar_Click(object sender, EventArgs e)
+        {
+            if (true)
+            {
+                txtCantentradas.Enabled = false;
+                cmbTipos.Enabled = false;
+                cmbTipoVisita.Enabled = false;
+                groupBox1.Enabled = false;
+
+            }
+        }
+
+        private void txtCantentradas_TextChanged(object sender, EventArgs e)
+        {
+            btnConfirmar.Enabled = false;
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtCantentradas.Enabled = true;
+            txtCantentradas.Clear();
+            cmbTipos.Enabled = true;
+            cmbTipoVisita.Enabled = true;
+            groupBox1.Enabled = true;
+            checkedLogo.Visible = false;
             labelWarnincupo.Visible = false;
+            btnConfirmar.Enabled = false;
+
         }
     }
 }

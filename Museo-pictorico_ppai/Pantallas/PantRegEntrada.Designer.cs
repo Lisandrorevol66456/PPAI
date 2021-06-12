@@ -31,6 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btnGuardar = new System.Windows.Forms.Button();
             this.dgvEntradas = new System.Windows.Forms.DataGridView();
+            this.Nro_Entrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaventa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.horaVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tarifa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sede = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmbTipos = new System.Windows.Forms.ComboBox();
             this.labelCantEntradas = new System.Windows.Forms.Label();
             this.txtCantentradas = new System.Windows.Forms.TextBox();
@@ -50,12 +56,8 @@
             this.BtnCheckear = new System.Windows.Forms.Button();
             this.checkedLogo = new System.Windows.Forms.PictureBox();
             this.labelWarnincupo = new System.Windows.Forms.Label();
-            this.Nro_Entrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechaventa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.horaVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tarifa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sede = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnConfirmar = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEntradas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -75,6 +77,7 @@
             this.btnGuardar.Size = new System.Drawing.Size(56, 55);
             this.btnGuardar.TabIndex = 1;
             this.btnGuardar.UseVisualStyleBackColor = false;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // dgvEntradas
             // 
@@ -94,11 +97,53 @@
             this.dgvEntradas.Size = new System.Drawing.Size(538, 211);
             this.dgvEntradas.TabIndex = 3;
             // 
+            // Nro_Entrada
+            // 
+            this.Nro_Entrada.Frozen = true;
+            this.Nro_Entrada.HeaderText = "Nro Entrada";
+            this.Nro_Entrada.Name = "Nro_Entrada";
+            this.Nro_Entrada.ReadOnly = true;
+            // 
+            // fechaventa
+            // 
+            this.fechaventa.Frozen = true;
+            this.fechaventa.HeaderText = "Fecha venta";
+            this.fechaventa.Name = "fechaventa";
+            this.fechaventa.ReadOnly = true;
+            // 
+            // horaVenta
+            // 
+            this.horaVenta.Frozen = true;
+            this.horaVenta.HeaderText = "Hora";
+            this.horaVenta.Name = "horaVenta";
+            this.horaVenta.ReadOnly = true;
+            // 
+            // monto
+            // 
+            this.monto.Frozen = true;
+            this.monto.HeaderText = "Monto";
+            this.monto.Name = "monto";
+            this.monto.ReadOnly = true;
+            // 
+            // Tarifa
+            // 
+            this.Tarifa.Frozen = true;
+            this.Tarifa.HeaderText = "Tarifa ";
+            this.Tarifa.Name = "Tarifa";
+            this.Tarifa.ReadOnly = true;
+            // 
+            // sede
+            // 
+            this.sede.Frozen = true;
+            this.sede.HeaderText = "Sede";
+            this.sede.Name = "sede";
+            this.sede.ReadOnly = true;
+            // 
             // cmbTipos
             // 
             this.cmbTipos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipos.FormattingEnabled = true;
-            this.cmbTipos.Location = new System.Drawing.Point(181, 308);
+            this.cmbTipos.Location = new System.Drawing.Point(182, 281);
             this.cmbTipos.Name = "cmbTipos";
             this.cmbTipos.Size = new System.Drawing.Size(135, 23);
             this.cmbTipos.TabIndex = 4;
@@ -107,7 +152,7 @@
             // 
             this.labelCantEntradas.AutoSize = true;
             this.labelCantEntradas.Font = new System.Drawing.Font("Bernard MT Condensed", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCantEntradas.Location = new System.Drawing.Point(60, 392);
+            this.labelCantEntradas.Location = new System.Drawing.Point(61, 365);
             this.labelCantEntradas.Name = "labelCantEntradas";
             this.labelCantEntradas.Size = new System.Drawing.Size(114, 16);
             this.labelCantEntradas.TabIndex = 5;
@@ -115,18 +160,19 @@
             // 
             // txtCantentradas
             // 
-            this.txtCantentradas.Location = new System.Drawing.Point(181, 389);
+            this.txtCantentradas.Location = new System.Drawing.Point(182, 362);
             this.txtCantentradas.MaxLength = 5;
             this.txtCantentradas.Name = "txtCantentradas";
             this.txtCantentradas.Size = new System.Drawing.Size(135, 22);
             this.txtCantentradas.TabIndex = 6;
+            this.txtCantentradas.TextChanged += new System.EventHandler(this.txtCantentradas_TextChanged);
             this.txtCantentradas.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.validatenumber);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Bernard MT Condensed", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(60, 311);
+            this.label3.Location = new System.Drawing.Point(61, 284);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(93, 16);
             this.label3.TabIndex = 7;
@@ -161,7 +207,7 @@
             this.groupBox1.Controls.Add(this.materialRadioButton2);
             this.groupBox1.Controls.Add(this.materialRadioButton1);
             this.groupBox1.Font = new System.Drawing.Font("Bernard MT Condensed", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(63, 174);
+            this.groupBox1.Location = new System.Drawing.Point(64, 147);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(252, 114);
             this.groupBox1.TabIndex = 11;
@@ -206,7 +252,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Bernard MT Condensed", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(65, 110);
+            this.label1.Location = new System.Drawing.Point(66, 83);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(34, 16);
             this.label1.TabIndex = 12;
@@ -214,7 +260,7 @@
             // 
             // txtSede
             // 
-            this.txtSede.Location = new System.Drawing.Point(180, 107);
+            this.txtSede.Location = new System.Drawing.Point(181, 80);
             this.txtSede.MaxLength = 5;
             this.txtSede.Name = "txtSede";
             this.txtSede.ReadOnly = true;
@@ -244,7 +290,7 @@
             // btnCantEntradas
             // 
             this.btnCantEntradas.Font = new System.Drawing.Font("Bernard MT Condensed", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCantEntradas.Location = new System.Drawing.Point(80, 337);
+            this.btnCantEntradas.Location = new System.Drawing.Point(81, 310);
             this.btnCantEntradas.Name = "btnCantEntradas";
             this.btnCantEntradas.Size = new System.Drawing.Size(236, 27);
             this.btnCantEntradas.TabIndex = 16;
@@ -256,7 +302,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Bernard MT Condensed", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(59, 141);
+            this.label2.Location = new System.Drawing.Point(60, 114);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(79, 16);
             this.label2.TabIndex = 18;
@@ -266,7 +312,7 @@
             // 
             this.cmbTipoVisita.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipoVisita.FormattingEnabled = true;
-            this.cmbTipoVisita.Location = new System.Drawing.Point(180, 138);
+            this.cmbTipoVisita.Location = new System.Drawing.Point(181, 111);
             this.cmbTipoVisita.Name = "cmbTipoVisita";
             this.cmbTipoVisita.Size = new System.Drawing.Size(135, 23);
             this.cmbTipoVisita.TabIndex = 17;
@@ -276,7 +322,7 @@
             this.BtnCheckear.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnCheckear.BackgroundImage")));
             this.BtnCheckear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.BtnCheckear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnCheckear.Location = new System.Drawing.Point(321, 383);
+            this.BtnCheckear.Location = new System.Drawing.Point(322, 356);
             this.BtnCheckear.Name = "BtnCheckear";
             this.BtnCheckear.Size = new System.Drawing.Size(43, 32);
             this.BtnCheckear.TabIndex = 19;
@@ -287,7 +333,7 @@
             // checkedLogo
             // 
             this.checkedLogo.Image = ((System.Drawing.Image)(resources.GetObject("checkedLogo.Image")));
-            this.checkedLogo.Location = new System.Drawing.Point(370, 380);
+            this.checkedLogo.Location = new System.Drawing.Point(371, 353);
             this.checkedLogo.Name = "checkedLogo";
             this.checkedLogo.Size = new System.Drawing.Size(35, 35);
             this.checkedLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -298,53 +344,41 @@
             // 
             this.labelWarnincupo.AutoSize = true;
             this.labelWarnincupo.ForeColor = System.Drawing.Color.Red;
-            this.labelWarnincupo.Location = new System.Drawing.Point(180, 418);
+            this.labelWarnincupo.Location = new System.Drawing.Point(181, 391);
             this.labelWarnincupo.Name = "labelWarnincupo";
             this.labelWarnincupo.Size = new System.Drawing.Size(142, 15);
             this.labelWarnincupo.TabIndex = 21;
             this.labelWarnincupo.Text = "*Excede cupo visitantes ";
             // 
-            // Nro_Entrada
+            // btnConfirmar
             // 
-            this.Nro_Entrada.Frozen = true;
-            this.Nro_Entrada.HeaderText = "Nro Entrada";
-            this.Nro_Entrada.Name = "Nro_Entrada";
-            this.Nro_Entrada.ReadOnly = true;
+            this.btnConfirmar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnConfirmar.BackColor = System.Drawing.Color.YellowGreen;
+            this.btnConfirmar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnConfirmar.Font = new System.Drawing.Font("Bernard MT Condensed", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfirmar.ForeColor = System.Drawing.Color.Black;
+            this.btnConfirmar.Location = new System.Drawing.Point(63, 409);
+            this.btnConfirmar.Name = "btnConfirmar";
+            this.btnConfirmar.Size = new System.Drawing.Size(154, 30);
+            this.btnConfirmar.TabIndex = 22;
+            this.btnConfirmar.Text = "Confirmar";
+            this.btnConfirmar.UseVisualStyleBackColor = false;
+            this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
-            // fechaventa
+            // btnLimpiar
             // 
-            this.fechaventa.Frozen = true;
-            this.fechaventa.HeaderText = "Fecha venta";
-            this.fechaventa.Name = "fechaventa";
-            this.fechaventa.ReadOnly = true;
-            // 
-            // horaVenta
-            // 
-            this.horaVenta.Frozen = true;
-            this.horaVenta.HeaderText = "Hora";
-            this.horaVenta.Name = "horaVenta";
-            this.horaVenta.ReadOnly = true;
-            // 
-            // monto
-            // 
-            this.monto.Frozen = true;
-            this.monto.HeaderText = "Monto";
-            this.monto.Name = "monto";
-            this.monto.ReadOnly = true;
-            // 
-            // Tarifa
-            // 
-            this.Tarifa.Frozen = true;
-            this.Tarifa.HeaderText = "Tarifa ";
-            this.Tarifa.Name = "Tarifa";
-            this.Tarifa.ReadOnly = true;
-            // 
-            // sede
-            // 
-            this.sede.Frozen = true;
-            this.sede.HeaderText = "Sede";
-            this.sede.Name = "sede";
-            this.sede.ReadOnly = true;
+            this.btnLimpiar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnLimpiar.BackColor = System.Drawing.Color.Crimson;
+            this.btnLimpiar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnLimpiar.Font = new System.Drawing.Font("Bernard MT Condensed", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiar.ForeColor = System.Drawing.Color.Black;
+            this.btnLimpiar.Location = new System.Drawing.Point(223, 409);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(102, 30);
+            this.btnLimpiar.TabIndex = 23;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = false;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // Form1
             // 
@@ -354,6 +388,8 @@
             this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(950, 606);
+            this.Controls.Add(this.btnLimpiar);
+            this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.labelWarnincupo);
             this.Controls.Add(this.checkedLogo);
             this.Controls.Add(this.BtnCheckear);
@@ -420,6 +456,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn monto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tarifa;
         private System.Windows.Forms.DataGridViewTextBoxColumn sede;
+        private System.Windows.Forms.Button btnConfirmar;
+        private System.Windows.Forms.Button btnLimpiar;
     }
 }
 
