@@ -116,6 +116,7 @@ namespace Museo_pictorico_ppai.Pantallas
             this.Name = "PantallaSala";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sala - Museo Pictórico Córdoba";
+            this.Load += new System.EventHandler(this.PantallaSala_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

@@ -16,5 +16,10 @@ namespace Museo_pictorico_ppai.Pantallas
         {
             InitializeComponent();
         }
+
+        private void PantallaSala_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
