@@ -46,6 +46,7 @@ namespace Museo_pictorico_ppai
             labelWarnincupo.Visible = false;
             this.ActualizarEntradas();
             btnConfirmar.Enabled = false;
+            btnGuardar.Enabled = false;
 
 
         }
@@ -106,20 +107,29 @@ namespace Museo_pictorico_ppai
 
         private void BtnCheckear_Click(object sender, EventArgs e)
         {
-            if (txtCantentradas.Text != "")
+            if (txtCantentradas.Text != "" )
             {
-                if (_sede.CheckearCupo(long.Parse(txtCantentradas.Text)))
+                if (materialRadioButton1.Checked || materialRadioButton2.Checked)
                 {
-                    checkedLogo.Visible = true;
-                    labelWarnincupo.Visible = false;
-                    btnConfirmar.Enabled = true;
-                }
-                else
+                    if (_sede.CheckearCupo(long.Parse(txtCantentradas.Text)))
+                    {
+
+                        checkedLogo.Visible = true;
+                        labelWarnincupo.Visible = false;
+                        btnConfirmar.Enabled = true;
+                    }
+                    else
+                    {
+                        checkedLogo.Visible = false;
+                        labelWarnincupo.Visible = true;
+                        btnConfirmar.Enabled = false;
+                    }
+                }else
                 {
-                    checkedLogo.Visible = false;
-                    labelWarnincupo.Visible = true;
-                    btnConfirmar.Enabled = false;
+                    MessageBox.Show("complete campo guía");
+                    groupBox1.Focus();
                 }
+
             }else
             {
                 MessageBox.Show("complete campo cantidad de entradas");
@@ -141,6 +151,7 @@ namespace Museo_pictorico_ppai
                 cmbTipos.Enabled = false;
                 cmbTipoVisita.Enabled = false;
                 groupBox1.Enabled = false;
+                btnGuardar.Enabled = true;
 
             }
         }
@@ -160,6 +171,7 @@ namespace Museo_pictorico_ppai
             checkedLogo.Visible = false;
             labelWarnincupo.Visible = false;
             btnConfirmar.Enabled = false;
+            btnGuardar.Enabled = false;
 
         }
     }
