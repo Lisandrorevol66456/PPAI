@@ -38,6 +38,14 @@ namespace Museo_pictorico_ppai.Repositorios
             var TiposVisitaDTRows = _BD.Consulta(sqlTxt);
             return TiposVisitaDTRows;
         }
+
+         public DataTable ObtenerTarifas()
+        {
+            string sqlTxt = $"select t.id,tv.nombre as 'tipo visita',te.nombre as'tipo entrada',t.precio from tarifas t join tipoEntrada te on t.tipoEntrada = te.idTipo join TipoVisita tv on t.tipoVisita = tv.id order by tv.nombre; ";
+            var tarifasDTRows = _BD.Consulta(sqlTxt);
+            return tarifasDTRows;
+
+        }
         //public bool guardar(Entrada entrada)
         //{
         //    string sqlTxt = $"INSERT [dbo].[Entradas] ([sede], [nombre], [apellido], " +

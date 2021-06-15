@@ -44,7 +44,7 @@ namespace Museo_pictorico_ppai
             checkedLogo.Visible = false;
             labelCantEntradas.Visible = false;
             labelWarnincupo.Visible = false;
-            this.ActualizarEntradas();
+            this.ActualizarTarifas();
             btnConfirmar.Enabled = false;
             btnGuardar.Enabled = false;
 
@@ -82,22 +82,22 @@ namespace Museo_pictorico_ppai
             BtnCheckear.Visible = true;
         }
 
-        private void ActualizarEntradas()
+        private void ActualizarTarifas()
         {
             dgvEntradas.Rows.Clear();
-            var entradas = _entradaRepo.ObtenerEntradas().Rows;
+            var tarifas = _entradaRepo.ObtenerTarifas().Rows;
             var filas = new List<DataGridViewRow>();
-            foreach (DataRow entr in entradas)
+            foreach (DataRow tar in tarifas)
             {
-                if (entr.HasErrors)
+                if (tar.HasErrors)
                     continue;
                 var fila = new string[]
                 {
-                    entr.ItemArray[0].ToString(),
-                    entr.ItemArray[1].ToString(),
-                    entr.ItemArray[2].ToString(),
-                    entr.ItemArray[3].ToString(),
-                    entr.ItemArray[4].ToString(),
+                    tar.ItemArray[0].ToString(),
+                    tar.ItemArray[1].ToString(),
+                    tar.ItemArray[2].ToString(),
+                    tar.ItemArray[3].ToString(),
+                    //tar.ItemArray[4].ToString(),
                 };
                 dgvEntradas.Rows.Add(fila);
             } 
