@@ -29,9 +29,13 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnGuardar = new System.Windows.Forms.Button();
-            this.dgvEntradas = new System.Windows.Forms.DataGridView();
+            this.dgvTarifas = new System.Windows.Forms.DataGridView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoVisita = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmbTipos = new System.Windows.Forms.ComboBox();
             this.labelCantEntradas = new System.Windows.Forms.Label();
             this.txtCantentradas = new System.Windows.Forms.TextBox();
@@ -54,12 +58,8 @@
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoVisita = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label6 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEntradas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTarifas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -80,31 +80,72 @@
             this.btnGuardar.UseVisualStyleBackColor = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
-            // dgvEntradas
+            // dgvTarifas
             // 
-            this.dgvEntradas.AllowUserToAddRows = false;
-            this.dgvEntradas.AllowUserToDeleteRows = false;
-            this.dgvEntradas.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dgvEntradas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEntradas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvTarifas.AllowUserToAddRows = false;
+            this.dgvTarifas.AllowUserToDeleteRows = false;
+            this.dgvTarifas.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvTarifas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTarifas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
             this.TipoVisita,
             this.TipoEntrada,
             this.precio});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Bernard MT Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvEntradas.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvEntradas.Location = new System.Drawing.Point(445, 111);
-            this.dgvEntradas.Name = "dgvEntradas";
-            this.dgvEntradas.ReadOnly = true;
-            this.dgvEntradas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEntradas.Size = new System.Drawing.Size(351, 223);
-            this.dgvEntradas.TabIndex = 3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Bernard MT Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvTarifas.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvTarifas.Location = new System.Drawing.Point(445, 111);
+            this.dgvTarifas.Name = "dgvTarifas";
+            this.dgvTarifas.ReadOnly = true;
+            this.dgvTarifas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvTarifas.Size = new System.Drawing.Size(351, 223);
+            this.dgvTarifas.TabIndex = 3;
+            // 
+            // id
+            // 
+            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.id.Frozen = true;
+            this.id.HeaderText = "#";
+            this.id.MaxInputLength = 3;
+            this.id.MinimumWidth = 3;
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.id.Width = 40;
+            // 
+            // TipoVisita
+            // 
+            this.TipoVisita.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.TipoVisita.Frozen = true;
+            this.TipoVisita.HeaderText = "Tipo de visita";
+            this.TipoVisita.Name = "TipoVisita";
+            this.TipoVisita.ReadOnly = true;
+            this.TipoVisita.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.TipoVisita.Width = 110;
+            // 
+            // TipoEntrada
+            // 
+            this.TipoEntrada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.TipoEntrada.Frozen = true;
+            this.TipoEntrada.HeaderText = "Tipo de entrada";
+            this.TipoEntrada.Name = "TipoEntrada";
+            this.TipoEntrada.ReadOnly = true;
+            this.TipoEntrada.Width = 90;
+            // 
+            // precio
+            // 
+            this.precio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.precio.Frozen = true;
+            this.precio.HeaderText = "Precio";
+            this.precio.Name = "precio";
+            this.precio.ReadOnly = true;
+            this.precio.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.precio.Width = 60;
             // 
             // cmbTipos
             // 
@@ -357,47 +398,6 @@
             this.label5.TabIndex = 24;
             this.label5.Text = "Tarifas";
             // 
-            // id
-            // 
-            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.id.Frozen = true;
-            this.id.HeaderText = "#";
-            this.id.MaxInputLength = 3;
-            this.id.MinimumWidth = 3;
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.id.Width = 40;
-            // 
-            // TipoVisita
-            // 
-            this.TipoVisita.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.TipoVisita.Frozen = true;
-            this.TipoVisita.HeaderText = "Tipo de visita";
-            this.TipoVisita.Name = "TipoVisita";
-            this.TipoVisita.ReadOnly = true;
-            this.TipoVisita.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.TipoVisita.Width = 110;
-            // 
-            // TipoEntrada
-            // 
-            this.TipoEntrada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.TipoEntrada.Frozen = true;
-            this.TipoEntrada.HeaderText = "Tipo de entrada";
-            this.TipoEntrada.Name = "TipoEntrada";
-            this.TipoEntrada.ReadOnly = true;
-            this.TipoEntrada.Width = 90;
-            // 
-            // precio
-            // 
-            this.precio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.precio.Frozen = true;
-            this.precio.HeaderText = "Precio";
-            this.precio.Name = "precio";
-            this.precio.ReadOnly = true;
-            this.precio.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.precio.Width = 60;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -438,7 +438,7 @@
             this.Controls.Add(this.txtCantentradas);
             this.Controls.Add(this.labelCantEntradas);
             this.Controls.Add(this.cmbTipos);
-            this.Controls.Add(this.dgvEntradas);
+            this.Controls.Add(this.dgvTarifas);
             this.Controls.Add(this.btnGuardar);
             this.Font = new System.Drawing.Font("Bernard MT Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -448,7 +448,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro de entrada - Museo Pictórico Córdoba";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEntradas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTarifas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -461,7 +461,7 @@
 
         #endregion
         private System.Windows.Forms.Button btnGuardar;
-        private System.Windows.Forms.DataGridView dgvEntradas;
+        private System.Windows.Forms.DataGridView dgvTarifas;
         private System.Windows.Forms.ComboBox cmbTipos;
         private System.Windows.Forms.Label labelCantEntradas;
         private System.Windows.Forms.TextBox txtCantentradas;

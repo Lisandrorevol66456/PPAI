@@ -38,7 +38,7 @@ namespace Museo_pictorico_ppai
         {
             this.CargarComboTipos();
             this.CargarCompoTipoVisita();
-            txtSede.Text = "01";
+            txtSede.Text = "1";
             txtCantentradas.Visible = false;
             BtnCheckear.Visible = false;
             checkedLogo.Visible = false;
@@ -84,7 +84,7 @@ namespace Museo_pictorico_ppai
 
         private void ActualizarTarifas()
         {
-            dgvEntradas.Rows.Clear();
+            dgvTarifas.Rows.Clear();
             var tarifas = _entradaRepo.ObtenerTarifas().Rows;
             var filas = new List<DataGridViewRow>();
             foreach (DataRow tar in tarifas)
@@ -99,7 +99,7 @@ namespace Museo_pictorico_ppai
                     tar.ItemArray[3].ToString(),
                     //tar.ItemArray[4].ToString(),
                 };
-                dgvEntradas.Rows.Add(fila);
+                dgvTarifas.Rows.Add(fila);
             } 
         }
        
@@ -137,10 +137,47 @@ namespace Museo_pictorico_ppai
             }
             
         }
-
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private int calcularTarifa()
         {
+            return 1;
+        }
 
+        public void btnGuardar_Click(object sender, EventArgs e) { 
+
+            var idSede = Int32.Parse(txtSede.Text);
+            var tarifa = this.calcularTarifa();
+            var fechaHoraVenta = DateTime.Now;
+            var monto = this.calcularMonto();
+            var cantentradas = txtCantentradas.Text;
+
+            var confirmacion = MessageBox.Show($"¿Confirma registro de la(s) {cantentradas} entrada(s), para la sede {idSede} por el monto {monto} ?",
+                 "Confirmar operación",
+                   MessageBoxButtons.YesNo);
+            if (confirmacion.Equals(DialogResult.No))
+                return;
+
+            for (var i = 0; i <= Int32.Parse(txtCantentradas.Text); i++)
+            {
+                var entrada = new Entrada();
+                entrada.fechaHoraVenta = fechaHoraVenta;
+                entrada.monto = monto;
+                entrada.tarifa = tarifa;
+                entrada.idSede = idSede;             
+                                
+                //if (_entradaRepo.Guardar(entrada))
+                //    i++;
+            } MessageBox.Show("Entradas registradas correctamente");
+            limpiarCampos();
+
+
+
+
+        }
+        private float calcularMonto()
+        {
+            float monto = 333;
+
+            return monto;
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
@@ -160,8 +197,7 @@ namespace Museo_pictorico_ppai
         {
             btnConfirmar.Enabled = false;
         }
-
-        private void btnLimpiar_Click(object sender, EventArgs e)
+        private void limpiarCampos()
         {
             txtCantentradas.Enabled = true;
             txtCantentradas.Clear();
@@ -172,6 +208,11 @@ namespace Museo_pictorico_ppai
             labelWarnincupo.Visible = false;
             btnConfirmar.Enabled = false;
             btnGuardar.Enabled = false;
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            limpiarCampos();
 
         }
     }

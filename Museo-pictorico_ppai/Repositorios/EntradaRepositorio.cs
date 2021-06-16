@@ -46,13 +46,13 @@ namespace Museo_pictorico_ppai.Repositorios
             return tarifasDTRows;
 
         }
-        //public bool guardar(Entrada entrada)
-        //{
-        //    string sqlTxt = $"INSERT [dbo].[Entradas] ([sede], [nombre], [apellido], " +
-        //        $"[domicilio], [fecha_Inicio],[fecha_cal],[cod_calificacion])" +
-        //        $"VALUES ('{entrada.cuit_Empresa}', '{entrada.nombre}', '{entrada.apellido}', '{entrada.domicilio}' , '{empresa.cod_calificacion}')";
+        public bool Guardar(Entrada entrada)
+        {
 
-        //    return _BD.EjecutarSQL(sqlTxt);
-        //}
+            string sqlTxt = $"INSERT into [dbo].[Entradas] ([fechaHoraVenta], [monto], [tarifa],[sede] " +
+             $"VALUES ('{entrada.fechaHoraVenta.ToString("yyyy-MM-dd")}', '{entrada.monto}', '{entrada.tarifa}', '{entrada.idSede}')";
+
+            return _BD.EjecutarSQL(sqlTxt);
+        }
     }
 }
