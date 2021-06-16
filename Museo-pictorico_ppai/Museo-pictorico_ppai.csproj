@@ -82,6 +82,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorios\EntradaRepositorio.cs" />
     <Compile Include="utils\ValidateTextBox.cs" />
+    <Compile Include="_museo_ppaiDataSet.cs">
+      <DependentUpon>_museo_ppaiDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="_museo_ppaiDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -11,12 +11,13 @@ namespace Museo_pictorico_ppai.Repositorios
 {
     public class EntradaRepositorio
     {
-
+        //private Form1 _pantallaEntrada;
         private AccesoBD _BD;
 
         public EntradaRepositorio()
         {
             _BD = new AccesoBD();
+            //_pantallaEntrada = new Form1();
         }
 
         public DataTable ObtenerTiposEntradas()
@@ -48,9 +49,9 @@ namespace Museo_pictorico_ppai.Repositorios
         }
         public bool Guardar(Entrada entrada)
         {
-
-            string sqlTxt = $"INSERT into [dbo].[Entradas] ([fechaHoraVenta], [monto], [tarifa],[sede] " +
-             $"VALUES ('{entrada.fechaHoraVenta.ToString("yyyy-MM-dd")}', '{entrada.monto}', '{entrada.tarifa}', '{entrada.idSede}')";
+         
+            string sqlTxt = $"INSERT [dbo].[Entradas] ([fechaHoraVenta], [monto],[tarifa], [sede])" +
+                $" VALUES('{DateTime.Now.ToString("yyyy-MM-dd")}', '{entrada.monto}','{entrada.tarifa}', '{entrada.idSede}')";
 
             return _BD.EjecutarSQL(sqlTxt);
         }

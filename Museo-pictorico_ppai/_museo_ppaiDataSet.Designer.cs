@@ -28,17 +28,13 @@ namespace Museo_pictorico_ppai {
         
         private SedeDataTable tableSede;
         
-        private TarifaDataTable tableTarifa;
-        
         private TarifasDataTable tableTarifas;
         
         private tipoEntradaDataTable tabletipoEntrada;
         
         private TipoVisitaDataTable tableTipoVisita;
         
-        private global::System.Data.DataRelation relationFK__Tarifa__tipoEntr__173876EA;
-        
-        private global::System.Data.DataRelation relationfkTipovisita;
+        private global::System.Data.DataRelation relationFK_Entradas_Tarifas;
         
         private global::System.Data.DataRelation relationfk_tipoentrada;
         
@@ -77,9 +73,6 @@ namespace Museo_pictorico_ppai {
                 }
                 if ((ds.Tables["Sede"] != null)) {
                     base.Tables.Add(new SedeDataTable(ds.Tables["Sede"]));
-                }
-                if ((ds.Tables["Tarifa"] != null)) {
-                    base.Tables.Add(new TarifaDataTable(ds.Tables["Tarifa"]));
                 }
                 if ((ds.Tables["Tarifas"] != null)) {
                     base.Tables.Add(new TarifasDataTable(ds.Tables["Tarifas"]));
@@ -125,16 +118,6 @@ namespace Museo_pictorico_ppai {
         public SedeDataTable Sede {
             get {
                 return this.tableSede;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public TarifaDataTable Tarifa {
-            get {
-                return this.tableTarifa;
             }
         }
         
@@ -241,9 +224,6 @@ namespace Museo_pictorico_ppai {
                 if ((ds.Tables["Sede"] != null)) {
                     base.Tables.Add(new SedeDataTable(ds.Tables["Sede"]));
                 }
-                if ((ds.Tables["Tarifa"] != null)) {
-                    base.Tables.Add(new TarifaDataTable(ds.Tables["Tarifa"]));
-                }
                 if ((ds.Tables["Tarifas"] != null)) {
                     base.Tables.Add(new TarifasDataTable(ds.Tables["Tarifas"]));
                 }
@@ -298,12 +278,6 @@ namespace Museo_pictorico_ppai {
                     this.tableSede.InitVars();
                 }
             }
-            this.tableTarifa = ((TarifaDataTable)(base.Tables["Tarifa"]));
-            if ((initTable == true)) {
-                if ((this.tableTarifa != null)) {
-                    this.tableTarifa.InitVars();
-                }
-            }
             this.tableTarifas = ((TarifasDataTable)(base.Tables["Tarifas"]));
             if ((initTable == true)) {
                 if ((this.tableTarifas != null)) {
@@ -322,8 +296,7 @@ namespace Museo_pictorico_ppai {
                     this.tableTipoVisita.InitVars();
                 }
             }
-            this.relationFK__Tarifa__tipoEntr__173876EA = this.Relations["FK__Tarifa__tipoEntr__173876EA"];
-            this.relationfkTipovisita = this.Relations["fkTipovisita"];
+            this.relationFK_Entradas_Tarifas = this.Relations["FK_Entradas_Tarifas"];
             this.relationfk_tipoentrada = this.Relations["fk_tipoentrada"];
             this.relationfk_tipovisita = this.Relations["fk_tipovisita"];
         }
@@ -340,22 +313,24 @@ namespace Museo_pictorico_ppai {
             base.Tables.Add(this.tableEntradas);
             this.tableSede = new SedeDataTable();
             base.Tables.Add(this.tableSede);
-            this.tableTarifa = new TarifaDataTable();
-            base.Tables.Add(this.tableTarifa);
             this.tableTarifas = new TarifasDataTable();
             base.Tables.Add(this.tableTarifas);
             this.tabletipoEntrada = new tipoEntradaDataTable();
             base.Tables.Add(this.tabletipoEntrada);
             this.tableTipoVisita = new TipoVisitaDataTable();
             base.Tables.Add(this.tableTipoVisita);
-            this.relationFK__Tarifa__tipoEntr__173876EA = new global::System.Data.DataRelation("FK__Tarifa__tipoEntr__173876EA", new global::System.Data.DataColumn[] {
-                        this.tabletipoEntrada.idTipoColumn}, new global::System.Data.DataColumn[] {
-                        this.tableTarifa.tipoEntradaColumn}, false);
-            this.Relations.Add(this.relationFK__Tarifa__tipoEntr__173876EA);
-            this.relationfkTipovisita = new global::System.Data.DataRelation("fkTipovisita", new global::System.Data.DataColumn[] {
-                        this.tableTipoVisita.idColumn}, new global::System.Data.DataColumn[] {
-                        this.tableTarifa.tipoVisitaColumn}, false);
-            this.Relations.Add(this.relationfkTipovisita);
+            global::System.Data.ForeignKeyConstraint fkc;
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_Entradas_Tarifas", new global::System.Data.DataColumn[] {
+                        this.tableEntradas.tarifaColumn}, new global::System.Data.DataColumn[] {
+                        this.tableTarifas.idColumn});
+            this.tableTarifas.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
+            fkc.DeleteRule = global::System.Data.Rule.None;
+            fkc.UpdateRule = global::System.Data.Rule.None;
+            this.relationFK_Entradas_Tarifas = new global::System.Data.DataRelation("FK_Entradas_Tarifas", new global::System.Data.DataColumn[] {
+                        this.tableEntradas.tarifaColumn}, new global::System.Data.DataColumn[] {
+                        this.tableTarifas.idColumn}, false);
+            this.Relations.Add(this.relationFK_Entradas_Tarifas);
             this.relationfk_tipoentrada = new global::System.Data.DataRelation("fk_tipoentrada", new global::System.Data.DataColumn[] {
                         this.tabletipoEntrada.idTipoColumn}, new global::System.Data.DataColumn[] {
                         this.tableTarifas.tipoEntradaColumn}, false);
@@ -375,12 +350,6 @@ namespace Museo_pictorico_ppai {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializeSede() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeTarifa() {
             return false;
         }
         
@@ -462,9 +431,6 @@ namespace Museo_pictorico_ppai {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void SedeRowChangeEventHandler(object sender, SedeRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void TarifaRowChangeEventHandler(object sender, TarifaRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void TarifasRowChangeEventHandler(object sender, TarifasRowChangeEvent e);
@@ -661,6 +627,8 @@ namespace Museo_pictorico_ppai {
                 base.Columns.Add(this.columnsede);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnnroEntrada}, true));
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint2", new global::System.Data.DataColumn[] {
+                                this.columntarifa}, false));
                 this.columnnroEntrada.AutoIncrement = true;
                 this.columnnroEntrada.AutoIncrementSeed = -1;
                 this.columnnroEntrada.AutoIncrementStep = -1;
@@ -668,6 +636,7 @@ namespace Museo_pictorico_ppai {
                 this.columnnroEntrada.ReadOnly = true;
                 this.columnnroEntrada.Unique = true;
                 this.columntarifa.AllowDBNull = false;
+                this.columntarifa.Unique = true;
                 this.columnsede.AllowDBNull = false;
             }
             
@@ -1074,333 +1043,6 @@ namespace Museo_pictorico_ppai {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "SedeDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class TarifaDataTable : global::System.Data.TypedTableBase<TarifaRow> {
-            
-            private global::System.Data.DataColumn columnfechaInicioVigencia;
-            
-            private global::System.Data.DataColumn columnfechaFinVigencia;
-            
-            private global::System.Data.DataColumn columnmonto;
-            
-            private global::System.Data.DataColumn columnmontoAdicionalGuia;
-            
-            private global::System.Data.DataColumn columntipoEntrada;
-            
-            private global::System.Data.DataColumn columntipoVisita;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TarifaDataTable() {
-                this.TableName = "Tarifa";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal TarifaDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected TarifaDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn fechaInicioVigenciaColumn {
-                get {
-                    return this.columnfechaInicioVigencia;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn fechaFinVigenciaColumn {
-                get {
-                    return this.columnfechaFinVigencia;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn montoColumn {
-                get {
-                    return this.columnmonto;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn montoAdicionalGuiaColumn {
-                get {
-                    return this.columnmontoAdicionalGuia;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn tipoEntradaColumn {
-                get {
-                    return this.columntipoEntrada;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn tipoVisitaColumn {
-                get {
-                    return this.columntipoVisita;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TarifaRow this[int index] {
-                get {
-                    return ((TarifaRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event TarifaRowChangeEventHandler TarifaRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event TarifaRowChangeEventHandler TarifaRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event TarifaRowChangeEventHandler TarifaRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event TarifaRowChangeEventHandler TarifaRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddTarifaRow(TarifaRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TarifaRow AddTarifaRow(System.DateTime fechaInicioVigencia, System.DateTime fechaFinVigencia, double monto, double montoAdicionalGuia, tipoEntradaRow parenttipoEntradaRowByFK__Tarifa__tipoEntr__173876EA, TipoVisitaRow parentTipoVisitaRowByfkTipovisita) {
-                TarifaRow rowTarifaRow = ((TarifaRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        fechaInicioVigencia,
-                        fechaFinVigencia,
-                        monto,
-                        montoAdicionalGuia,
-                        null,
-                        null};
-                if ((parenttipoEntradaRowByFK__Tarifa__tipoEntr__173876EA != null)) {
-                    columnValuesArray[4] = parenttipoEntradaRowByFK__Tarifa__tipoEntr__173876EA[0];
-                }
-                if ((parentTipoVisitaRowByfkTipovisita != null)) {
-                    columnValuesArray[5] = parentTipoVisitaRowByfkTipovisita[0];
-                }
-                rowTarifaRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowTarifaRow);
-                return rowTarifaRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                TarifaDataTable cln = ((TarifaDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new TarifaDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal void InitVars() {
-                this.columnfechaInicioVigencia = base.Columns["fechaInicioVigencia"];
-                this.columnfechaFinVigencia = base.Columns["fechaFinVigencia"];
-                this.columnmonto = base.Columns["monto"];
-                this.columnmontoAdicionalGuia = base.Columns["montoAdicionalGuia"];
-                this.columntipoEntrada = base.Columns["tipoEntrada"];
-                this.columntipoVisita = base.Columns["tipoVisita"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            private void InitClass() {
-                this.columnfechaInicioVigencia = new global::System.Data.DataColumn("fechaInicioVigencia", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfechaInicioVigencia);
-                this.columnfechaFinVigencia = new global::System.Data.DataColumn("fechaFinVigencia", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfechaFinVigencia);
-                this.columnmonto = new global::System.Data.DataColumn("monto", typeof(double), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnmonto);
-                this.columnmontoAdicionalGuia = new global::System.Data.DataColumn("montoAdicionalGuia", typeof(double), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnmontoAdicionalGuia);
-                this.columntipoEntrada = new global::System.Data.DataColumn("tipoEntrada", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columntipoEntrada);
-                this.columntipoVisita = new global::System.Data.DataColumn("tipoVisita", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columntipoVisita);
-                this.columnfechaInicioVigencia.AllowDBNull = false;
-                this.columnfechaFinVigencia.AllowDBNull = false;
-                this.columntipoEntrada.AllowDBNull = false;
-                this.columntipoVisita.AllowDBNull = false;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TarifaRow NewTarifaRow() {
-                return ((TarifaRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new TarifaRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(TarifaRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.TarifaRowChanged != null)) {
-                    this.TarifaRowChanged(this, new TarifaRowChangeEvent(((TarifaRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.TarifaRowChanging != null)) {
-                    this.TarifaRowChanging(this, new TarifaRowChangeEvent(((TarifaRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.TarifaRowDeleted != null)) {
-                    this.TarifaRowDeleted(this, new TarifaRowChangeEvent(((TarifaRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.TarifaRowDeleting != null)) {
-                    this.TarifaRowDeleting(this, new TarifaRowChangeEvent(((TarifaRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveTarifaRow(TarifaRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                _museo_ppaiDataSet ds = new _museo_ppaiDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "TarifaDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -2433,6 +2075,17 @@ namespace Museo_pictorico_ppai {
             public void SetmontoNull() {
                 this[this.tableEntradas.montoColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public TarifasRow[] GetTarifasRows() {
+                if ((this.Table.ChildRelations["FK_Entradas_Tarifas"] == null)) {
+                    return new TarifasRow[0];
+                }
+                else {
+                    return ((TarifasRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Entradas_Tarifas"])));
+                }
+            }
         }
         
         /// <summary>
@@ -2576,143 +2229,6 @@ namespace Museo_pictorico_ppai {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class TarifaRow : global::System.Data.DataRow {
-            
-            private TarifaDataTable tableTarifa;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal TarifaRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableTarifa = ((TarifaDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime fechaInicioVigencia {
-                get {
-                    return ((global::System.DateTime)(this[this.tableTarifa.fechaInicioVigenciaColumn]));
-                }
-                set {
-                    this[this.tableTarifa.fechaInicioVigenciaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime fechaFinVigencia {
-                get {
-                    return ((global::System.DateTime)(this[this.tableTarifa.fechaFinVigenciaColumn]));
-                }
-                set {
-                    this[this.tableTarifa.fechaFinVigenciaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public double monto {
-                get {
-                    try {
-                        return ((double)(this[this.tableTarifa.montoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'monto\' de la tabla \'Tarifa\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableTarifa.montoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public double montoAdicionalGuia {
-                get {
-                    try {
-                        return ((double)(this[this.tableTarifa.montoAdicionalGuiaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'montoAdicionalGuia\' de la tabla \'Tarifa\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableTarifa.montoAdicionalGuiaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int tipoEntrada {
-                get {
-                    return ((int)(this[this.tableTarifa.tipoEntradaColumn]));
-                }
-                set {
-                    this[this.tableTarifa.tipoEntradaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int tipoVisita {
-                get {
-                    return ((int)(this[this.tableTarifa.tipoVisitaColumn]));
-                }
-                set {
-                    this[this.tableTarifa.tipoVisitaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tipoEntradaRow tipoEntradaRow {
-                get {
-                    return ((tipoEntradaRow)(this.GetParentRow(this.Table.ParentRelations["FK__Tarifa__tipoEntr__173876EA"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__Tarifa__tipoEntr__173876EA"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TipoVisitaRow TipoVisitaRow {
-                get {
-                    return ((TipoVisitaRow)(this.GetParentRow(this.Table.ParentRelations["fkTipovisita"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["fkTipovisita"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsmontoNull() {
-                return this.IsNull(this.tableTarifa.montoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetmontoNull() {
-                this[this.tableTarifa.montoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsmontoAdicionalGuiaNull() {
-                return this.IsNull(this.tableTarifa.montoAdicionalGuiaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetmontoAdicionalGuiaNull() {
-                this[this.tableTarifa.montoAdicionalGuiaColumn] = global::System.Convert.DBNull;
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
         public partial class TarifasRow : global::System.Data.DataRow {
             
             private TarifasDataTable tableTarifas;
@@ -2802,6 +2318,17 @@ namespace Museo_pictorico_ppai {
                 }
                 set {
                     this[this.tableTarifas.fechaFinVigenciaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public EntradasRow EntradasRow {
+                get {
+                    return ((EntradasRow)(this.GetParentRow(this.Table.ParentRelations["FK_Entradas_Tarifas"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Entradas_Tarifas"]);
                 }
             }
             
@@ -2919,17 +2446,6 @@ namespace Museo_pictorico_ppai {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TarifaRow[] GetTarifaRows() {
-                if ((this.Table.ChildRelations["FK__Tarifa__tipoEntr__173876EA"] == null)) {
-                    return new TarifaRow[0];
-                }
-                else {
-                    return ((TarifaRow[])(base.GetChildRows(this.Table.ChildRelations["FK__Tarifa__tipoEntr__173876EA"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public TarifasRow[] GetTarifasRows() {
                 if ((this.Table.ChildRelations["fk_tipoentrada"] == null)) {
                     return new TarifasRow[0];
@@ -2991,17 +2507,6 @@ namespace Museo_pictorico_ppai {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetnombreNull() {
                 this[this.tableTipoVisita.nombreColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TarifaRow[] GetTarifaRows() {
-                if ((this.Table.ChildRelations["fkTipovisita"] == null)) {
-                    return new TarifaRow[0];
-                }
-                else {
-                    return ((TarifaRow[])(base.GetChildRows(this.Table.ChildRelations["fkTipovisita"])));
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3070,40 +2575,6 @@ namespace Museo_pictorico_ppai {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public SedeRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class TarifaRowChangeEvent : global::System.EventArgs {
-            
-            private TarifaRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TarifaRowChangeEvent(TarifaRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TarifaRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -4024,257 +3495,6 @@ SELECT idSede, cantMaxVisitantes, cantMaxiXguia, nombre, empleados FROM Sede WHE
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(global::System.Nullable<int> cantMaxVisitantes, global::System.Nullable<int> cantMaxiXguia, string nombre, global::System.Nullable<int> empleados, int Original_idSede, global::System.Nullable<int> Original_cantMaxVisitantes, global::System.Nullable<int> Original_cantMaxiXguia, string Original_nombre, global::System.Nullable<int> Original_empleados) {
             return this.Update(cantMaxVisitantes, cantMaxiXguia, nombre, empleados, Original_idSede, Original_cantMaxVisitantes, Original_cantMaxiXguia, Original_nombre, Original_empleados, Original_idSede);
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class TarifaTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public TarifaTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "Tarifa";
-            tableMapping.ColumnMappings.Add("fechaInicioVigencia", "fechaInicioVigencia");
-            tableMapping.ColumnMappings.Add("fechaFinVigencia", "fechaFinVigencia");
-            tableMapping.ColumnMappings.Add("monto", "monto");
-            tableMapping.ColumnMappings.Add("montoAdicionalGuia", "montoAdicionalGuia");
-            tableMapping.ColumnMappings.Add("tipoEntrada", "tipoEntrada");
-            tableMapping.ColumnMappings.Add("tipoVisita", "tipoVisita");
-            this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Tarifa] ([fechaInicioVigencia], [fechaFinVigencia], [monto], [" +
-                "montoAdicionalGuia], [tipoEntrada], [tipoVisita]) VALUES (@fechaInicioVigencia, " +
-                "@fechaFinVigencia, @monto, @montoAdicionalGuia, @tipoEntrada, @tipoVisita)";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fechaInicioVigencia", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fechaInicioVigencia", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fechaFinVigencia", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fechaFinVigencia", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monto", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "monto", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@montoAdicionalGuia", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "montoAdicionalGuia", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tipoEntrada", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tipoEntrada", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tipoVisita", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tipoVisita", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Museo_pictorico_ppai.Properties.Settings.Default.museo_ppaiConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT fechaInicioVigencia, fechaFinVigencia, monto, montoAdicionalGuia, tipoEntr" +
-                "ada, tipoVisita FROM dbo.Tarifa";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(_museo_ppaiDataSet.TarifaDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual _museo_ppaiDataSet.TarifaDataTable GetData() {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            _museo_ppaiDataSet.TarifaDataTable dataTable = new _museo_ppaiDataSet.TarifaDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_museo_ppaiDataSet.TarifaDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_museo_ppaiDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "Tarifa");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(System.DateTime fechaInicioVigencia, System.DateTime fechaFinVigencia, global::System.Nullable<double> monto, global::System.Nullable<double> montoAdicionalGuia, int tipoEntrada, int tipoVisita) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((System.DateTime)(fechaInicioVigencia));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(fechaFinVigencia));
-            if ((monto.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((double)(monto.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((montoAdicionalGuia.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((double)(montoAdicionalGuia.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(tipoEntrada));
-            this.Adapter.InsertCommand.Parameters[5].Value = ((int)(tipoVisita));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
         }
     }
     
@@ -5355,8 +4575,6 @@ SELECT id, tipoVisita, tipoEntrada, precio, fechaInicioVigencia, fechaFinVigenci
         
         private SedeTableAdapter _sedeTableAdapter;
         
-        private TarifaTableAdapter _tarifaTableAdapter;
-        
         private TarifasTableAdapter _tarifasTableAdapter;
         
         private tipoEntradaTableAdapter _tipoEntradaTableAdapter;
@@ -5403,20 +4621,6 @@ SELECT id, tipoVisita, tipoEntrada, precio, fechaInicioVigencia, fechaFinVigenci
             }
             set {
                 this._sedeTableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public TarifaTableAdapter TarifaTableAdapter {
-            get {
-                return this._tarifaTableAdapter;
-            }
-            set {
-                this._tarifaTableAdapter = value;
             }
         }
         
@@ -5489,10 +4693,6 @@ SELECT id, tipoVisita, tipoEntrada, precio, fechaInicioVigencia, fechaFinVigenci
                             && (this._sedeTableAdapter.Connection != null))) {
                     return this._sedeTableAdapter.Connection;
                 }
-                if (((this._tarifaTableAdapter != null) 
-                            && (this._tarifaTableAdapter.Connection != null))) {
-                    return this._tarifaTableAdapter.Connection;
-                }
                 if (((this._tarifasTableAdapter != null) 
                             && (this._tarifasTableAdapter.Connection != null))) {
                     return this._tarifasTableAdapter.Connection;
@@ -5524,9 +4724,6 @@ SELECT id, tipoVisita, tipoEntrada, precio, fechaInicioVigencia, fechaFinVigenci
                 if ((this._sedeTableAdapter != null)) {
                     count = (count + 1);
                 }
-                if ((this._tarifaTableAdapter != null)) {
-                    count = (count + 1);
-                }
                 if ((this._tarifasTableAdapter != null)) {
                     count = (count + 1);
                 }
@@ -5547,6 +4744,15 @@ SELECT id, tipoVisita, tipoEntrada, precio, fechaInicioVigencia, fechaFinVigenci
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateUpdatedRows(_museo_ppaiDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
+            if ((this._entradasTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Entradas.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._entradasTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._tipoEntradaTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.tipoEntrada.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -5565,30 +4771,12 @@ SELECT id, tipoVisita, tipoEntrada, precio, fechaInicioVigencia, fechaFinVigenci
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._entradasTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Entradas.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._entradasTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._sedeTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Sede.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._sedeTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._tarifaTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Tarifa.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tarifaTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -5611,6 +4799,14 @@ SELECT id, tipoVisita, tipoEntrada, precio, fechaInicioVigencia, fechaFinVigenci
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateInsertedRows(_museo_ppaiDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
+            if ((this._entradasTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Entradas.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._entradasTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._tipoEntradaTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.tipoEntrada.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -5627,27 +4823,11 @@ SELECT id, tipoVisita, tipoEntrada, precio, fechaInicioVigencia, fechaFinVigenci
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._entradasTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Entradas.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._entradasTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._sedeTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Sede.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._sedeTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._tarifaTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Tarifa.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tarifaTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -5677,27 +4857,11 @@ SELECT id, tipoVisita, tipoEntrada, precio, fechaInicioVigencia, fechaFinVigenci
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._tarifaTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Tarifa.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._tarifaTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._sedeTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Sede.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._sedeTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._entradasTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Entradas.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._entradasTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -5714,6 +4878,14 @@ SELECT id, tipoVisita, tipoEntrada, precio, fechaInicioVigencia, fechaFinVigenci
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._tipoEntradaTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._entradasTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Entradas.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._entradasTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -5763,11 +4935,6 @@ SELECT id, tipoVisita, tipoEntrada, precio, fechaInicioVigencia, fechaFinVigenci
             }
             if (((this._sedeTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._sedeTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("Todos los TableAdapters administrados por un TableAdapterManager deben usar la mi" +
-                        "sma cadena de conexión.");
-            }
-            if (((this._tarifaTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._tarifaTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("Todos los TableAdapters administrados por un TableAdapterManager deben usar la mi" +
                         "sma cadena de conexión.");
             }
@@ -5834,15 +5001,6 @@ SELECT id, tipoVisita, tipoEntrada, precio, fechaInicioVigencia, fechaFinVigenci
                     if (this._sedeTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._sedeTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._sedeTableAdapter.Adapter);
-                    }
-                }
-                if ((this._tarifaTableAdapter != null)) {
-                    revertConnections.Add(this._tarifaTableAdapter, this._tarifaTableAdapter.Connection);
-                    this._tarifaTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._tarifaTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._tarifaTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._tarifaTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._tarifaTableAdapter.Adapter);
                     }
                 }
                 if ((this._tarifasTableAdapter != null)) {
@@ -5937,10 +5095,6 @@ SELECT id, tipoVisita, tipoEntrada, precio, fechaInicioVigencia, fechaFinVigenci
                 if ((this._sedeTableAdapter != null)) {
                     this._sedeTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._sedeTableAdapter]));
                     this._sedeTableAdapter.Transaction = null;
-                }
-                if ((this._tarifaTableAdapter != null)) {
-                    this._tarifaTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tarifaTableAdapter]));
-                    this._tarifaTableAdapter.Transaction = null;
                 }
                 if ((this._tarifasTableAdapter != null)) {
                     this._tarifasTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tarifasTableAdapter]));

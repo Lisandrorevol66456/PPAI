@@ -47,6 +47,8 @@ namespace Museo_pictorico_ppai
             this.ActualizarTarifas();
             btnConfirmar.Enabled = false;
             btnGuardar.Enabled = false;
+            cmbTipos.SelectedIndex = -1;
+            cmbTipoVisita.SelectedIndex = -1;
 
 
         }
@@ -138,8 +140,49 @@ namespace Museo_pictorico_ppai
             
         }
         private int calcularTarifa()
-        {
-            return 1;
+        {         
+            if (cmbTipos.SelectedIndex == 0)
+            {
+                if(cmbTipoVisita.SelectedIndex == 0)
+                {
+                    return 1;
+                }
+                if (cmbTipoVisita.SelectedIndex == 1)
+                {
+                    return 2;
+                }
+                if (cmbTipoVisita.SelectedIndex == 2)
+                {
+                    return 3;
+                }
+                if (cmbTipoVisita.SelectedIndex == 3)
+                {
+                    return 4;
+                }
+
+            }
+            if (cmbTipos.SelectedIndex == 1)
+            {
+                if (cmbTipoVisita.SelectedIndex == 0)
+                {
+                    return 5;
+                }
+                if (cmbTipoVisita.SelectedIndex == 1)
+                {
+                    return 6;
+                }
+                if (cmbTipoVisita.SelectedIndex == 2)
+                {
+                    return 7;
+                }
+                if (cmbTipoVisita.SelectedIndex == 3)
+                {
+                    return 8;
+                }
+            }
+
+
+                return -1;
         }
 
         public void btnGuardar_Click(object sender, EventArgs e) { 
@@ -147,8 +190,14 @@ namespace Museo_pictorico_ppai
             var idSede = Int32.Parse(txtSede.Text);
             var tarifa = this.calcularTarifa();
             var fechaHoraVenta = DateTime.Now;
-            var monto = this.calcularMonto();
+            if (tarifa == -1)
+            {
+                MessageBox.Show("error en tarifa");
+                return;
+            }
+            var monto = this.calcularMonto(tarifa);
             var cantentradas = txtCantentradas.Text;
+            
 
             var confirmacion = MessageBox.Show($"¿Confirma registro de la(s) {cantentradas} entrada(s), para la sede {idSede} por el monto {monto} ?",
                  "Confirmar operación",
@@ -162,9 +211,9 @@ namespace Museo_pictorico_ppai
                 entrada.fechaHoraVenta = fechaHoraVenta;
                 entrada.monto = monto;
                 entrada.tarifa = tarifa;
-                entrada.idSede = idSede;             
-                                
-                //if (_entradaRepo.Guardar(entrada))
+                entrada.idSede = idSede;
+
+                if (_entradaRepo.Guardar(entrada)) ;
                 //    i++;
             } MessageBox.Show("Entradas registradas correctamente");
             limpiarCampos();
@@ -173,10 +222,31 @@ namespace Museo_pictorico_ppai
 
 
         }
-        private float calcularMonto()
+        private float calcularMonto(int tarifa)
         {
-            float monto = 333;
+            float monto=0;
+            float porcGuia =50;
+            if (tarifa == 1)
+                monto= 300;
+            if (tarifa == 2)
+                monto= 200;
+            if (tarifa == 3)
+                monto= 200;
+            if (tarifa == 4)
+                monto =200;
+            if (tarifa == 5)
+                monto =150;
+            if (tarifa == 6)
+                monto = 100;
+            if (tarifa == 7)
+                monto = 100;
+            if (tarifa == 8)
+                monto = 100;
 
+            if (materialRadioButton1.Checked)
+                monto = monto + porcGuia;
+            if (materialRadioButton2.Checked)
+                return monto;
             return monto;
         }
 
