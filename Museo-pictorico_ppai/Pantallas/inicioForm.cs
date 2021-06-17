@@ -36,5 +36,10 @@ namespace Museo_pictorico_ppai.Forms
             PantallaSala ventana = new PantallaSala();
             ventana.ShowDialog();
         }
+
+        private void BtnSalir_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
