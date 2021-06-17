@@ -43,9 +43,9 @@ namespace Museo_pictorico_ppai.Pantallas
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(11, 461);
+            this.pictureBox2.Location = new System.Drawing.Point(-3, 233);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(196, 137);
+            this.pictureBox2.Size = new System.Drawing.Size(173, 137);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 27;
             this.pictureBox2.TabStop = false;
@@ -54,9 +54,9 @@ namespace Museo_pictorico_ppai.Pantallas
             // 
             this.pictureBox1.Enabled = false;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(213, 461);
+            this.pictureBox1.Location = new System.Drawing.Point(176, 233);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(707, 137);
+            this.pictureBox1.Size = new System.Drawing.Size(684, 137);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 26;
             this.pictureBox1.TabStop = false;
@@ -65,7 +65,7 @@ namespace Museo_pictorico_ppai.Pantallas
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(198, 101);
+            this.label1.Location = new System.Drawing.Point(165, 46);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(278, 63);
             this.label1.TabIndex = 28;
@@ -75,7 +75,7 @@ namespace Museo_pictorico_ppai.Pantallas
             // 
             this.lblVisitantes.AutoSize = true;
             this.lblVisitantes.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVisitantes.Location = new System.Drawing.Point(482, 101);
+            this.lblVisitantes.Location = new System.Drawing.Point(434, 46);
             this.lblVisitantes.Name = "lblVisitantes";
             this.lblVisitantes.Size = new System.Drawing.Size(342, 63);
             this.lblVisitantes.TabIndex = 29;
@@ -85,18 +85,17 @@ namespace Museo_pictorico_ppai.Pantallas
             // 
             this.lblCapacidad.AutoSize = true;
             this.lblCapacidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCapacidad.Location = new System.Drawing.Point(482, 253);
+            this.lblCapacidad.Location = new System.Drawing.Point(564, 120);
             this.lblCapacidad.Name = "lblCapacidad";
             this.lblCapacidad.Size = new System.Drawing.Size(342, 63);
             this.lblCapacidad.TabIndex = 31;
             this.lblCapacidad.Text = "CAPACIDAD";
-           
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(58, 253);
+            this.label4.Location = new System.Drawing.Point(165, 120);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(418, 63);
             this.label4.TabIndex = 30;
@@ -106,14 +105,17 @@ namespace Museo_pictorico_ppai.Pantallas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.ClientSize = new System.Drawing.Size(954, 610);
+            this.ClientSize = new System.Drawing.Size(865, 373);
             this.Controls.Add(this.lblCapacidad);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblVisitantes);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "PantallaSala";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sala - Museo Pictórico Córdoba";

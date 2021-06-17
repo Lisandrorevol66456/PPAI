@@ -99,6 +99,7 @@
             this.BtnSalir.TabIndex = 29;
             this.BtnSalir.Text = "Salir";
             this.BtnSalir.UseVisualStyleBackColor = true;
+            this.BtnSalir.Click += new System.EventHandler(this.BtnSalir_Click);
             // 
             // inicioForm
             // 
@@ -108,6 +109,7 @@
             this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(780, 489);
+            this.ControlBox = false;
             this.Controls.Add(this.BtnSalir);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.btnPantallaSala);

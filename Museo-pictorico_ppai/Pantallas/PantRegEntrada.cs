@@ -264,5 +264,16 @@ namespace Museo_pictorico_ppai
             limpiarCampos();
 
         }
+
+        private void resetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var confirmacion = MessageBox.Show($"Se volverá a 0 el valor 'Cantidad de visitantes'",
+                 "Confirmar operación",
+                   MessageBoxButtons.YesNo);
+            if (confirmacion.Equals(DialogResult.No))
+                return;
+            _gestorVentaEntrada.ResetearVisitantes(_sede.idSede);
+            MessageBox.Show("Se reseteó valor 'Cantidad de visitantes' ");
+        }
     }
 }
