@@ -16,13 +16,13 @@ namespace Museo_pictorico_ppai
     public partial class Form1 : Form
     {
         ValidateTextBox v;
-        EntradaRepositorio _entradaRepo;
+        GestorPantallaEntrada _gestorVentaEntrada;
         Sede _sede;
 
         public Form1()
         {
             InitializeComponent();
-            _entradaRepo = new EntradaRepositorio();
+            _gestorVentaEntrada = new GestorPantallaEntrada();
             v = new ValidateTextBox();
             _sede = new Sede();
         }
@@ -38,21 +38,24 @@ namespace Museo_pictorico_ppai
         {
             this.CargarComboTipos();
             this.CargarCompoTipoVisita();
-            txtSede.Text = "01";
+            txtSede.Text = "1";
             txtCantentradas.Visible = false;
             BtnCheckear.Visible = false;
             checkedLogo.Visible = false;
             labelCantEntradas.Visible = false;
             labelWarnincupo.Visible = false;
-            this.ActualizarEntradas();
+            this.CargarDGVTarifas();
             btnConfirmar.Enabled = false;
+            btnGuardar.Enabled = false;
+            cmbTipos.SelectedIndex = -1;
+            cmbTipoVisita.SelectedIndex = -1;
 
 
         }
 
         private void CargarCompoTipoVisita()
         {
-            var tipoVisita = _entradaRepo.ObtenerTiposVisita();
+            var tipoVisita = _gestorVentaEntrada.ObtenerTiposVisita();
             cmbTipoVisita.ValueMember = "idTipo";
             cmbTipoVisita.DisplayMember = "nombre";
             cmbTipoVisita.DataSource = tipoVisita;
@@ -61,7 +64,7 @@ namespace Museo_pictorico_ppai
 
         private void CargarComboTipos()
         {
-            var tipoEntrada = _entradaRepo.ObtenerTiposEntradas();
+            var tipoEntrada = _gestorVentaEntrada.ObtenerTiposEntradas();
             cmbTipos.ValueMember = "idTipo";
             cmbTipos.DisplayMember = "nombre";
             cmbTipos.DataSource = tipoEntrada;
@@ -71,6 +74,11 @@ namespace Museo_pictorico_ppai
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            var confirmacion = MessageBox.Show($"¿Seguro desea cancelar la operación?",
+                 "Cancelar operación",
+                   MessageBoxButtons.YesNo);
+            if (confirmacion.Equals(DialogResult.No))
+                return;
             this.Dispose();
         }
 
@@ -81,24 +89,24 @@ namespace Museo_pictorico_ppai
             BtnCheckear.Visible = true;
         }
 
-        private void ActualizarEntradas()
+        private void CargarDGVTarifas()
         {
-            dgvEntradas.Rows.Clear();
-            var entradas = _entradaRepo.ObtenerEntradas().Rows;
+            dgvTarifas.Rows.Clear();
+            var tarifas = _gestorVentaEntrada.BuscarTarifas().Rows;
             var filas = new List<DataGridViewRow>();
-            foreach (DataRow entr in entradas)
+            foreach (DataRow tar in tarifas)
             {
-                if (entr.HasErrors)
+                if (tar.HasErrors)
                     continue;
                 var fila = new string[]
                 {
-                    entr.ItemArray[0].ToString(),
-                    entr.ItemArray[1].ToString(),
-                    entr.ItemArray[2].ToString(),
-                    entr.ItemArray[3].ToString(),
-                    entr.ItemArray[4].ToString(),
+                    tar.ItemArray[0].ToString(),
+                    tar.ItemArray[1].ToString(),
+                    tar.ItemArray[2].ToString(),
+                    tar.ItemArray[3].ToString(),
+                    //tar.ItemArray[4].ToString(),
                 };
-                dgvEntradas.Rows.Add(fila);
+                dgvTarifas.Rows.Add(fila);
             } 
         }
        
@@ -106,20 +114,29 @@ namespace Museo_pictorico_ppai
 
         private void BtnCheckear_Click(object sender, EventArgs e)
         {
-            if (txtCantentradas.Text != "")
+            if (txtCantentradas.Text != "" )
             {
-                if (_sede.CheckearCupo(long.Parse(txtCantentradas.Text)))
+                if (materialRadioButton1.Checked || materialRadioButton2.Checked)
                 {
-                    checkedLogo.Visible = true;
-                    labelWarnincupo.Visible = false;
-                    btnConfirmar.Enabled = true;
-                }
-                else
+                    if (_sede.CheckearCupo(long.Parse(txtCantentradas.Text)))
+                    {
+
+                        checkedLogo.Visible = true;
+                        labelWarnincupo.Visible = false;
+                        btnConfirmar.Enabled = true;
+                    }
+                    else
+                    {
+                        checkedLogo.Visible = false;
+                        labelWarnincupo.Visible = true;
+                        btnConfirmar.Enabled = false;
+                    }
+                }else
                 {
-                    checkedLogo.Visible = false;
-                    labelWarnincupo.Visible = true;
-                    btnConfirmar.Enabled = false;
+                    MessageBox.Show("complete campo guía");
+                    groupBox1.Focus();
                 }
+
             }else
             {
                 MessageBox.Show("complete campo cantidad de entradas");
@@ -127,9 +144,88 @@ namespace Museo_pictorico_ppai
             }
             
         }
+        private int TomarSeleccionTarifa()
+        {         
+            if (cmbTipos.SelectedIndex == 0)
+            {
+                if(cmbTipoVisita.SelectedIndex == 0)
+                {
+                    return 1;
+                }
+                if (cmbTipoVisita.SelectedIndex == 1)
+                {
+                    return 2;
+                }
+                if (cmbTipoVisita.SelectedIndex == 2)
+                {
+                    return 3;
+                }
+                if (cmbTipoVisita.SelectedIndex == 3)
+                {
+                    return 4;
+                }
 
-        private void btnGuardar_Click(object sender, EventArgs e)
-        {
+            }
+            if (cmbTipos.SelectedIndex == 1)
+            {
+                if (cmbTipoVisita.SelectedIndex == 0)
+                {
+                    return 5;
+                }
+                if (cmbTipoVisita.SelectedIndex == 1)
+                {
+                    return 6;
+                }
+                if (cmbTipoVisita.SelectedIndex == 2)
+                {
+                    return 7;
+                }
+                if (cmbTipoVisita.SelectedIndex == 3)
+                {
+                    return 8;
+                }
+            }
+                return -1;
+        }
+
+        public void btnGuardar_Click(object sender, EventArgs e) {
+            var porcGuia = 50;
+            var idSede = Int32.Parse(txtSede.Text);
+            var tarifa = this.TomarSeleccionTarifa();
+            var fechaHoraVenta = DateTime.Now;
+            var cantidadVisita  = Int32.Parse(txtCantentradas.Text);
+            if (tarifa == -1)
+            {
+                MessageBox.Show("error en tarifa");
+                return;
+            }
+            var monto = this._gestorVentaEntrada.calcularMonto(tarifa);
+            if(materialRadioButton1.Checked)
+                monto = monto + porcGuia;
+
+            var cantentradas = txtCantentradas.Text;
+            
+
+            var confirmacion = MessageBox.Show($"¿Confirma registro de la(s) {cantentradas} entrada(s), para la sede {idSede} por el monto {monto} (cada una)?",
+                 "Confirmar operación",
+                   MessageBoxButtons.YesNo);
+            if (confirmacion.Equals(DialogResult.No))
+                return;
+
+            for (var i = 1; i <= Int32.Parse(txtCantentradas.Text); i++)
+            {
+                var entrada = this._gestorVentaEntrada.CrearEntrada(); 
+                entrada.fechaHoraVenta = fechaHoraVenta;
+                entrada.monto = monto;
+                entrada.tarifa = tarifa;
+                entrada.idSede = idSede;
+
+                if (_gestorVentaEntrada.Guardar(entrada)) ;
+                //    i++;
+            } MessageBox.Show("Entradas registradas correctamente");
+            limpiarCampos();
+            _gestorVentaEntrada.ActualizarVisitantes(cantidadVisita);
+
 
         }
 
@@ -141,6 +237,7 @@ namespace Museo_pictorico_ppai
                 cmbTipos.Enabled = false;
                 cmbTipoVisita.Enabled = false;
                 groupBox1.Enabled = false;
+                btnGuardar.Enabled = true;
 
             }
         }
@@ -149,8 +246,7 @@ namespace Museo_pictorico_ppai
         {
             btnConfirmar.Enabled = false;
         }
-
-        private void btnLimpiar_Click(object sender, EventArgs e)
+        private void limpiarCampos()
         {
             txtCantentradas.Enabled = true;
             txtCantentradas.Clear();
@@ -160,6 +256,12 @@ namespace Museo_pictorico_ppai
             checkedLogo.Visible = false;
             labelWarnincupo.Visible = false;
             btnConfirmar.Enabled = false;
+            btnGuardar.Enabled = false;
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            limpiarCampos();
 
         }
     }

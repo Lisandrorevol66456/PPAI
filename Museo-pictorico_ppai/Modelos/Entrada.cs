@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace Museo_pictorico_ppai.Modelos
 {
-    class Entrada
+    public class Entrada
     {
-        public int idEntrada { get; set; }
+        public int nroEntrada { get; set; }
+        public DateTime fechaHoraVenta { get; set; }
+        public float monto { get; set; }
+        public int tarifa { get; set; }
         public int idSede { get; set; }
-        public int tipoEntrada { get; set; }
-        public bool sservicioGuia { get; set; }
+        
+        
+        
     }
 }

@@ -29,14 +29,13 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnGuardar = new System.Windows.Forms.Button();
-            this.dgvEntradas = new System.Windows.Forms.DataGridView();
-            this.Nro_Entrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechaventa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.horaVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tarifa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sede = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvTarifas = new System.Windows.Forms.DataGridView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoVisita = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmbTipos = new System.Windows.Forms.ComboBox();
             this.labelCantEntradas = new System.Windows.Forms.Label();
             this.txtCantentradas = new System.Windows.Forms.TextBox();
@@ -58,7 +57,9 @@
             this.labelWarnincupo = new System.Windows.Forms.Label();
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEntradas)).BeginInit();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTarifas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -72,78 +73,85 @@
             this.btnGuardar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnGuardar.BackgroundImage")));
             this.btnGuardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnGuardar.ForeColor = System.Drawing.Color.Black;
-            this.btnGuardar.Location = new System.Drawing.Point(863, 294);
+            this.btnGuardar.Location = new System.Drawing.Point(757, 345);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(56, 55);
             this.btnGuardar.TabIndex = 1;
             this.btnGuardar.UseVisualStyleBackColor = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
-            // dgvEntradas
+            // dgvTarifas
             // 
-            this.dgvEntradas.AllowUserToAddRows = false;
-            this.dgvEntradas.AllowUserToDeleteRows = false;
-            this.dgvEntradas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEntradas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Nro_Entrada,
-            this.fechaventa,
-            this.horaVenta,
-            this.monto,
-            this.Tarifa,
-            this.sede});
-            this.dgvEntradas.Location = new System.Drawing.Point(381, 77);
-            this.dgvEntradas.Name = "dgvEntradas";
-            this.dgvEntradas.ReadOnly = true;
-            this.dgvEntradas.Size = new System.Drawing.Size(538, 211);
-            this.dgvEntradas.TabIndex = 3;
+            this.dgvTarifas.AllowUserToAddRows = false;
+            this.dgvTarifas.AllowUserToDeleteRows = false;
+            this.dgvTarifas.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvTarifas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTarifas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.id,
+            this.TipoVisita,
+            this.TipoEntrada,
+            this.precio});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Bernard MT Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvTarifas.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvTarifas.Location = new System.Drawing.Point(462, 111);
+            this.dgvTarifas.Name = "dgvTarifas";
+            this.dgvTarifas.ReadOnly = true;
+            this.dgvTarifas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvTarifas.Size = new System.Drawing.Size(351, 223);
+            this.dgvTarifas.TabIndex = 3;
             // 
-            // Nro_Entrada
+            // id
             // 
-            this.Nro_Entrada.Frozen = true;
-            this.Nro_Entrada.HeaderText = "Nro Entrada";
-            this.Nro_Entrada.Name = "Nro_Entrada";
-            this.Nro_Entrada.ReadOnly = true;
+            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.id.Frozen = true;
+            this.id.HeaderText = "#";
+            this.id.MaxInputLength = 3;
+            this.id.MinimumWidth = 3;
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.id.Width = 40;
             // 
-            // fechaventa
+            // TipoVisita
             // 
-            this.fechaventa.Frozen = true;
-            this.fechaventa.HeaderText = "Fecha venta";
-            this.fechaventa.Name = "fechaventa";
-            this.fechaventa.ReadOnly = true;
+            this.TipoVisita.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.TipoVisita.Frozen = true;
+            this.TipoVisita.HeaderText = "Tipo de visita";
+            this.TipoVisita.Name = "TipoVisita";
+            this.TipoVisita.ReadOnly = true;
+            this.TipoVisita.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.TipoVisita.Width = 110;
             // 
-            // horaVenta
+            // TipoEntrada
             // 
-            this.horaVenta.Frozen = true;
-            this.horaVenta.HeaderText = "Hora";
-            this.horaVenta.Name = "horaVenta";
-            this.horaVenta.ReadOnly = true;
+            this.TipoEntrada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.TipoEntrada.Frozen = true;
+            this.TipoEntrada.HeaderText = "Tipo de entrada";
+            this.TipoEntrada.Name = "TipoEntrada";
+            this.TipoEntrada.ReadOnly = true;
+            this.TipoEntrada.Width = 90;
             // 
-            // monto
+            // precio
             // 
-            this.monto.Frozen = true;
-            this.monto.HeaderText = "Monto";
-            this.monto.Name = "monto";
-            this.monto.ReadOnly = true;
-            // 
-            // Tarifa
-            // 
-            this.Tarifa.Frozen = true;
-            this.Tarifa.HeaderText = "Tarifa ";
-            this.Tarifa.Name = "Tarifa";
-            this.Tarifa.ReadOnly = true;
-            // 
-            // sede
-            // 
-            this.sede.Frozen = true;
-            this.sede.HeaderText = "Sede";
-            this.sede.Name = "sede";
-            this.sede.ReadOnly = true;
+            this.precio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.precio.Frozen = true;
+            this.precio.HeaderText = "Precio";
+            this.precio.Name = "precio";
+            this.precio.ReadOnly = true;
+            this.precio.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.precio.Width = 60;
             // 
             // cmbTipos
             // 
             this.cmbTipos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipos.FormattingEnabled = true;
-            this.cmbTipos.Location = new System.Drawing.Point(182, 281);
+            this.cmbTipos.Location = new System.Drawing.Point(182, 293);
             this.cmbTipos.Name = "cmbTipos";
             this.cmbTipos.Size = new System.Drawing.Size(135, 23);
             this.cmbTipos.TabIndex = 4;
@@ -152,7 +160,7 @@
             // 
             this.labelCantEntradas.AutoSize = true;
             this.labelCantEntradas.Font = new System.Drawing.Font("Bernard MT Condensed", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCantEntradas.Location = new System.Drawing.Point(61, 365);
+            this.labelCantEntradas.Location = new System.Drawing.Point(61, 377);
             this.labelCantEntradas.Name = "labelCantEntradas";
             this.labelCantEntradas.Size = new System.Drawing.Size(114, 16);
             this.labelCantEntradas.TabIndex = 5;
@@ -160,7 +168,7 @@
             // 
             // txtCantentradas
             // 
-            this.txtCantentradas.Location = new System.Drawing.Point(182, 362);
+            this.txtCantentradas.Location = new System.Drawing.Point(182, 374);
             this.txtCantentradas.MaxLength = 5;
             this.txtCantentradas.Name = "txtCantentradas";
             this.txtCantentradas.Size = new System.Drawing.Size(135, 22);
@@ -172,7 +180,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Bernard MT Condensed", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(61, 284);
+            this.label3.Location = new System.Drawing.Point(61, 296);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(93, 16);
             this.label3.TabIndex = 7;
@@ -184,7 +192,7 @@
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(213, 460);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(707, 137);
+            this.pictureBox1.Size = new System.Drawing.Size(634, 137);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
@@ -195,7 +203,7 @@
             this.btnCancelar.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnCancelar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCancelar.BackgroundImage")));
             this.btnCancelar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnCancelar.Location = new System.Drawing.Point(801, 294);
+            this.btnCancelar.Location = new System.Drawing.Point(695, 345);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(56, 55);
             this.btnCancelar.TabIndex = 10;
@@ -270,10 +278,10 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Bodoni MT", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(317, 12);
+            this.label4.Font = new System.Drawing.Font("Bodoni MT", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(298, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(309, 41);
+            this.label4.Size = new System.Drawing.Size(330, 44);
             this.label4.TabIndex = 14;
             this.label4.Text = "Registro de entradas";
             // 
@@ -290,7 +298,7 @@
             // btnCantEntradas
             // 
             this.btnCantEntradas.Font = new System.Drawing.Font("Bernard MT Condensed", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCantEntradas.Location = new System.Drawing.Point(81, 310);
+            this.btnCantEntradas.Location = new System.Drawing.Point(81, 322);
             this.btnCantEntradas.Name = "btnCantEntradas";
             this.btnCantEntradas.Size = new System.Drawing.Size(236, 27);
             this.btnCantEntradas.TabIndex = 16;
@@ -322,7 +330,7 @@
             this.BtnCheckear.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnCheckear.BackgroundImage")));
             this.BtnCheckear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.BtnCheckear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnCheckear.Location = new System.Drawing.Point(322, 356);
+            this.BtnCheckear.Location = new System.Drawing.Point(322, 368);
             this.BtnCheckear.Name = "BtnCheckear";
             this.BtnCheckear.Size = new System.Drawing.Size(43, 32);
             this.BtnCheckear.TabIndex = 19;
@@ -333,7 +341,7 @@
             // checkedLogo
             // 
             this.checkedLogo.Image = ((System.Drawing.Image)(resources.GetObject("checkedLogo.Image")));
-            this.checkedLogo.Location = new System.Drawing.Point(371, 353);
+            this.checkedLogo.Location = new System.Drawing.Point(371, 365);
             this.checkedLogo.Name = "checkedLogo";
             this.checkedLogo.Size = new System.Drawing.Size(35, 35);
             this.checkedLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -344,7 +352,7 @@
             // 
             this.labelWarnincupo.AutoSize = true;
             this.labelWarnincupo.ForeColor = System.Drawing.Color.Red;
-            this.labelWarnincupo.Location = new System.Drawing.Point(181, 391);
+            this.labelWarnincupo.Location = new System.Drawing.Point(181, 403);
             this.labelWarnincupo.Name = "labelWarnincupo";
             this.labelWarnincupo.Size = new System.Drawing.Size(142, 15);
             this.labelWarnincupo.TabIndex = 21;
@@ -357,7 +365,7 @@
             this.btnConfirmar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnConfirmar.Font = new System.Drawing.Font("Bernard MT Condensed", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirmar.ForeColor = System.Drawing.Color.Black;
-            this.btnConfirmar.Location = new System.Drawing.Point(63, 409);
+            this.btnConfirmar.Location = new System.Drawing.Point(63, 421);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(154, 30);
             this.btnConfirmar.TabIndex = 22;
@@ -372,13 +380,34 @@
             this.btnLimpiar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnLimpiar.Font = new System.Drawing.Font("Bernard MT Condensed", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpiar.ForeColor = System.Drawing.Color.Black;
-            this.btnLimpiar.Location = new System.Drawing.Point(223, 409);
+            this.btnLimpiar.Location = new System.Drawing.Point(223, 421);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(102, 30);
             this.btnLimpiar.TabIndex = 23;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = false;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Bodoni MT", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(462, 74);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(99, 34);
+            this.label5.TabIndex = 24;
+            this.label5.Text = "Tarifas";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Bodoni MT", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Red;
+            this.label6.Location = new System.Drawing.Point(35, 264);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(384, 15);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "*El servicio de guía tiene un cargo extra de $50 sobre el valor de la entrada.";
             // 
             // Form1
             // 
@@ -387,7 +416,9 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(950, 606);
+            this.ClientSize = new System.Drawing.Size(886, 606);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.labelWarnincupo);
@@ -407,7 +438,7 @@
             this.Controls.Add(this.txtCantentradas);
             this.Controls.Add(this.labelCantEntradas);
             this.Controls.Add(this.cmbTipos);
-            this.Controls.Add(this.dgvEntradas);
+            this.Controls.Add(this.dgvTarifas);
             this.Controls.Add(this.btnGuardar);
             this.Font = new System.Drawing.Font("Bernard MT Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -417,7 +448,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro de entrada - Museo Pictórico Córdoba";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEntradas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTarifas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -430,7 +461,7 @@
 
         #endregion
         private System.Windows.Forms.Button btnGuardar;
-        private System.Windows.Forms.DataGridView dgvEntradas;
+        private System.Windows.Forms.DataGridView dgvTarifas;
         private System.Windows.Forms.ComboBox cmbTipos;
         private System.Windows.Forms.Label labelCantEntradas;
         private System.Windows.Forms.TextBox txtCantentradas;
@@ -450,14 +481,14 @@
         private System.Windows.Forms.Button BtnCheckear;
         private System.Windows.Forms.PictureBox checkedLogo;
         private System.Windows.Forms.Label labelWarnincupo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nro_Entrada;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fechaventa;
-        private System.Windows.Forms.DataGridViewTextBoxColumn horaVenta;
-        private System.Windows.Forms.DataGridViewTextBoxColumn monto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Tarifa;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sede;
         private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TipoVisita;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TipoEntrada;
+        private System.Windows.Forms.DataGridViewTextBoxColumn precio;
+        private System.Windows.Forms.Label label6;
     }
 }
 
