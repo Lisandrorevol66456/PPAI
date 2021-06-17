@@ -90,6 +90,7 @@ namespace Museo_pictorico_ppai.Pantallas
             this.lblCapacidad.Size = new System.Drawing.Size(342, 63);
             this.lblCapacidad.TabIndex = 31;
             this.lblCapacidad.Text = "CAPACIDAD";
+           
             // 
             // label4
             // 

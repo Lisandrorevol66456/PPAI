@@ -73,7 +73,7 @@
             this.btnGuardar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnGuardar.BackgroundImage")));
             this.btnGuardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnGuardar.ForeColor = System.Drawing.Color.Black;
-            this.btnGuardar.Location = new System.Drawing.Point(740, 345);
+            this.btnGuardar.Location = new System.Drawing.Point(757, 345);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(56, 55);
             this.btnGuardar.TabIndex = 1;
@@ -99,7 +99,7 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvTarifas.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvTarifas.Location = new System.Drawing.Point(445, 111);
+            this.dgvTarifas.Location = new System.Drawing.Point(462, 111);
             this.dgvTarifas.Name = "dgvTarifas";
             this.dgvTarifas.ReadOnly = true;
             this.dgvTarifas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -203,7 +203,7 @@
             this.btnCancelar.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnCancelar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCancelar.BackgroundImage")));
             this.btnCancelar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnCancelar.Location = new System.Drawing.Point(678, 345);
+            this.btnCancelar.Location = new System.Drawing.Point(695, 345);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(56, 55);
             this.btnCancelar.TabIndex = 10;
@@ -392,7 +392,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Bodoni MT", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(445, 74);
+            this.label5.Location = new System.Drawing.Point(462, 74);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(99, 34);
             this.label5.TabIndex = 24;
@@ -403,11 +403,11 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Bodoni MT", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Red;
-            this.label6.Location = new System.Drawing.Point(60, 262);
+            this.label6.Location = new System.Drawing.Point(35, 264);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(339, 15);
+            this.label6.Size = new System.Drawing.Size(384, 15);
             this.label6.TabIndex = 2;
-            this.label6.Text = "*El servicio de guía tiene un cargo del 10% del valor de la entrada.";
+            this.label6.Text = "*El servicio de guía tiene un cargo extra de $50 sobre el valor de la entrada.";
             // 
             // Form1
             // 

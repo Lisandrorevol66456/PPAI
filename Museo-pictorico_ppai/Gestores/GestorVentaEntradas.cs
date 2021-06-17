@@ -9,15 +9,69 @@ using System.Threading.Tasks;
 
 namespace Museo_pictorico_ppai.Repositorios
 {
-    public class EntradaRepositorio
+    public class GestorPantallaEntrada
     {
         //private Form1 _pantallaEntrada;
         private AccesoBD _BD;
+        private Sede _sede;
+        //private int visitantes = 0;
+     
 
-        public EntradaRepositorio()
+        public GestorPantallaEntrada()
         {
             _BD = new AccesoBD();
+            _sede = new Sede();
             //_pantallaEntrada = new Form1();
+        }
+        public void BuscarEmpleadoLogueado()
+        {
+
+        }
+        public void ConocerUsuario()
+        {
+
+        }
+        public DataTable ObtnerSede(int sede)
+        {
+            string sqlTxt = $"SELECT * from Sede WHERE id =" +sede;
+            var SedeDTRows = _BD.Consulta(sqlTxt);
+            return SedeDTRows;
+        }
+        public void MostrarDetalleVenta()
+        {
+
+        }
+        //public int TomarSeleccionTarifa()
+        //{
+
+        //}
+        public Entrada CrearEntrada()
+        {
+            Entrada entrada = new Entrada();
+            return entrada;
+        }
+        public float calcularMonto(int tarifa)
+        {
+            float monto = 0;
+            
+            if (tarifa == 1)
+                monto = 300;
+            if (tarifa == 2)
+                monto = 200;
+            if (tarifa == 3)
+                monto = 200;
+            if (tarifa == 4)
+                monto = 200;
+            if (tarifa == 5)
+                monto = 150;
+            if (tarifa == 6)
+                monto = 100;
+            if (tarifa == 7)
+                monto = 100;
+            if (tarifa == 8)
+                monto = 100;
+                       
+            return monto;
         }
 
         public DataTable ObtenerTiposEntradas()
@@ -40,7 +94,7 @@ namespace Museo_pictorico_ppai.Repositorios
             return TiposVisitaDTRows;
         }
 
-         public DataTable ObtenerTarifas()
+         public DataTable BuscarTarifas()
         {
             string sqlTxt = $"select t.id,tv.nombre as 'tipo visita',te.nombre as'tipo entrada',t.precio from tarifas t join tipoEntrada te on t.tipoEntrada = te.idTipo join TipoVisita tv on t.tipoVisita = tv.id order by tv.nombre; ";
             var tarifasDTRows = _BD.Consulta(sqlTxt);
@@ -52,8 +106,18 @@ namespace Museo_pictorico_ppai.Repositorios
          
             string sqlTxt = $"INSERT [dbo].[Entradas] ([fechaHoraVenta], [monto],[tarifa], [sede])" +
                 $" VALUES('{DateTime.Now.ToString("yyyy-MM-dd")}', '{entrada.monto}','{entrada.tarifa}', '{entrada.idSede}')";
-
+            
             return _BD.EjecutarSQL(sqlTxt);
+        }
+        public void ActualizarVisitantes(int cantvisita)
+        {
+           _sede.CalcularVisitantes(cantvisita);
+          
+        }
+        public long MostrarVisitantes()
+        {
+            return _sede.visitantes;
+
         }
     }
 }

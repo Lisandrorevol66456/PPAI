@@ -9,17 +9,20 @@ namespace Museo_pictorico_ppai.Modelos
     public class Sede
     {
         public long Cupo = 500;
+        public long visitantes { get; set; }
     
 
         public bool CheckearCupo(long entradasIngresadas)
-        {
-           // var cupo = this._sede.Cupo;
-
-            if (Cupo - entradasIngresadas >= 0)
-            {
+        {         
+            if (Cupo - (entradasIngresadas+ visitantes) >= 0)
+            {              
                 return true;
             }
             return false;
+        }
+        public long CalcularVisitantes(long entradasIngresadas)
+        {                     
+           return visitantes += entradasIngresadas ;
         }
 
     }
