@@ -8,6 +8,7 @@ namespace Museo_pictorico_ppai.Modelos
 {
     public class Sede
     {
+        public int idSede = 1;
         public long Cupo = 500;
         public long visitantes { get; set; }
     

@@ -224,7 +224,7 @@ namespace Museo_pictorico_ppai
                 //    i++;
             } MessageBox.Show("Entradas registradas correctamente");
             limpiarCampos();
-            _gestorVentaEntrada.ActualizarVisitantes(cantidadVisita);
+            _gestorVentaEntrada.ActualizarVisitantes(cantidadVisita, idSede);
 
 
         }
