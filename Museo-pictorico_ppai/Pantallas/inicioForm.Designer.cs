@@ -63,6 +63,14 @@
             // 
             // btnRegistrarVenta
             // 
+            this.btnRegistrarVenta.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnRegistrarVenta.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRegistrarVenta.FlatAppearance.BorderColor = System.Drawing.Color.Cyan;
+            this.btnRegistrarVenta.FlatAppearance.BorderSize = 3;
+            this.btnRegistrarVenta.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnRegistrarVenta.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.btnRegistrarVenta.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnRegistrarVenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegistrarVenta.Location = new System.Drawing.Point(628, 112);
             this.btnRegistrarVenta.Name = "btnRegistrarVenta";
             this.btnRegistrarVenta.Size = new System.Drawing.Size(137, 94);
@@ -73,6 +81,14 @@
             // 
             // btnPantallaSala
             // 
+            this.btnPantallaSala.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnPantallaSala.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPantallaSala.FlatAppearance.BorderColor = System.Drawing.Color.Cyan;
+            this.btnPantallaSala.FlatAppearance.BorderSize = 3;
+            this.btnPantallaSala.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnPantallaSala.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.btnPantallaSala.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnPantallaSala.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPantallaSala.Location = new System.Drawing.Point(628, 12);
             this.btnPantallaSala.Name = "btnPantallaSala";
             this.btnPantallaSala.Size = new System.Drawing.Size(137, 94);
@@ -93,6 +109,18 @@
             // 
             // BtnSalir
             // 
+            this.BtnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnSalir.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BtnSalir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnSalir.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.BtnSalir.FlatAppearance.BorderSize = 3;
+            this.BtnSalir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.BtnSalir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.BtnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnSalir.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BtnSalir.Location = new System.Drawing.Point(628, 440);
             this.BtnSalir.Name = "BtnSalir";
             this.BtnSalir.Size = new System.Drawing.Size(137, 43);
@@ -109,7 +137,6 @@
             this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(780, 489);
-            this.ControlBox = false;
             this.Controls.Add(this.BtnSalir);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.btnPantallaSala);

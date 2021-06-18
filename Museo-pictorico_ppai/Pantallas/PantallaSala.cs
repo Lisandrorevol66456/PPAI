@@ -45,6 +45,9 @@ namespace Museo_pictorico_ppai.Pantallas
 
         }
 
-
+        private void BtnBack_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
     }
 }

@@ -36,6 +36,7 @@ namespace Museo_pictorico_ppai.Pantallas
             this.lblVisitantes = new System.Windows.Forms.Label();
             this.lblCapacidad = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.BtnBack = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -101,6 +102,21 @@ namespace Museo_pictorico_ppai.Pantallas
             this.label4.TabIndex = 30;
             this.label4.Text = "Capacidad total:";
             // 
+            // BtnBack
+            // 
+            this.BtnBack.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnBack.BackgroundImage")));
+            this.BtnBack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BtnBack.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnBack.FlatAppearance.BorderColor = System.Drawing.Color.Cyan;
+            this.BtnBack.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.BtnBack.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Cyan;
+            this.BtnBack.Location = new System.Drawing.Point(773, 12);
+            this.BtnBack.Name = "BtnBack";
+            this.BtnBack.Size = new System.Drawing.Size(80, 64);
+            this.BtnBack.TabIndex = 32;
+            this.BtnBack.UseVisualStyleBackColor = true;
+            this.BtnBack.Click += new System.EventHandler(this.BtnBack_Click);
+            // 
             // PantallaSala
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -108,6 +124,7 @@ namespace Museo_pictorico_ppai.Pantallas
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.ClientSize = new System.Drawing.Size(865, 373);
+            this.Controls.Add(this.BtnBack);
             this.Controls.Add(this.lblCapacidad);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblVisitantes);
@@ -135,5 +152,6 @@ namespace Museo_pictorico_ppai.Pantallas
         private System.Windows.Forms.Label lblVisitantes;
         private System.Windows.Forms.Label lblCapacidad;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button BtnBack;
     }
 }
