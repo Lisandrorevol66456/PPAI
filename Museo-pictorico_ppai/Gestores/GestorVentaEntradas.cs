@@ -133,5 +133,11 @@ namespace Museo_pictorico_ppai.Repositorios
             return visitantesDTRows;
 
         }
+        public float CalcularDuracionResumidaObras()
+        {
+             var duracion = 0;
+            return duracion;
+
+        }
     }
 }

@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.dgvTarifas = new System.Windows.Forms.DataGridView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TipoVisita = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TipoEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmbTipos = new System.Windows.Forms.ComboBox();
+            this.cmbTipoEntrada = new System.Windows.Forms.ComboBox();
             this.labelCantEntradas = new System.Windows.Forms.Label();
             this.txtCantentradas = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -95,14 +95,14 @@
             this.TipoVisita,
             this.TipoEntrada,
             this.precio});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Bernard MT Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvTarifas.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Bernard MT Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvTarifas.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvTarifas.Location = new System.Drawing.Point(462, 111);
             this.dgvTarifas.Name = "dgvTarifas";
             this.dgvTarifas.ReadOnly = true;
@@ -151,14 +151,14 @@
             this.precio.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.precio.Width = 60;
             // 
-            // cmbTipos
+            // cmbTipoEntrada
             // 
-            this.cmbTipos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTipos.FormattingEnabled = true;
-            this.cmbTipos.Location = new System.Drawing.Point(182, 293);
-            this.cmbTipos.Name = "cmbTipos";
-            this.cmbTipos.Size = new System.Drawing.Size(135, 23);
-            this.cmbTipos.TabIndex = 4;
+            this.cmbTipoEntrada.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipoEntrada.FormattingEnabled = true;
+            this.cmbTipoEntrada.Location = new System.Drawing.Point(182, 293);
+            this.cmbTipoEntrada.Name = "cmbTipoEntrada";
+            this.cmbTipoEntrada.Size = new System.Drawing.Size(135, 23);
+            this.cmbTipoEntrada.TabIndex = 4;
             // 
             // labelCantEntradas
             // 
@@ -435,7 +435,7 @@
             // resetToolStripMenuItem
             // 
             this.resetToolStripMenuItem.Name = "resetToolStripMenuItem";
-            this.resetToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resetToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.resetToolStripMenuItem.Text = "Reset";
             this.resetToolStripMenuItem.Click += new System.EventHandler(this.resetToolStripMenuItem_Click);
             // 
@@ -467,7 +467,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtCantentradas);
             this.Controls.Add(this.labelCantEntradas);
-            this.Controls.Add(this.cmbTipos);
+            this.Controls.Add(this.cmbTipoEntrada);
             this.Controls.Add(this.dgvTarifas);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.menuStrip1);
@@ -496,7 +496,7 @@
         #endregion
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.DataGridView dgvTarifas;
-        private System.Windows.Forms.ComboBox cmbTipos;
+        private System.Windows.Forms.ComboBox cmbTipoEntrada;
         private System.Windows.Forms.Label labelCantEntradas;
         private System.Windows.Forms.TextBox txtCantentradas;
         private System.Windows.Forms.Label label3;

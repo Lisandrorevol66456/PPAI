@@ -47,7 +47,7 @@ namespace Museo_pictorico_ppai
             this.CargarDGVTarifas();
             btnConfirmar.Enabled = false;
             btnGuardar.Enabled = false;
-            cmbTipos.SelectedIndex = -1;
+            cmbTipoEntrada.SelectedIndex = -1;
             cmbTipoVisita.SelectedIndex = -1;
 
 
@@ -65,9 +65,9 @@ namespace Museo_pictorico_ppai
         private void CargarComboTipos()
         {
             var tipoEntrada = _gestorVentaEntrada.ObtenerTiposEntradas();
-            cmbTipos.ValueMember = "idTipo";
-            cmbTipos.DisplayMember = "nombre";
-            cmbTipos.DataSource = tipoEntrada;
+            cmbTipoEntrada.ValueMember = "idTipo";
+            cmbTipoEntrada.DisplayMember = "nombre";
+            cmbTipoEntrada.DataSource = tipoEntrada;
         }
 
        
@@ -146,41 +146,41 @@ namespace Museo_pictorico_ppai
         }
         private int TomarSeleccionTarifa()
         {         
-            if (cmbTipos.SelectedIndex == 0)
+            if (cmbTipoVisita.SelectedIndex == 0)
             {
-                if(cmbTipoVisita.SelectedIndex == 0)
+                if(cmbTipoEntrada.SelectedIndex == 0)
                 {
                     return 1;
                 }
-                if (cmbTipoVisita.SelectedIndex == 1)
+                if (cmbTipoEntrada.SelectedIndex == 1)
                 {
                     return 2;
                 }
-                if (cmbTipoVisita.SelectedIndex == 2)
+                if (cmbTipoEntrada.SelectedIndex == 2)
                 {
                     return 3;
                 }
-                if (cmbTipoVisita.SelectedIndex == 3)
+                if (cmbTipoEntrada.SelectedIndex == 3)
                 {
                     return 4;
                 }
 
             }
-            if (cmbTipos.SelectedIndex == 1)
+            if (cmbTipoVisita.SelectedIndex == 1)
             {
-                if (cmbTipoVisita.SelectedIndex == 0)
+                if (cmbTipoEntrada.SelectedIndex == 0)
                 {
                     return 5;
                 }
-                if (cmbTipoVisita.SelectedIndex == 1)
+                if (cmbTipoEntrada.SelectedIndex == 1)
                 {
                     return 6;
                 }
-                if (cmbTipoVisita.SelectedIndex == 2)
+                if (cmbTipoEntrada.SelectedIndex == 2)
                 {
                     return 7;
                 }
-                if (cmbTipoVisita.SelectedIndex == 3)
+                if (cmbTipoEntrada.SelectedIndex == 3)
                 {
                     return 8;
                 }
@@ -204,9 +204,15 @@ namespace Museo_pictorico_ppai
                 monto = monto + porcGuia;
 
             var cantentradas = txtCantentradas.Text;
-            
+            var total = monto * Int32.Parse(txtCantentradas.Text);
 
-            var confirmacion = MessageBox.Show($"¿Confirma registro de la(s) {cantentradas} entrada(s), para la sede {idSede} por el monto {monto} (cada una)?",
+            var confirmacion = MessageBox.Show($"Cantidad entradas:{cantentradas}" + "\n\r" +
+                $" Sede: {idSede}" + "\n\r" +
+                $" Precio: ${monto}" + "\n\r" +
+                $" total: ${total}" + "\n\r" +
+                $"\n\r" +
+                $"\n\r" +
+                $"                ¿Confirma?",
                  "Confirmar operación",
                    MessageBoxButtons.YesNo);
             if (confirmacion.Equals(DialogResult.No))
@@ -226,7 +232,6 @@ namespace Museo_pictorico_ppai
             limpiarCampos();
             _gestorVentaEntrada.ActualizarVisitantes(cantidadVisita, idSede);
 
-
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
@@ -234,7 +239,7 @@ namespace Museo_pictorico_ppai
             if (true)
             {
                 txtCantentradas.Enabled = false;
-                cmbTipos.Enabled = false;
+                cmbTipoEntrada.Enabled = false;
                 cmbTipoVisita.Enabled = false;
                 groupBox1.Enabled = false;
                 btnGuardar.Enabled = true;
@@ -250,7 +255,7 @@ namespace Museo_pictorico_ppai
         {
             txtCantentradas.Enabled = true;
             txtCantentradas.Clear();
-            cmbTipos.Enabled = true;
+            cmbTipoEntrada.Enabled = true;
             cmbTipoVisita.Enabled = true;
             groupBox1.Enabled = true;
             checkedLogo.Visible = false;

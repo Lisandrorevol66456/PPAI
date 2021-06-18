@@ -57,6 +57,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Modelos\DetalleExposicion.cs" />
+    <Compile Include="Modelos\Exposicion.cs" />
+    <Compile Include="Modelos\Obra.cs" />
     <Compile Include="Modelos\Sede.cs" />
     <Compile Include="Pantallas\inicioForm.cs">
       <SubType>Form</SubType>
