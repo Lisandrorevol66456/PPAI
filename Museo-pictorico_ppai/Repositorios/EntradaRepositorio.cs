@@ -11,12 +11,13 @@ namespace Museo_pictorico_ppai.Repositorios
 {
     public class EntradaRepositorio
     {
-
+        //private Form1 _pantallaEntrada;
         private AccesoBD _BD;
 
         public EntradaRepositorio()
         {
             _BD = new AccesoBD();
+            //_pantallaEntrada = new Form1();
         }
 
         public DataTable ObtenerTiposEntradas()
@@ -38,13 +39,21 @@ namespace Museo_pictorico_ppai.Repositorios
             var TiposVisitaDTRows = _BD.Consulta(sqlTxt);
             return TiposVisitaDTRows;
         }
-        //public bool guardar(Entrada entrada)
-        //{
-        //    string sqlTxt = $"INSERT [dbo].[Entradas] ([sede], [nombre], [apellido], " +
-        //        $"[domicilio], [fecha_Inicio],[fecha_cal],[cod_calificacion])" +
-        //        $"VALUES ('{entrada.cuit_Empresa}', '{entrada.nombre}', '{entrada.apellido}', '{entrada.domicilio}' , '{empresa.cod_calificacion}')";
 
-        //    return _BD.EjecutarSQL(sqlTxt);
-        //}
+         public DataTable ObtenerTarifas()
+        {
+            string sqlTxt = $"select t.id,tv.nombre as 'tipo visita',te.nombre as'tipo entrada',t.precio from tarifas t join tipoEntrada te on t.tipoEntrada = te.idTipo join TipoVisita tv on t.tipoVisita = tv.id order by tv.nombre; ";
+            var tarifasDTRows = _BD.Consulta(sqlTxt);
+            return tarifasDTRows;
+
+        }
+        public bool Guardar(Entrada entrada)
+        {
+         
+            string sqlTxt = $"INSERT [dbo].[Entradas] ([fechaHoraVenta], [monto],[tarifa], [sede])" +
+                $" VALUES('{DateTime.Now.ToString("yyyy-MM-dd")}', '{entrada.monto}','{entrada.tarifa}', '{entrada.idSede}')";
+
+            return _BD.EjecutarSQL(sqlTxt);
+        }
     }
 }

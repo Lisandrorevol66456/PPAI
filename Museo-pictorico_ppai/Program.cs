@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Museo_pictorico_ppai.Forms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace Museo_pictorico_ppai
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new inicioForm());
         }
     }
 }

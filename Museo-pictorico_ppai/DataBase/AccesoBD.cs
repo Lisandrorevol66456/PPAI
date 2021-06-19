@@ -14,7 +14,7 @@ namespace Museo_pictorico_ppai.DataBase
         OleDbCommand cmd = new OleDbCommand();
         readonly string  cadena_conexion = "Provider=SQLNCLI11;workstation id=museo-ppai.mssql.somee.com;packet size=4096;user id=Lisandro1905_;pwd=Belgrano1905;data source=museo-ppai.mssql.somee.com;persist security info=False;initial catalog=museo-ppai";
 
-        private void Conectar()
+        public void Conectar()
         {
 
             conexion.ConnectionString = cadena_conexion;
