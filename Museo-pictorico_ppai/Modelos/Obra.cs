@@ -21,7 +21,7 @@ namespace Museo_pictorico_ppai.Modelos
         private float valuacion { get; set; }
 
 
-        public float getDuracionResumida() => duracionResumida;
+        public float GetDuracionResumida() => duracionResumida;
 
     }
 }

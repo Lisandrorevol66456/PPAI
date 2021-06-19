@@ -83,7 +83,7 @@
             this.btnGuardar.Size = new System.Drawing.Size(56, 55);
             this.btnGuardar.TabIndex = 1;
             this.btnGuardar.UseVisualStyleBackColor = false;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            this.btnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click);
             // 
             // dgvTarifas
             // 
@@ -178,8 +178,8 @@
             this.txtCantentradas.Name = "txtCantentradas";
             this.txtCantentradas.Size = new System.Drawing.Size(135, 22);
             this.txtCantentradas.TabIndex = 6;
-            this.txtCantentradas.TextChanged += new System.EventHandler(this.txtCantentradas_TextChanged);
-            this.txtCantentradas.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.validatenumber);
+            this.txtCantentradas.TextChanged += new System.EventHandler(this.TxtCantentradas_TextChanged);
+            this.txtCantentradas.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Validatenumber);
             // 
             // label3
             // 
@@ -214,7 +214,7 @@
             this.btnCancelar.Size = new System.Drawing.Size(56, 55);
             this.btnCancelar.TabIndex = 10;
             this.btnCancelar.UseVisualStyleBackColor = false;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.btnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // groupBox1
             // 
@@ -311,7 +311,7 @@
             this.btnCantEntradas.TabIndex = 16;
             this.btnCantEntradas.Text = "Seleccione cantidad de entradas";
             this.btnCantEntradas.UseVisualStyleBackColor = true;
-            this.btnCantEntradas.Click += new System.EventHandler(this.btnCantEntradas_Click);
+            this.btnCantEntradas.Click += new System.EventHandler(this.BtnCantEntradas_Click);
             // 
             // label2
             // 
@@ -380,7 +380,7 @@
             this.btnConfirmar.TabIndex = 22;
             this.btnConfirmar.Text = "Confirmar";
             this.btnConfirmar.UseVisualStyleBackColor = false;
-            this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
+            this.btnConfirmar.Click += new System.EventHandler(this.BtnConfirmar_Click);
             // 
             // btnLimpiar
             // 
@@ -396,7 +396,7 @@
             this.btnLimpiar.TabIndex = 23;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = false;
-            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            this.btnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
             // 
             // label5
             // 
@@ -443,7 +443,7 @@
             this.resetToolStripMenuItem.Name = "resetToolStripMenuItem";
             this.resetToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.resetToolStripMenuItem.Text = "Reset";
-            this.resetToolStripMenuItem.Click += new System.EventHandler(this.resetToolStripMenuItem_Click);
+            this.resetToolStripMenuItem.Click += new System.EventHandler(this.ResetToolStripMenuItem_Click);
             // 
             // Form1
             // 
