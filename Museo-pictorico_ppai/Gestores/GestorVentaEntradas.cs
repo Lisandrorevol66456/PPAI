@@ -109,14 +109,34 @@ namespace Museo_pictorico_ppai.Repositorios
             
             return _BD.EjecutarSQL(sqlTxt);
         }
-        public void ActualizarVisitantes(int cantvisita)
+        public bool ActualizarVisitantes(int cantvisita, int sede)
         {
-           _sede.CalcularVisitantes(cantvisita);
+            string sqltxt = $"UPDATE [dbo].[visitantes] SET nroVisitantes = nroVisitantes+{cantvisita} " +
+                $" WHERE sede = {sede}";
+
+            return _BD.EjecutarSQL(sqltxt);
+           // _sede.CalcularVisitantes(cantvisita);
           
         }
-        public long MostrarVisitantes()
+        public bool ResetearVisitantes(int sede)
         {
-            return _sede.visitantes;
+            string sqltxt = $"UPDATE [dbo].[visitantes] SET nroVisitantes = 0 " +
+                $" WHERE sede = {sede}";
+
+            return _BD.EjecutarSQL(sqltxt);
+
+        }
+        public DataTable MostrarVisitantes(int sede)
+        {
+            string sqlTxt = $"SELECT distinct visitantes.nroVisitantes FROM visitantes where sede = {sede}";
+            var visitantesDTRows = _BD.Consulta(sqlTxt);
+            return visitantesDTRows;
+
+        }
+        public float CalcularDuracionResumidaObras()
+        {
+             var duracion = 0;
+            return duracion;
 
         }
     }

@@ -57,7 +57,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Modelos\Sede.cs" />
+    <Compile Include="Entidades\DetalleExposicion.cs" />
+    <Compile Include="Entidades\Empleado.cs" />
+    <Compile Include="Entidades\Exposicion.cs" />
+    <Compile Include="Entidades\Obra.cs" />
+    <Compile Include="Entidades\Sede.cs" />
+    <Compile Include="Entidades\Sesion.cs" />
+    <Compile Include="Entidades\Tarifa.cs" />
+    <Compile Include="Entidades\TipoDeEntrada.cs" />
+    <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Pantallas\inicioForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,13 +79,13 @@
     <Compile Include="Pantallas\PantallaSala.Designer.cs">
       <DependentUpon>PantallaSala.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pantallas\PantRegEntrada.cs">
+    <Compile Include="Pantallas\PantallaVentaEntradas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pantallas\PantRegEntrada.Designer.cs">
-      <DependentUpon>PantRegEntrada.cs</DependentUpon>
+    <Compile Include="Pantallas\PantallaVentaEntradas.Designer.cs">
+      <DependentUpon>PantallaVentaEntradas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modelos\Entrada.cs" />
+    <Compile Include="Entidades\Entrada.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Gestores\GestorVentaEntradas.cs" />
@@ -93,8 +101,8 @@
     <EmbeddedResource Include="Pantallas\PantallaSala.resx">
       <DependentUpon>PantallaSala.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pantallas\PantRegEntrada.resx">
-      <DependentUpon>PantRegEntrada.cs</DependentUpon>
+    <EmbeddedResource Include="Pantallas\PantallaVentaEntradas.resx">
+      <DependentUpon>PantallaVentaEntradas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pantallas\inicioForm.resx">
       <DependentUpon>inicioForm.cs</DependentUpon>
