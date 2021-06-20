@@ -17,7 +17,7 @@ namespace Museo_pictorico_ppai
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new inicioForm());
+            Application.Run(new InicioForm());
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Museo_pictorico_ppai.Forms
 {
-    partial class inicioForm
+    partial class InicioForm
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(inicioForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InicioForm));
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnRegistrarVenta = new System.Windows.Forms.Button();
@@ -77,7 +77,7 @@
             this.btnRegistrarVenta.TabIndex = 26;
             this.btnRegistrarVenta.Text = "Registrar venta de entradas";
             this.btnRegistrarVenta.UseVisualStyleBackColor = true;
-            this.btnRegistrarVenta.Click += new System.EventHandler(this.btnRegistrarVenta_Click);
+            this.btnRegistrarVenta.Click += new System.EventHandler(this.BtnRegistrarVenta_Click);
             // 
             // btnPantallaSala
             // 
@@ -95,7 +95,7 @@
             this.btnPantallaSala.TabIndex = 27;
             this.btnPantallaSala.Text = "Pantalla sala";
             this.btnPantallaSala.UseVisualStyleBackColor = true;
-            this.btnPantallaSala.Click += new System.EventHandler(this.btnPantallaSala_Click);
+            this.btnPantallaSala.Click += new System.EventHandler(this.BtnPantallaSala_Click);
             // 
             // pictureBox3
             // 

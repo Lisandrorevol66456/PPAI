@@ -16,7 +16,6 @@ namespace Museo_pictorico_ppai.Modelos
         public long Cupo = 500;
         public long visitantes { get; set; }
     
-
         public bool CheckearCupo(long entradasIngresadas)
         {
             return Cupo - (entradasIngresadas+ visitantes) >= 0 ? true : false;

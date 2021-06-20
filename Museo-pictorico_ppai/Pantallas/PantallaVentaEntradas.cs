@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace Museo_pictorico_ppai
 {
-    public partial class Form1 : Form
+    public partial class Form1 : Form // clase de la pantalla para registrar nueva entrada(S)
     {
         ValidateTextBox v;
         GestorPantallaEntrada _gestorVentaEntrada;
@@ -27,13 +27,13 @@ namespace Museo_pictorico_ppai
             _sede = new Sede();
         }
 
+        //funcion para validar que lo que se ingresa sea solo numeros. // utils - validateTextBox
 
-
-        private void validatenumber(object sender, KeyPressEventArgs e)
+        private void Validatenumber(object sender, KeyPressEventArgs e)
         {
             v.ValidateSoloNumeros(sender, e);
         }
-
+        //carga el formulario al iniciar con los datos por default
         private void Form1_Load(object sender, EventArgs e)
         {
             this.CargarComboTipos();
@@ -52,6 +52,7 @@ namespace Museo_pictorico_ppai
 
 
         }
+        // funcion para carar el combobox correspondiente al tipo de visita
 
         private void CargarCompoTipoVisita()
         {
@@ -61,6 +62,7 @@ namespace Museo_pictorico_ppai
             cmbTipoVisita.DataSource = tipoVisita;
         }
 
+        // funcion para carar el combobox correspondiente al tipo de entrada
 
         private void CargarComboTipos()
         {
@@ -70,9 +72,9 @@ namespace Museo_pictorico_ppai
             cmbTipoEntrada.DataSource = tipoEntrada;
         }
 
-       
+       //funcion click del boton cancelar (X)
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void BtnCancelar_Click(object sender, EventArgs e)
         {
             var confirmacion = MessageBox.Show($"¿Seguro desea cancelar la operación?",
                  "Cancelar operación",
@@ -81,14 +83,14 @@ namespace Museo_pictorico_ppai
                 return;
             this.Dispose();
         }
-
-        private void btnCantEntradas_Click(object sender, EventArgs e)
+        //funcion click del boton cantidad de entradas, habilita el txt cantidad de entradas 
+        private void BtnCantEntradas_Click(object sender, EventArgs e)
         {
             txtCantentradas.Visible = true;
             labelCantEntradas.Visible = true;
             BtnCheckear.Visible = true;
         }
-
+        //funcion para llenar el data grid con datos de tarifas
         private void CargarDGVTarifas()
         {
             dgvTarifas.Rows.Clear();
@@ -109,9 +111,9 @@ namespace Museo_pictorico_ppai
                 dgvTarifas.Rows.Add(fila);
             } 
         }
-       
 
 
+        //funcion click del boton (?) verifica que la cantidad ingresada no supere cupo
         private void BtnCheckear_Click(object sender, EventArgs e)
         {
             if (txtCantentradas.Text != "" )
@@ -144,6 +146,7 @@ namespace Museo_pictorico_ppai
             }
             
         }
+        //funcion que capta los datos ingresados y retorna la tarifa correspondiente
         private int TomarSeleccionTarifa()
         {         
             if (cmbTipoVisita.SelectedIndex == 0)
@@ -187,8 +190,8 @@ namespace Museo_pictorico_ppai
             }
                 return -1;
         }
-
-        public void btnGuardar_Click(object sender, EventArgs e) {
+        //funcion del evento click del boton guardar
+        public void BtnGuardar_Click(object sender, EventArgs e) {
             var porcGuia = 50;
             var idSede = Int32.Parse(txtSede.Text);
             var tarifa = this.TomarSeleccionTarifa();
@@ -199,7 +202,7 @@ namespace Museo_pictorico_ppai
                 MessageBox.Show("error en tarifa");
                 return;
             }
-            var monto = this._gestorVentaEntrada.calcularMonto(tarifa);
+            var monto = this._gestorVentaEntrada.CalcularMonto(tarifa);
             if(materialRadioButton1.Checked)
                 monto = monto + porcGuia;
 
@@ -226,15 +229,15 @@ namespace Museo_pictorico_ppai
                 entrada.tarifa = tarifa;
                 entrada.idSede = idSede;
 
-                if (_gestorVentaEntrada.Guardar(entrada)) ;
+                _gestorVentaEntrada.Guardar(entrada);
                 //    i++;
             } MessageBox.Show("Entradas registradas correctamente");
-            limpiarCampos();
+            LimpiarCampos();
             _gestorVentaEntrada.ActualizarVisitantes(cantidadVisita, idSede);
 
         }
-
-        private void btnConfirmar_Click(object sender, EventArgs e)
+        //funcion para confirmar los datos ingresados previos al guardar
+        private void BtnConfirmar_Click(object sender, EventArgs e)
         {
             if (true)
             {
@@ -246,12 +249,13 @@ namespace Museo_pictorico_ppai
 
             }
         }
-
-        private void txtCantentradas_TextChanged(object sender, EventArgs e)
+        // si se cambia algo del txt cant entradas se deshabilita el confirmar, pues hay que verificar nuevamente 
+        private void TxtCantentradas_TextChanged(object sender, EventArgs e)
         {
             btnConfirmar.Enabled = false;
         }
-        private void limpiarCampos()
+        // reseteo del formulario
+        private void LimpiarCampos()
         {
             txtCantentradas.Enabled = true;
             txtCantentradas.Clear();
@@ -263,14 +267,14 @@ namespace Museo_pictorico_ppai
             btnConfirmar.Enabled = false;
             btnGuardar.Enabled = false;
         }
-
-        private void btnLimpiar_Click(object sender, EventArgs e)
+        //evento click del boton limpiar
+        private void BtnLimpiar_Click(object sender, EventArgs e)
         {
-            limpiarCampos();
+            LimpiarCampos();
 
         }
-
-        private void resetToolStripMenuItem_Click(object sender, EventArgs e)
+        // se crea esta funcion para resetar la cantidad de visitantes, llama a la funcion del gestor y vuelve a 0 la cant de visitas
+        private void ResetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var confirmacion = MessageBox.Show($"Se volverá a 0 el valor 'Cantidad de visitantes'",
                  "Confirmar operación",
