@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Museo_pictorico_ppai.DataBase;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +10,7 @@ namespace Museo_pictorico_ppai.Gestores.Entidades
 {
     class ReservaVisita
     {
+        AccesoBD _BD = new AccesoBD();
         private int cantidadAlumnos;
         private int cantidadAlumnosConfirmada;
         private int duracionEstimada;
@@ -66,6 +69,20 @@ namespace Museo_pictorico_ppai.Gestores.Entidades
             set => numeroReserva = value;
         }
 
-
+        public DataTable getreservasByFecha(DateTime fechahora)
+        {
+            string sqlTxt = $"SELECT * from Reservas where DATEPART(HOUR, fechaHoraReserva) ={fechahora.ToString("HH")}" +
+                $" and (DATEPART(DAY, fechaHoraReserva)= {fechahora.ToString("dd")})" +
+                $" and (DATEPART(month, fechaHoraReserva)= {fechahora.ToString("MM")})" +
+                $" and (DATEPART(year, fechaHoraReserva)= {fechahora.ToString("yyyy")})";
+            var entradasDTRows = _BD.Consulta(sqlTxt);
+            return entradasDTRows;
+        }
+        public int EsDeFechaHora(DateTime fechahora)
+        {
+            return getreservasByFecha(fechahora).Rows.Count;
+        
+        }
+           
     }
 }
