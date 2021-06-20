@@ -57,7 +57,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Modelos\DetalleExposicion.cs" />
+    <Compile Include="Modelos\Empleado.cs" />
+    <Compile Include="Modelos\Exposicion.cs" />
+    <Compile Include="Modelos\Obra.cs" />
+    <Compile Include="Modelos\ReservaVisita.cs" />
     <Compile Include="Modelos\Sede.cs" />
+    <Compile Include="Modelos\Sesion.cs" />
+    <Compile Include="Modelos\Tarifa.cs" />
+    <Compile Include="Modelos\TipoDeEntrada.cs" />
+    <Compile Include="Modelos\TipoVisita.cs" />
+    <Compile Include="Modelos\Usuario.cs" />
     <Compile Include="Pantallas\inicioForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,11 +81,11 @@
     <Compile Include="Pantallas\PantallaSala.Designer.cs">
       <DependentUpon>PantallaSala.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pantallas\PantRegEntrada.cs">
+    <Compile Include="Pantallas\PantallaVentaEntradas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pantallas\PantRegEntrada.Designer.cs">
-      <DependentUpon>PantRegEntrada.cs</DependentUpon>
+    <Compile Include="Pantallas\PantallaVentaEntradas.Designer.cs">
+      <DependentUpon>PantallaVentaEntradas.cs</DependentUpon>
     </Compile>
     <Compile Include="Modelos\Entrada.cs" />
     <Compile Include="Program.cs" />
@@ -93,8 +103,8 @@
     <EmbeddedResource Include="Pantallas\PantallaSala.resx">
       <DependentUpon>PantallaSala.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pantallas\PantRegEntrada.resx">
-      <DependentUpon>PantRegEntrada.cs</DependentUpon>
+    <EmbeddedResource Include="Pantallas\PantallaVentaEntradas.resx">
+      <DependentUpon>PantallaVentaEntradas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pantallas\inicioForm.resx">
       <DependentUpon>inicioForm.cs</DependentUpon>
