@@ -12,7 +12,7 @@ namespace Museo_pictorico_ppai.Repositorios
 {
     public class GestorPantallaEntrada // clase del gestor de pantallas
     {
-        private List<Entrada> entradas;        private Sesion sesionActual;        private Tarifa tarifas;
+        private List<Entrada> entradas;        private Sesion sesionActual;        private List<Tarifa> tarifas;
         //private Form1 _pantallaEntrada;
         private AccesoBD _BD;
         //private Sede _sede;
