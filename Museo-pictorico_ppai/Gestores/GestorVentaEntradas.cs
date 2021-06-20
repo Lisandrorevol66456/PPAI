@@ -1,4 +1,5 @@
 ﻿using Museo_pictorico_ppai.DataBase;
+using Museo_pictorico_ppai.Entidades;
 using Museo_pictorico_ppai.Modelos;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace Museo_pictorico_ppai.Repositorios
 {
     public class GestorPantallaEntrada // clase del gestor de pantallas
     {
+        private List<Entrada> entradas;        private Sesion sesionActual;        private Tarifa tarifas;
         //private Form1 _pantallaEntrada;
         private AccesoBD _BD;
         //private Sede _sede;
@@ -41,10 +43,10 @@ namespace Museo_pictorico_ppai.Repositorios
         {
 
         }
-        //public int TomarSeleccionTarifa()
-        //{
-        //    _
-        //}
+        public int TomarSeleccionTarifa(int tarifa)
+        {
+            return tarifa;
+        }
         public Entrada CrearEntrada() // crea una nueva instancia de la clase Entrada
         {
             Entrada entrada = new Entrada();

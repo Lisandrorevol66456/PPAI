@@ -149,23 +149,24 @@ namespace Museo_pictorico_ppai
         //funcion que capta los datos ingresados y retorna la tarifa correspondiente
         private int TomarSeleccionTarifa()
         {         
+            int tarifa = -1;
             if (cmbTipoVisita.SelectedIndex == 0)
             {
                 if(cmbTipoEntrada.SelectedIndex == 0)
                 {
-                    return 1;
+                    tarifa= 1;
                 }
                 if (cmbTipoEntrada.SelectedIndex == 1)
                 {
-                    return 2;
+                    tarifa = 2;
                 }
                 if (cmbTipoEntrada.SelectedIndex == 2)
                 {
-                    return 3;
+                    tarifa = 3;
                 }
                 if (cmbTipoEntrada.SelectedIndex == 3)
                 {
-                    return 4;
+                    tarifa = 4;
                 }
 
             }
@@ -173,22 +174,23 @@ namespace Museo_pictorico_ppai
             {
                 if (cmbTipoEntrada.SelectedIndex == 0)
                 {
-                    return 5;
+                    tarifa = 5;
                 }
                 if (cmbTipoEntrada.SelectedIndex == 1)
                 {
-                    return 6;
+                    tarifa = 6;
                 }
                 if (cmbTipoEntrada.SelectedIndex == 2)
                 {
-                    return 7;
+                    tarifa = 7;
                 }
                 if (cmbTipoEntrada.SelectedIndex == 3)
                 {
-                    return 8;
+                    tarifa = 8;
                 }
             }
-                return -1;
+            _gestorVentaEntrada.TomarSeleccionTarifa(tarifa);
+                return tarifa;
         }
         //funcion del evento click del boton guardar
         public void BtnGuardar_Click(object sender, EventArgs e) {
