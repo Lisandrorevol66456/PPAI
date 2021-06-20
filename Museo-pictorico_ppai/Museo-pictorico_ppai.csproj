@@ -58,9 +58,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Modelos\DetalleExposicion.cs" />
+    <Compile Include="Modelos\Empleado.cs" />
     <Compile Include="Modelos\Exposicion.cs" />
     <Compile Include="Modelos\Obra.cs" />
+    <Compile Include="Modelos\ReservaVisita.cs" />
     <Compile Include="Modelos\Sede.cs" />
+    <Compile Include="Modelos\Sesion.cs" />
+    <Compile Include="Modelos\Tarifa.cs" />
+    <Compile Include="Modelos\TipoDeEntrada.cs" />
+    <Compile Include="Modelos\TipoVisita.cs" />
+    <Compile Include="Modelos\Usuario.cs" />
     <Compile Include="Pantallas\inicioForm.cs">
       <SubType>Form</SubType>
     </Compile>
