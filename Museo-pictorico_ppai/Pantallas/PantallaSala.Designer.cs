@@ -110,7 +110,7 @@ namespace Museo_pictorico_ppai.Pantallas
             this.BtnBack.FlatAppearance.BorderColor = System.Drawing.Color.Cyan;
             this.BtnBack.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.BtnBack.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Cyan;
-            this.BtnBack.Location = new System.Drawing.Point(773, 12);
+            this.BtnBack.Location = new System.Drawing.Point(12, 12);
             this.BtnBack.Name = "BtnBack";
             this.BtnBack.Size = new System.Drawing.Size(80, 64);
             this.BtnBack.TabIndex = 32;
