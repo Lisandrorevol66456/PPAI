@@ -1,4 +1,5 @@
 ﻿using Museo_pictorico_ppai.DataBase;
+using Museo_pictorico_ppai.Entidades;
 using Museo_pictorico_ppai.Modelos;
 using System;
 using System.Collections.Generic;
@@ -9,24 +10,42 @@ using System.Threading.Tasks;
 
 namespace Museo_pictorico_ppai.Repositorios
 {
-    public class GestorPantallaEntrada // clase del gestor de pantallas
+    public class GestorVentaEntradas // clase del gestor de pantallas
     {
+        private Empleado empleadoLogueado;
+        private List<Entrada> entradas;        private Sesion sesionActual;        private List<Tarifa> tarifas;
         //private Form1 _pantallaEntrada;
         private AccesoBD _BD;
-        //private Sede _sede;
+        private Sede sedeActual;
+        private int cantidadEntradas;
         //private int visitantes = 0;
      
 
-        public GestorPantallaEntrada()
+        public GestorVentaEntradas(Sesion sesion)
         {
+            sesionActual = sesion; //resibe la sesion actual
             _BD = new AccesoBD(); // instancia la clase acceso a base de datos 
-           // _sede = new Sede();
             //_pantallaEntrada = new Form1();
         }
-        public void BuscarEmpleadoLogueado()
-        {
+        public GestorVentaEntradas() { }
 
+        public void opcionVtaEntrada()
+        {
+            buscarEmpleadoLogueado();
+            buscarSede();
         }
+        public void buscarEmpleadoLogueado()
+        {
+            empleadoLogueado = sesionActual.getEmpleadoEnSesion();
+            buscarSede();
+        }
+
+        public void buscarSede() 
+        {
+            sedeActual = empleadoLogueado.obtenerSede(); //Obtiene la sede actual a traves del empleado logueado
+            // BuscarTarifas(); 
+        }
+        
         public void ConocerUsuario()
         {
 
@@ -41,16 +60,16 @@ namespace Museo_pictorico_ppai.Repositorios
         {
 
         }
-        //public int TomarSeleccionTarifa()
-        //{
-        //    _
-        //}
+        public int TomarSeleccionTarifa(int tarifa)
+        {
+            return tarifa;
+        }
         public Entrada CrearEntrada() // crea una nueva instancia de la clase Entrada
         {
             Entrada entrada = new Entrada();
             return entrada;
         }
-        public float CalcularMonto(int tarifa) // funcion  para calcular monto segun la tarifa seleccionada
+        public float CalcularTotalaPagar(int tarifa,bool guia) // funcion  para calcular monto segun la tarifa seleccionada
         {
             float monto = 0;
             
@@ -70,7 +89,10 @@ namespace Museo_pictorico_ppai.Repositorios
                 monto = 100;
             if (tarifa == 8)
                 monto = 100;
-                       
+             if(guia)
+            {
+                return monto + 50;
+            }         
             return monto;
         }
 
@@ -80,13 +102,7 @@ namespace Museo_pictorico_ppai.Repositorios
             var TiposDTRows = _BD.Consulta(sqlTxt);
             return TiposDTRows;
         }
-        public DataTable ObtenerEntradas() // obtiene un objeto del tipo DataTable con los datos de las entradas
-        {
-            string sqlTxt = $"SELECT * from Entradas";
-            var entradasDTRows = _BD.Consulta(sqlTxt);
-            return entradasDTRows;
 
-        }
         public DataTable ObtenerTiposVisita() // obtiene un objeto del tipo DataTable con los datos de los tipos de visita
         {
             string sqlTxt = $"SELECT * FROM TipoVisita ";
@@ -105,7 +121,7 @@ namespace Museo_pictorico_ppai.Repositorios
         {
          
             string sqlTxt = $"INSERT [dbo].[Entradas] ([fechaHoraVenta], [monto],[tarifa], [sede])" +
-                $" VALUES('{DateTime.Now.ToString("yyyy-MM-dd")}', '{entrada.monto}','{entrada.tarifa}', '{entrada.idSede}')";
+                $" VALUES('{DateTime.Now.ToString("yyyy-MM-dd HH:mm")}', '{entrada.monto}','{entrada.tarifa}', '{entrada.idSede}')";
             
             return _BD.EjecutarSQL(sqlTxt);
         }
@@ -139,5 +155,36 @@ namespace Museo_pictorico_ppai.Repositorios
             return duracion;
 
         }
+        public void TomarCantidadEntradas(int cantEntrada)
+        {
+            this.cantidadEntradas += cantEntrada;
+                       
+        }
+        public long BuscarCapacidadMax()
+        {
+            long capacidadMaxima = sedeActual.cantidadMaximaVisitantesSede;
+            return capacidadMaxima;
+
+        }
+        public DateTime ObtenerFechaActual()
+        {
+            DateTime fecha = DateTime.Now;
+            return fecha;
+        }
+        public long CalcularCantidadVisitantes()
+        {
+            DateTime FechaActual = this.ObtenerFechaActual();
+            long visit = sedeActual.CalcularOcupacion(FechaActual) + cantidadEntradas;
+            return visit;
+        }
+        public bool ValidarCantidadVisitantes()
+        {
+            DateTime FechaActual = this.ObtenerFechaActual();
+          if(this.BuscarCapacidadMax() - sedeActual.CalcularOcupacion(FechaActual)- cantidadEntradas >= 0)
+            {
+                return true;
+            }return false;
+        }
+     
     }
 }

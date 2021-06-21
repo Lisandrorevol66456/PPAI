@@ -129,7 +129,7 @@
             this.BtnSalir.UseVisualStyleBackColor = true;
             this.BtnSalir.Click += new System.EventHandler(this.BtnSalir_Click);
             // 
-            // inicioForm
+            // InicioForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -147,9 +147,10 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "inicioForm";
+            this.Name = "InicioForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inicio - Museo Pictórico Córdoba";
+            this.Load += new System.EventHandler(this.InicioForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
