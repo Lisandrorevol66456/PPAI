@@ -26,8 +26,8 @@ namespace Museo_pictorico_ppai.Forms
             Usuario _us = new Usuario();
             _sesion = new Sesion()
             {
-                fechaInicioSesion = System.DateTime.Now.Date,
-                horaInicioSesion = System.DateTime.Now.Hour.ToString() + System.DateTime.Now.Minute.ToString() + System.DateTime.Now.Second.ToString(),
+                FechaInicio = System.DateTime.Now.Date.ToString(),
+                HoraInicio = System.DateTime.Now.Hour.ToString() + System.DateTime.Now.Minute.ToString() + System.DateTime.Now.Second.ToString(),
                 usuarioSesion = _us.sesionhardcodeada()
             };
         }

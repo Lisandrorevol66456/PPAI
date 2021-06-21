@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Museo_pictorico_ppai.Repositorios
 {
-    public class GestorPantallaEntrada // clase del gestor de pantallas
+    public class GestorVentaEntradas // clase del gestor de pantallas
     {
         private List<Entrada> entradas;
         private Sesion sesionActual;
@@ -19,6 +19,7 @@ namespace Museo_pictorico_ppai.Repositorios
         private AccesoBD _BD;
         private Sede sedeActual;
         private int cantidadEntradas;
+        private Empleado empleadoLogueado;
         //private int visitantes = 0;
      
 
