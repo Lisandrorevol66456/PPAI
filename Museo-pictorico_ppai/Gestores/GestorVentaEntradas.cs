@@ -14,20 +14,20 @@ namespace Museo_pictorico_ppai.Repositorios
     {
         private List<Entrada> entradas;
         private Sesion sesionActual;
-        private List<Tarifa> tarifas;
-        //private Form1 _pantallaEntrada;
+        private int tarifas;
         private AccesoBD _BD;
         private Sede sedeActual;
         private int cantidadEntradas;
         private Empleado empleadoLogueado;
-        //private int visitantes = 0;
-     
+        private PantallaVentaEntradas pantallaVentaEntradas;
+        
+        
 
-        public GestorVentaEntradas(Sesion sesion)
+        public GestorVentaEntradas(Sesion sesion, PantallaVentaEntradas pantallaVenta)
         {
-            sesionActual = sesion; //resibe la sesion actual
+            sesionActual = sesion; //recibe la sesion actual
             _BD = new AccesoBD(); // instancia la clase acceso a base de datos 
-            //_pantallaEntrada = new Form1();
+            pantallaVentaEntradas = pantallaVenta; 
         }
         public GestorVentaEntradas() { }
 
@@ -35,6 +35,7 @@ namespace Museo_pictorico_ppai.Repositorios
         {
             buscarEmpleadoLogueado();
             buscarSede();
+            buscarTarifasDeSede();
         }
         public void buscarEmpleadoLogueado()
         {
@@ -45,26 +46,13 @@ namespace Museo_pictorico_ppai.Repositorios
         public void buscarSede() 
         {
             sedeActual = empleadoLogueado.obtenerSede(); //Obtiene la sede actual a traves del empleado logueado
-            // BuscarTarifas(); 
+             
         }
-        
-        public void ConocerUsuario()
-        {
+     
 
-        }
-        public DataTable ObtnerSede(int sede) // obtiene un objeto del tipo DataTable con los datos de la sede
+        public void tomarTarifasSeleccionadas(int tarifasSeleccionadas)
         {
-            string sqlTxt = $"SELECT * from Sede WHERE id =" +sede;
-            var SedeDTRows = _BD.Consulta(sqlTxt);
-            return SedeDTRows;
-        }
-        public void MostrarDetalleVenta()
-        {
-
-        }
-        public int TomarSeleccionTarifa(int tarifa)
-        {
-            return tarifa;
+            tarifas = (tarifasSeleccionadas);
         }
         public Entrada CrearEntrada() // crea una nueva instancia de la clase Entrada
         {
@@ -112,12 +100,11 @@ namespace Museo_pictorico_ppai.Repositorios
             return TiposVisitaDTRows;
         }
 
-         public DataTable BuscarTarifas()  // obtiene un objeto del tipo DataTable con los datos de las tarifas
+        public void buscarTarifasDeSede()  // obtiene un objeto del tipo DataTable con los datos de las tarifas
         {
-            string sqlTxt = $"select t.id,tv.nombre as 'tipo visita',te.nombre as'tipo entrada',t.precio from tarifas t join tipoEntrada te on t.tipoEntrada = te.idTipo join TipoVisita tv on t.tipoVisita = tv.id order by tv.nombre; ";
-            var tarifasDTRows = _BD.Consulta(sqlTxt);
-            return tarifasDTRows;
-
+            DataTable tablaTarifas = new DataTable();
+            tablaTarifas = sedeActual.obtenerTarifasVigentes(); //CAMBIAR, AGREGAR PARAMETRO
+            pantallaVentaEntradas.mostrarTarifasVigentes(tablaTarifas);
         }
         public bool Guardar(Entrada entrada) // funcion para guardar la entrada, la ingresa dentro de la BD
         {
@@ -151,13 +138,12 @@ namespace Museo_pictorico_ppai.Repositorios
             return visitantesDTRows;
 
         }
-        public float CalcularDuracionResumidaObras() // funcion para calcular la duracion de la obra
+        public int buscarExposicionVigente()
         {
-             var duracion = 0;
+            int duracion = sedeActual.calcularDuracionDeExposicionesVigentes();
             return duracion;
-
         }
-        public void TomarCantidadEntradas(int cantEntrada)
+        public void tomarCantidadEntradas(int cantEntrada)
         {
             this.cantidadEntradas += cantEntrada;
                        

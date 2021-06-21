@@ -21,6 +21,8 @@ namespace Museo_pictorico_ppai.Modelos
         public long visitantes { get; set; }
         private List<Empleado> empleados;
         private int cantMaxPorGuia;
+        Tarifa tarifa = new Tarifa();
+        private List<int> exposiciones { get; set; }
 
         public List<Empleado> empleadosSede
         {
@@ -54,6 +56,19 @@ namespace Museo_pictorico_ppai.Modelos
           int ocupacion = _E.EsDeFechaHora(fechahora) + _RV.EsDeFechaHora(fechahora);
             return ocupacion;
         }
+
+        public DataTable obtenerTarifasVigentes()
+        {
+            return tarifa.mostrarMontosVigentes();
+        }
+
+        public int calcularDuracionDeExposicionesVigentes()
+        {
+            exposiciones = Exposicion.esVigente();
+            int duracion = Exposicion.calcularDuracionObrasExpuestas(idSede, exposiciones);
+            return duracion;
+        }
+
 
     }
 }

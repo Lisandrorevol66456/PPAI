@@ -19,11 +19,12 @@ namespace Museo_pictorico_ppai
         ValidateTextBox v;
         GestorVentaEntradas _gestorVentaEntrada;
         Sede _sede;
+        int tarifaSeleccionada { get; set; }
 
         public PantallaVentaEntradas(Sesion sesion)
         {
             InitializeComponent();
-            _gestorVentaEntrada = new GestorVentaEntradas(sesion);
+            _gestorVentaEntrada = new GestorVentaEntradas(sesion,this);
             v = new ValidateTextBox();
             _sede = new Sede();
         }
@@ -47,11 +48,11 @@ namespace Museo_pictorico_ppai
             checkedLogo.Visible = false;
             labelCantEntradas.Visible = false;
             labelWarnincupo.Visible = false;
-            this.CargarDGVTarifas();
             btnConfirmar.Enabled = false;
             btnGuardar.Enabled = false;
             cmbTipoEntrada.SelectedIndex = -1;
             cmbTipoVisita.SelectedIndex = -1;
+            _gestorVentaEntrada.opcionVtaEntrada();
 
 
         }
@@ -94,26 +95,26 @@ namespace Museo_pictorico_ppai
             BtnCheckear.Visible = true;
         }
         //funcion para llenar el data grid con datos de tarifas
-        public void CargarDGVTarifas()
-        {
-            dgvTarifas.Rows.Clear();
-            var tarifas = _gestorVentaEntrada.BuscarTarifas().Rows;
-            var filas = new List<DataGridViewRow>();
-            foreach (DataRow tar in tarifas)
-            {
-                if (tar.HasErrors)
-                    continue;
-                var fila = new string[]
-                {
-                    tar.ItemArray[0].ToString(),
-                    tar.ItemArray[1].ToString(),
-                    tar.ItemArray[2].ToString(),
-                    tar.ItemArray[3].ToString(),
+        //public void CargarDGVTarifas()
+        //{
+        //    dgvTarifas.Rows.Clear();
+        //    var tarifas = _gestorVentaEntrada.buscarTarifasDeSede().Rows;
+        //    var filas = new List<DataGridViewRow>();
+        //    foreach (DataRow tar in tarifas)
+        //    {
+        //        if (tar.HasErrors)
+        //            continue;
+        //        var fila = new string[]
+        //        {
+        //            tar.ItemArray[0].ToString(),
+        //            tar.ItemArray[1].ToString(),
+        //            tar.ItemArray[2].ToString(),
+        //            tar.ItemArray[3].ToString(),
                    
-                };
-                dgvTarifas.Rows.Add(fila);
-            } 
-        }
+        //        };
+        //        dgvTarifas.Rows.Add(fila);
+        //    } 
+        //}
         
 
         //funcion click del boton (?) verifica que la cantidad ingresada no supere cupo
@@ -121,7 +122,7 @@ namespace Museo_pictorico_ppai
         {
             if (txtCantentradas.Text != "" )
             {
-                _gestorVentaEntrada.TomarCantidadEntradas(int.Parse(txtCantentradas.Text));
+                _gestorVentaEntrada.tomarCantidadEntradas(int.Parse(txtCantentradas.Text));
                 if (materialRadioButton1.Checked || materialRadioButton2.Checked)
                 {
                     if (_gestorVentaEntrada.ValidarCantidadVisitantes())
@@ -151,14 +152,53 @@ namespace Museo_pictorico_ppai
             
         }
         //funcion que capta los datos ingresados y retorna la tarifa correspondiente
-        public int TomarSeleccionTarifa()
-        {         
+        public void tomarSeleccionTarifa(int indice)
+        {
+            DataGridViewRow filaSeleccionada = dgvTarifas.Rows[indice];
+            string tipoVisita = filaSeleccionada.Cells["TipoVisita"].Value.ToString();
+            string tipoEntrada = filaSeleccionada.Cells["TipoEntrada"].Value.ToString();
+            if (tipoVisita == "Completa")
+            {
+                cmbTipoVisita.SelectedIndex = 0;
+            }
+
+            if (tipoVisita == "Parcial - Por Exposicion")
+            {
+                cmbTipoVisita.SelectedIndex = 1;
+            }
+
+            if (tipoEntrada == "General")
+            {
+                cmbTipoEntrada.SelectedIndex = 0;
+            }
+
+            if (tipoEntrada == "Menores")
+            {
+                cmbTipoEntrada.SelectedIndex = 1;
+            }
+
+            if (tipoEntrada == "Jubilados")
+            {
+                cmbTipoEntrada.SelectedIndex = 2;
+            }
+
+            if (tipoEntrada == "Estudiantes")
+            {
+                cmbTipoEntrada.SelectedIndex = 3;
+            }
+
+            if (tipoEntrada == "Otros")
+            {
+                cmbTipoEntrada.SelectedIndex = 4;
+            }
+
             int tarifa = -1;
+
             if (cmbTipoVisita.SelectedIndex == 0)
             {
-                if(cmbTipoEntrada.SelectedIndex == 0)
+                if (cmbTipoEntrada.SelectedIndex == 0)
                 {
-                    tarifa= 1;
+                    tarifa = 1;
                 }
                 if (cmbTipoEntrada.SelectedIndex == 1)
                 {
@@ -172,7 +212,6 @@ namespace Museo_pictorico_ppai
                 {
                     tarifa = 4;
                 }
-
             }
             if (cmbTipoVisita.SelectedIndex == 1)
             {
@@ -193,8 +232,9 @@ namespace Museo_pictorico_ppai
                     tarifa = 8;
                 }
             }
-            _gestorVentaEntrada.TomarSeleccionTarifa(tarifa);
-                return tarifa;
+
+            tarifaSeleccionada = tarifa;
+            _gestorVentaEntrada.tomarTarifasSeleccionadas(tarifa);
         }
         public int TomarCantidadEntradas()
         {
@@ -207,20 +247,22 @@ namespace Museo_pictorico_ppai
             var guia = false;
             var g = "NO";
             var idSede = Int32.Parse(txtSede.Text);
-            var tarifa = this.TomarSeleccionTarifa();
             var fechaHoraVenta = DateTime.Now;
-            var cantidadVisita  = this.TomarCantidadEntradas();
-            if (tarifa == -1)
+            var cantidadVisita = this.TomarCantidadEntradas();
+
+            if (tarifaSeleccionada == -1)
             {
                 MessageBox.Show("error en tarifa");
                 return;
             }
-           
-            if (materialRadioButton1.Checked){
-                guia = true;
-                g = "SI";   };
 
-            var monto = this._gestorVentaEntrada.CalcularTotalaPagar(tarifa,guia);
+            if (materialRadioButton1.Checked)
+            {
+                guia = true;
+                g = "SI";
+            };
+
+            var monto = this._gestorVentaEntrada.CalcularTotalaPagar(tarifaSeleccionada, guia);
             //monto = monto + porcGuia;
 
             var cantentradas = txtCantentradas.Text;
@@ -241,15 +283,16 @@ namespace Museo_pictorico_ppai
 
             for (var i = 1; i <= Int32.Parse(txtCantentradas.Text); i++)
             {
-                var entrada = this._gestorVentaEntrada.CrearEntrada(); 
+                var entrada = this._gestorVentaEntrada.CrearEntrada();
                 entrada.fechaHoraVenta = fechaHoraVenta;
                 entrada.monto = monto;
-                entrada.tarifa = tarifa;
+                entrada.tarifa = tarifaSeleccionada;
                 entrada.idSede = idSede;
 
                 _gestorVentaEntrada.Guardar(entrada);
                 //    i++;
-            } MessageBox.Show("Entradas registradas correctamente");
+            }
+            MessageBox.Show("Entradas registradas correctamente");
             LimpiarCampos();
             _gestorVentaEntrada.ActualizarVisitantes(cantidadVisita, idSede);
 
@@ -301,6 +344,17 @@ namespace Museo_pictorico_ppai
                 return;
             _gestorVentaEntrada.ResetearVisitantes(_sede.idSede);
             MessageBox.Show("Se reseteó valor 'Cantidad de visitantes' ");
+        }
+
+        public void mostrarTarifasVigentes(DataTable tarifas)
+        {
+            dgvTarifas.DataSource = tarifas;
+            
+        }
+
+        private void dgvTarifas_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            tomarSeleccionTarifa(e.RowIndex);
         }
     }
 }
