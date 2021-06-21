@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Museo_pictorico_ppai.DataBase;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +17,7 @@ namespace Museo_pictorico_ppai.Entidades
         //private TipoDeEntrada tipoDeEntrada;
         //private TipoVisita tipoVisita;
 
+        AccesoBD BD = new AccesoBD();
         public Tarifa()
         {
 
@@ -55,5 +58,12 @@ namespace Museo_pictorico_ppai.Entidades
         //    get => tipoVisita;
         //    set => tipoVisita = value;
         //}
+
+        public DataTable mostrarMontosVigentes()
+        {
+            string sqlTxt = $"select t.id,tv.nombre as 'tipo visita',te.nombre as'tipo entrada',t.precio from tarifas t join tipoEntrada te on t.tipoEntrada = te.idTipo join TipoVisita tv on t.tipoVisita = tv.id order by tv.nombre; ";
+            var tarifasDTRows = BD.Consulta(sqlTxt);
+            return tarifasDTRows;
+        }
     }
 }

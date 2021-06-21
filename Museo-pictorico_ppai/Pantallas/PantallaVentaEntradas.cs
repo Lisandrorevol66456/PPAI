@@ -13,13 +13,15 @@ using System.Windows.Forms;
 
 namespace Museo_pictorico_ppai
 {
-    public partial class Form1 : Form // clase de la pantalla para registrar nueva entrada(S)
+    public partial class PantallaVentaEntradas : Form // clase de la pantalla para registrar nueva entrada(S)
     {
         ValidateTextBox v;
         GestorPantallaEntrada _gestorVentaEntrada;
         Sede _sede;
 
-        public Form1()
+        private int tarifaSeleccionada; 
+
+        public PantallaVentaEntradas()
         {
             InitializeComponent();
             _gestorVentaEntrada = new GestorPantallaEntrada();
@@ -29,12 +31,12 @@ namespace Museo_pictorico_ppai
 
         //funcion para validar que lo que se ingresa sea solo numeros. // utils - validateTextBox
 
-        private void Validatenumber(object sender, KeyPressEventArgs e)
+        public void Validatenumber(object sender, KeyPressEventArgs e)
         {
             v.ValidateSoloNumeros(sender, e);
         }
         //carga el formulario al iniciar con los datos por default
-        private void Form1_Load(object sender, EventArgs e)
+        public void Form1_Load(object sender, EventArgs e)
         {
             this.CargarComboTipos();
             this.CargarCompoTipoVisita();
@@ -44,17 +46,16 @@ namespace Museo_pictorico_ppai
             checkedLogo.Visible = false;
             labelCantEntradas.Visible = false;
             labelWarnincupo.Visible = false;
-            this.CargarDGVTarifas();
             btnConfirmar.Enabled = false;
             btnGuardar.Enabled = false;
             cmbTipoEntrada.SelectedIndex = -1;
             cmbTipoVisita.SelectedIndex = -1;
 
-
+            //MessageBox.Show(_gestorVentaEntrada.buscarExposicionVigente().ToString());
         }
         // funcion para carar el combobox correspondiente al tipo de visita
 
-        private void CargarCompoTipoVisita()
+        public void CargarCompoTipoVisita()
         {
             var tipoVisita = _gestorVentaEntrada.ObtenerTiposVisita();
             cmbTipoVisita.ValueMember = "idTipo";
@@ -64,7 +65,7 @@ namespace Museo_pictorico_ppai
 
         // funcion para carar el combobox correspondiente al tipo de entrada
 
-        private void CargarComboTipos()
+        public void CargarComboTipos()
         {
             var tipoEntrada = _gestorVentaEntrada.ObtenerTiposEntradas();
             cmbTipoEntrada.ValueMember = "idTipo";
@@ -72,11 +73,11 @@ namespace Museo_pictorico_ppai
             cmbTipoEntrada.DataSource = tipoEntrada;
         }
 
-       //funcion click del boton cancelar (X)
+        //funcion click del boton cancelar (X)
 
-        private void BtnCancelar_Click(object sender, EventArgs e)
+        public void BtnCancelar_Click(object sender, EventArgs e)
         {
-            var confirmacion = MessageBox.Show($"¿Seguro desea cancelar la operación?",
+            var confirmacion = MessageBox.Show($"¿Seguro que desea cancelar la operación?",
                  "Cancelar operación",
                    MessageBoxButtons.YesNo);
             if (confirmacion.Equals(DialogResult.No))
@@ -84,43 +85,44 @@ namespace Museo_pictorico_ppai
             this.Dispose();
         }
         //funcion click del boton cantidad de entradas, habilita el txt cantidad de entradas 
-        private void BtnCantEntradas_Click(object sender, EventArgs e)
+        public void BtnCantEntradas_Click(object sender, EventArgs e)
         {
             txtCantentradas.Visible = true;
             labelCantEntradas.Visible = true;
             BtnCheckear.Visible = true;
         }
         //funcion para llenar el data grid con datos de tarifas
-        private void CargarDGVTarifas()
-        {
-            dgvTarifas.Rows.Clear();
-            var tarifas = _gestorVentaEntrada.BuscarTarifas().Rows;
-            var filas = new List<DataGridViewRow>();
-            foreach (DataRow tar in tarifas)
-            {
-                if (tar.HasErrors)
-                    continue;
-                var fila = new string[]
-                {
-                    tar.ItemArray[0].ToString(),
-                    tar.ItemArray[1].ToString(),
-                    tar.ItemArray[2].ToString(),
-                    tar.ItemArray[3].ToString(),
-                    //tar.ItemArray[4].ToString(),
-                };
-                dgvTarifas.Rows.Add(fila);
-            } 
-        }
-
+        //public void CargarDGVTarifas()
+        //{
+        //    dgvTarifas.Rows.Clear();
+        //    var tarifas = _gestorVentaEntrada.buscarTarifasDeSede().Rows;
+        //    var filas = new List<DataGridViewRow>();
+        //    foreach (DataRow tar in tarifas)
+        //    {
+        //        if (tar.HasErrors)
+        //            continue;
+        //        var fila = new string[]
+        //        {
+        //            tar.ItemArray[0].ToString(),
+        //            tar.ItemArray[1].ToString(),
+        //            tar.ItemArray[2].ToString(),
+        //            tar.ItemArray[3].ToString(),
+                   
+        //        };
+        //        dgvTarifas.Rows.Add(fila);
+        //    } 
+        //}
+        
 
         //funcion click del boton (?) verifica que la cantidad ingresada no supere cupo
-        private void BtnCheckear_Click(object sender, EventArgs e)
+        public void BtnCheckear_Click(object sender, EventArgs e)
         {
             if (txtCantentradas.Text != "" )
             {
+                _gestorVentaEntrada.tomarCantidadEntradas(int.Parse(txtCantentradas.Text));
                 if (materialRadioButton1.Checked || materialRadioButton2.Checked)
                 {
-                    if (_sede.CheckearCupo(long.Parse(txtCantentradas.Text)))
+                    if (_gestorVentaEntrada.ValidarCantidadVisitantes())
                     {
 
                         checkedLogo.Visible = true;
@@ -147,72 +149,127 @@ namespace Museo_pictorico_ppai
             
         }
         //funcion que capta los datos ingresados y retorna la tarifa correspondiente
-        private int TomarSeleccionTarifa()
-        {         
+        public void tomarSeleccionTarifa(int indice)
+        {
+            DataGridViewRow filaSeleccionada = dgvTarifas.Rows[indice];
+            string tipoVisita = filaSeleccionada.Cells["TipoVisita"].Value.ToString();
+            string tipoEntrada = filaSeleccionada.Cells["TipoEntrada"].Value.ToString();
+            if (tipoVisita == "Completa")
+            {
+                cmbTipoVisita.SelectedIndex = 0;
+            }
+
+            if (tipoVisita == "Parcial - Por Exposicion")
+            {
+                cmbTipoVisita.SelectedIndex = 1;
+            }
+
+            if (tipoEntrada == "General")
+            {
+                cmbTipoEntrada.SelectedIndex = 0;
+            }
+
+            if (tipoEntrada == "Menores")
+            {
+                cmbTipoEntrada.SelectedIndex = 1;
+            }
+
+            if (tipoEntrada == "Jubilados")
+            {
+                cmbTipoEntrada.SelectedIndex = 2;
+            }
+
+            if (tipoEntrada == "Estudiantes")
+            {
+                cmbTipoEntrada.SelectedIndex = 3;
+            }
+
+            if (tipoEntrada == "Otros")
+            {
+                cmbTipoEntrada.SelectedIndex = 4;
+            }
+            
+            int tarifa = -1;
+
             if (cmbTipoVisita.SelectedIndex == 0)
             {
-                if(cmbTipoEntrada.SelectedIndex == 0)
+                if (cmbTipoEntrada.SelectedIndex == 0)
                 {
-                    return 1;
+                    tarifa = 1;
                 }
                 if (cmbTipoEntrada.SelectedIndex == 1)
                 {
-                    return 2;
+                    tarifa = 2;
                 }
                 if (cmbTipoEntrada.SelectedIndex == 2)
                 {
-                    return 3;
+                    tarifa = 3;
                 }
                 if (cmbTipoEntrada.SelectedIndex == 3)
                 {
-                    return 4;
+                    tarifa = 4;
                 }
-
             }
             if (cmbTipoVisita.SelectedIndex == 1)
             {
                 if (cmbTipoEntrada.SelectedIndex == 0)
                 {
-                    return 5;
+                    tarifa = 5;
                 }
                 if (cmbTipoEntrada.SelectedIndex == 1)
                 {
-                    return 6;
+                    tarifa = 6;
                 }
                 if (cmbTipoEntrada.SelectedIndex == 2)
                 {
-                    return 7;
+                    tarifa = 7;
                 }
                 if (cmbTipoEntrada.SelectedIndex == 3)
                 {
-                    return 8;
+                    tarifa = 8;
                 }
             }
-                return -1;
+
+            tarifaSeleccionada = tarifa;
+            _gestorVentaEntrada.tomarTarifasSeleccionadas(tarifa);
+        }
+        public int TomarCantidadEntradas()
+        {
+            int cantidadEntradas = Int32.Parse(txtCantentradas.Text);
+            return cantidadEntradas;
         }
         //funcion del evento click del boton guardar
         public void BtnGuardar_Click(object sender, EventArgs e) {
             var porcGuia = 50;
+            var guia = false;
+            var g = "NO";
             var idSede = Int32.Parse(txtSede.Text);
-            var tarifa = this.TomarSeleccionTarifa();
             var fechaHoraVenta = DateTime.Now;
-            var cantidadVisita  = Int32.Parse(txtCantentradas.Text);
-            if (tarifa == -1)
+            var cantidadVisita = this.TomarCantidadEntradas();
+
+            if (tarifaSeleccionada == -1)
             {
                 MessageBox.Show("error en tarifa");
                 return;
             }
-            var monto = this._gestorVentaEntrada.CalcularMonto(tarifa);
-            if(materialRadioButton1.Checked)
-                monto = monto + porcGuia;
+
+            if (materialRadioButton1.Checked)
+            {
+                guia = true;
+                g = "SI";
+            };
+
+            var monto = this._gestorVentaEntrada.CalcularTotalaPagar(tarifaSeleccionada, guia);
+            //monto = monto + porcGuia;
 
             var cantentradas = txtCantentradas.Text;
             var total = monto * Int32.Parse(txtCantentradas.Text);
 
             var confirmacion = MessageBox.Show($"Cantidad entradas:{cantentradas}" + "\n\r" +
                 $" Sede: {idSede}" + "\n\r" +
-                $" Precio: ${monto}" + "\n\r" +
-                $" total: ${total}" + "\n\r" +
+                $" Precio por entrada: ${monto}" + "\n\r" +
+                $" Total: ${total}" + "\n\r" +
+                $" Guía: {g}" + "\n\r" +
                 $"\n\r" +
                 $"\n\r" +
                 $"                ¿Confirma?",
@@ -223,21 +280,22 @@ namespace Museo_pictorico_ppai
 
             for (var i = 1; i <= Int32.Parse(txtCantentradas.Text); i++)
             {
-                var entrada = this._gestorVentaEntrada.CrearEntrada(); 
+                var entrada = this._gestorVentaEntrada.CrearEntrada();
                 entrada.fechaHoraVenta = fechaHoraVenta;
                 entrada.monto = monto;
-                entrada.tarifa = tarifa;
+                entrada.tarifa = tarifaSeleccionada;
                 entrada.idSede = idSede;
 
                 _gestorVentaEntrada.Guardar(entrada);
                 //    i++;
-            } MessageBox.Show("Entradas registradas correctamente");
+            }
+            MessageBox.Show("Entradas registradas correctamente");
             LimpiarCampos();
             _gestorVentaEntrada.ActualizarVisitantes(cantidadVisita, idSede);
 
         }
         //funcion para confirmar los datos ingresados previos al guardar
-        private void BtnConfirmar_Click(object sender, EventArgs e)
+        public void BtnConfirmar_Click(object sender, EventArgs e)
         {
             if (true)
             {
@@ -255,7 +313,7 @@ namespace Museo_pictorico_ppai
             btnConfirmar.Enabled = false;
         }
         // reseteo del formulario
-        private void LimpiarCampos()
+        public void LimpiarCampos()
         {
             txtCantentradas.Enabled = true;
             txtCantentradas.Clear();
@@ -283,6 +341,17 @@ namespace Museo_pictorico_ppai
                 return;
             _gestorVentaEntrada.ResetearVisitantes(_sede.idSede);
             MessageBox.Show("Se reseteó valor 'Cantidad de visitantes' ");
+        }
+
+        private void dgvTarifas_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            tomarSeleccionTarifa(e.RowIndex);
+        }
+
+        public void mostrarTarifasVigentes(DataTable tarifas)
+        {
+            dgvTarifas.DataSource = tarifas;
+
         }
     }
 }

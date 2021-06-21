@@ -27,7 +27,7 @@ namespace Museo_pictorico_ppai.Forms
 
         private void BtnRegistrarVenta_Click(object sender, EventArgs e)
         {
-            Form1 ventana = new Form1();
+            PantallaVentaEntradas ventana = new PantallaVentaEntradas();
             ventana.ShowDialog();
         }
 
