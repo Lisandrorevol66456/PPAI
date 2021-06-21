@@ -1,4 +1,5 @@
 ﻿using Museo_pictorico_ppai.DataBase;
+using Museo_pictorico_ppai.Entidades;
 using Museo_pictorico_ppai.Gestores.Entidades;
 using System;
 using System.Collections.Generic;
@@ -15,13 +16,36 @@ namespace Museo_pictorico_ppai.Modelos
         AccesoBD _BD = new AccesoBD();
         ReservaVisita _RV = new ReservaVisita();
         Entrada _E = new Entrada();
-        public int idSede = 1;
-        public long CantidadMaximaVisitantes = 500;
+        private int id;
+        private int cantidadMaximaVisitantes;
         public long visitantes { get; set; }
+        private List<Empleado> empleados;
+        private int cantMaxPorGuia;
+
+        public List<Empleado> empleadosSede
+        {
+            get => empleados;
+            set => empleados = value;
+        }
+        public int idSede
+        {
+            get => id;
+            set => id = value;
+        }
+        public int cantidadMaximaVisitantesSede
+        {
+            get => cantidadMaximaVisitantes;
+            set => cantidadMaximaVisitantes = value;
+        }
+        public int cantMaxPorGuiaSede
+        {
+            get => cantMaxPorGuia;
+            set => cantMaxPorGuia = value;
+        }
     
         public bool CheckearCupo(long entradasIngresadas)
         {
-            return CantidadMaximaVisitantes - (entradasIngresadas+ visitantes) >= 0 ? true : false;
+            return cantidadMaximaVisitantes - (entradasIngresadas+ visitantes) >= 0 ? true : false;
         }
         public long CalcularVisitantes(long entradasIngresadas) => visitantes += entradasIngresadas;
 

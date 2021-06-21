@@ -49,7 +49,9 @@ namespace Museo_pictorico_ppai.Entidades
             set => usuario = value;
         }
 
-
+        public Empleado getEmpleadoEnSesion() {
+            return this.usuario.empleadoUsuario;
+        }
 
 
 

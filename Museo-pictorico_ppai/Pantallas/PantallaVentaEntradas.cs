@@ -1,4 +1,5 @@
-﻿using Museo_pictorico_ppai.Modelos;
+﻿using Museo_pictorico_ppai.Entidades;
+using Museo_pictorico_ppai.Modelos;
 using Museo_pictorico_ppai.Repositorios;
 using Museo_pictorico_ppai.utils;
 using System;
@@ -13,19 +14,21 @@ using System.Windows.Forms;
 
 namespace Museo_pictorico_ppai
 {
-    public partial class Form1 : Form // clase de la pantalla para registrar nueva entrada(S)
+    public partial class PantallaVentaEntradas : Form // clase de la pantalla para registrar nueva entrada(S)
     {
         ValidateTextBox v;
-        GestorPantallaEntrada _gestorVentaEntrada;
+        GestorVentaEntradas _gestorVentaEntrada;
         Sede _sede;
 
-        public Form1()
+        public PantallaVentaEntradas(Sesion sesion)
         {
             InitializeComponent();
-            _gestorVentaEntrada = new GestorPantallaEntrada();
+            _gestorVentaEntrada = new GestorVentaEntradas(sesion);
             v = new ValidateTextBox();
             _sede = new Sede();
         }
+
+        
 
         //funcion para validar que lo que se ingresa sea solo numeros. // utils - validateTextBox
 

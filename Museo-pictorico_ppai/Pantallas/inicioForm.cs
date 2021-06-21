@@ -1,4 +1,5 @@
-﻿using Museo_pictorico_ppai.Pantallas;
+﻿using Museo_pictorico_ppai.Entidades;
+using Museo_pictorico_ppai.Pantallas;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,8 +14,7 @@ namespace Museo_pictorico_ppai.Forms
 {
     public partial class InicioForm : Form
     {
-        public object PantRegEntrada { get; private set; }
-
+        Sesion _sesion;
         public InicioForm()
         {
             InitializeComponent();
@@ -22,12 +22,19 @@ namespace Museo_pictorico_ppai.Forms
 
         private void InicioForm_Load(object sender, EventArgs e)
         {
-
+            //Sesion hardcodeada
+            Usuario _us = new Usuario();
+            _sesion = new Sesion()
+            {
+                fechaInicioSesion = System.DateTime.Now.Date,
+                horaInicioSesion = System.DateTime.Now.Hour.ToString() + System.DateTime.Now.Minute.ToString() + System.DateTime.Now.Second.ToString(),
+                usuarioSesion = _us.sesionhardcodeada()
+            };
         }
 
         private void BtnRegistrarVenta_Click(object sender, EventArgs e)
         {
-            Form1 ventana = new Form1();
+            PantallaVentaEntradas ventana = new PantallaVentaEntradas(_sesion);
             ventana.ShowDialog();
         }
 

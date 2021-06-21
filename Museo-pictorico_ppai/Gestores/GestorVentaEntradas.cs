@@ -1,4 +1,4 @@
-﻿using Museo_pictorico_ppai.DataBase;
+using Museo_pictorico_ppai.DataBase;
 using Museo_pictorico_ppai.Entidades;
 using Museo_pictorico_ppai.Modelos;
 using System;
@@ -12,24 +12,41 @@ namespace Museo_pictorico_ppai.Repositorios
 {
     public class GestorPantallaEntrada // clase del gestor de pantallas
     {
-        private List<Entrada> entradas;        private Sesion sesionActual;        private List<Tarifa> tarifas;
+        private List<Entrada> entradas;
+        private Sesion sesionActual;
+        private List<Tarifa> tarifas;
         //private Form1 _pantallaEntrada;
         private AccesoBD _BD;
-        private Sede _sede;
+        private Sede sedeActual;
         private int cantidadEntradas;
         //private int visitantes = 0;
      
 
-        public GestorPantallaEntrada()
+        public GestorVentaEntradas(Sesion sesion)
         {
+            sesionActual = sesion; //resibe la sesion actual
             _BD = new AccesoBD(); // instancia la clase acceso a base de datos 
-            _sede = new Sede();
             //_pantallaEntrada = new Form1();
         }
-        public void BuscarEmpleadoLogueado()
-        {
+        public GestorVentaEntradas() { }
 
+        public void opcionVtaEntrada()
+        {
+            buscarEmpleadoLogueado();
+            buscarSede();
         }
+        public void buscarEmpleadoLogueado()
+        {
+            empleadoLogueado = sesionActual.getEmpleadoEnSesion();
+            buscarSede();
+        }
+
+        public void buscarSede() 
+        {
+            sedeActual = empleadoLogueado.obtenerSede(); //Obtiene la sede actual a traves del empleado logueado
+            // BuscarTarifas(); 
+        }
+        
         public void ConocerUsuario()
         {
 
@@ -146,7 +163,7 @@ namespace Museo_pictorico_ppai.Repositorios
         }
         public long BuscarCapacidadMax()
         {
-            long capacidadMaxima = _sede.CantidadMaximaVisitantes;
+            long capacidadMaxima = sedeActual.cantidadMaximaVisitantesSede;
             return capacidadMaxima;
 
         }
@@ -158,13 +175,13 @@ namespace Museo_pictorico_ppai.Repositorios
         public long CalcularCantidadVisitantes()
         {
             DateTime FechaActual = this.ObtenerFechaActual();
-            long visit = _sede.CalcularOcupacion(FechaActual) + cantidadEntradas;
+            long visit = sedeActual.CalcularOcupacion(FechaActual) + cantidadEntradas;
             return visit;
         }
         public bool ValidarCantidadVisitantes()
         {
             DateTime FechaActual = this.ObtenerFechaActual();
-          if(this.BuscarCapacidadMax() - _sede.CalcularOcupacion(FechaActual)- cantidadEntradas >= 0)
+          if(this.BuscarCapacidadMax() - sedeActual.CalcularOcupacion(FechaActual)- cantidadEntradas >= 0)
             {
                 return true;
             }return false;
