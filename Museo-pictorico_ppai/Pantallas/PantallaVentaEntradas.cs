@@ -77,24 +77,29 @@ namespace Museo_pictorico_ppai
         //funcion click del boton (?) verifica que la cantidad ingresada no supere cupo
         public void tomarCantidadEntradas(object sender, EventArgs e)
         {
-            try
+            if (RbguiaSi.Checked || RbGuiaNo.Checked)
             {
-                if (txtCantentradas.Text == "" || Convert.ToInt32(txtCantentradas.Text) == 0)
-                    throw new ApplicationException("complete campo cantidad de entradas");
-                else
+
+                try
                 {
-                    var cant = Convert.ToInt32(txtCantentradas.Text);
-                    _gestorVentaEntrada.tomarCantidadEntradas(cant);
-                    checkedLogo.Visible = true;
+                    if (txtCantentradas.Text == "" || Convert.ToInt32(txtCantentradas.Text) == 0)
+                        throw new ApplicationException("complete campo cantidad de entradas");
+                    else
+                    {
+                        var cant = Convert.ToInt32(txtCantentradas.Text);
+                        _gestorVentaEntrada.tomarCantidadEntradas(cant);
+                        checkedLogo.Visible = true;
+                    }
+
                 }
-            }
-            catch(ApplicationException mens)
-            {
-                MessageBox.Show(mens.Message);
-                txtCantentradas.Focus();
-            }
+                catch (ApplicationException mens)
+                {
+                    MessageBox.Show(mens.Message);
+                    txtCantentradas.Focus();
+                }
 
-
+            }
+            else { MessageBox.Show("Seleccione si desea un guía o no."); }
         }
         //funcion que capta los datos ingresados y retorna la tarifa correspondiente
         public void tomarSeleccionTarifa()
@@ -150,8 +155,10 @@ namespace Museo_pictorico_ppai
         public void tomarConfirmacionVenta(object sender, EventArgs e)
         {
             _gestorVentaEntrada.tomarConfirmacionVenta();
-            MessageBox.Show("Se registro la venta con exito");
-            btnConfirmar.Enabled = false;
+             MessageBox.Show("Se registro la venta con exito");
+             btnConfirmar.Enabled = false;
+            
+
         }
         // si se cambia algo del txt cant entradas se deshabilita el confirmar, pues hay que verificar nuevamente 
         private void TxtCantentradas_TextChanged(object sender, EventArgs e)

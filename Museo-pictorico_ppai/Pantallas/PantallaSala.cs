@@ -21,30 +21,20 @@ namespace Museo_pictorico_ppai.Pantallas
         public PantallaSala()
         {
             InitializeComponent();
+            _sede.cantidadMaximaVisitantesSede = 500;
+            lblVisitantes.Text = "0";
         }
 
         private void PantallaSala_Load(object sender, EventArgs e)
         {
             lblCapacidad.Text = _sede.cantidadMaximaVisitantesSede.ToString();
-            this.CargarVisitantes();
+            
         }
-        private void CargarVisitantes()
+        public void actualizarCantVisitantes()
         {
-            var visitantes = 10;
-            //var visitantes = _gestor.MostrarVisitantes(_sede.idSede).Rows;
-            //foreach (DataRow vis in visitantes)
-            //{
-            //    if (vis.HasErrors)
-            //        continue;
-            //    var fila = new string[]
-            //    {
-            //        vis.ItemArray[0].ToString()
-            //    };
-
-            lblVisitantes.Text = visitantes.ToString();
-            //}
-
+            lblVisitantes.Text = _sede.calcularOcupacion(DateTime.Now).ToString();
         }
+        
 
         private void BtnBack_Click(object sender, EventArgs e)
         {
