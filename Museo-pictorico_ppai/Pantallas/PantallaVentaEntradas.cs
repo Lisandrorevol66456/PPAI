@@ -1,4 +1,5 @@
 ﻿using Museo_pictorico_ppai.Entidades;
+using Museo_pictorico_ppai.Forms;
 using Museo_pictorico_ppai.Gestores.Entidades;
 using Museo_pictorico_ppai.Modelos;
 using Museo_pictorico_ppai.Repositorios;
@@ -66,12 +67,15 @@ namespace Museo_pictorico_ppai
 
         public void BtnCancelar_Click(object sender, EventArgs e)
         {
-            var confirmacion = MessageBox.Show($"¿Seguro que desea cancelar la operación?",
+            var confirmacion = MessageBox.Show($"¿Volver a pantalla principal?",
                  "Cancelar operación",
                    MessageBoxButtons.YesNo);
             if (confirmacion.Equals(DialogResult.No))
                 return;
             this.Dispose();
+            PantallaPrincipal _if = new PantallaPrincipal();
+            _if.ShowDialog();
+            
         }
 
         //funcion click del boton (?) verifica que la cantidad ingresada no supere cupo

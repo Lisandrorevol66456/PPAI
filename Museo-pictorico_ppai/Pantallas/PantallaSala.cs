@@ -21,14 +21,13 @@ namespace Museo_pictorico_ppai.Pantallas
         public PantallaSala()
         {
             InitializeComponent();
-            _sede.cantidadMaximaVisitantesSede = 500;
-            lblVisitantes.Text = "0";
+            _sede.cantidadMaximaVisitantesSede = 500;            
         }
 
         private void PantallaSala_Load(object sender, EventArgs e)
         {
             lblCapacidad.Text = _sede.cantidadMaximaVisitantesSede.ToString();
-            
+            actualizarCantVisitantes();
         }
         public void actualizarCantVisitantes()
         {

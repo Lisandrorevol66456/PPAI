@@ -1,4 +1,5 @@
 ﻿using Museo_pictorico_ppai.Entidades;
+using Museo_pictorico_ppai.Modelos;
 using Museo_pictorico_ppai.Pantallas;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,11 @@ using System.Windows.Forms;
 
 namespace Museo_pictorico_ppai.Forms
 {
-    public partial class InicioForm : Form
+    public partial class PantallaPrincipal : Form
     {
         Sesion _sesion;
-        public InicioForm()
+        Sede _sede = new Sede();
+        public PantallaPrincipal()
         {
             InitializeComponent();
         }
@@ -30,12 +32,14 @@ namespace Museo_pictorico_ppai.Forms
                 HoraInicio = System.DateTime.Now.Hour.ToString() + System.DateTime.Now.Minute.ToString() + System.DateTime.Now.Second.ToString(),
                 usuarioSesion = _us.sesionhardcodeada()
             };
+            actualizarCantVisitantes();
         }
 
         private void BtnRegistrarVenta_Click(object sender, EventArgs e)
         {
             PantallaVentaEntradas ventana = new PantallaVentaEntradas(_sesion);
             ventana.ShowDialog();
+            this.Close();
         }
 
         private void BtnPantallaSala_Click(object sender, EventArgs e)
@@ -52,6 +56,11 @@ namespace Museo_pictorico_ppai.Forms
             if (confirmacion.Equals(DialogResult.No))
                 return;
             this.Dispose();
+        }
+        public void actualizarCantVisitantes()
+        {
+            labelVisitantes.Text = _sede.calcularOcupacion(DateTime.Now).ToString();
+            this.Refresh();
         }
     }
 }

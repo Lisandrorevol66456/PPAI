@@ -1,6 +1,6 @@
 ﻿namespace Museo_pictorico_ppai.Forms
 {
-    partial class InicioForm
+    partial class PantallaPrincipal
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -28,13 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InicioForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PantallaPrincipal));
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnRegistrarVenta = new System.Windows.Forms.Button();
             this.btnPantallaSala = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.BtnSalir = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.labelVisitantes = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -129,7 +131,25 @@
             this.BtnSalir.UseVisualStyleBackColor = true;
             this.BtnSalir.Click += new System.EventHandler(this.BtnSalir_Click);
             // 
-            // InicioForm
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(628, 233);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(148, 15);
+            this.label1.TabIndex = 30;
+            this.label1.Text = "Cantidad de visitantes";
+            // 
+            // labelVisitantes
+            // 
+            this.labelVisitantes.AutoSize = true;
+            this.labelVisitantes.Location = new System.Drawing.Point(691, 257);
+            this.labelVisitantes.Name = "labelVisitantes";
+            this.labelVisitantes.Size = new System.Drawing.Size(15, 15);
+            this.labelVisitantes.TabIndex = 31;
+            this.labelVisitantes.Text = "0";
+            // 
+            // PantallaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -137,6 +157,8 @@
             this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(780, 489);
+            this.Controls.Add(this.labelVisitantes);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.BtnSalir);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.btnPantallaSala);
@@ -147,7 +169,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "InicioForm";
+            this.Name = "PantallaPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inicio - Museo Pictórico Córdoba";
             this.Load += new System.EventHandler(this.InicioForm_Load);
@@ -155,6 +177,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -166,5 +189,7 @@
         private System.Windows.Forms.Button btnPantallaSala;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Button BtnSalir;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelVisitantes;
     }
 }

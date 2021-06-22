@@ -78,9 +78,9 @@ namespace Museo_pictorico_ppai.Pantallas
             this.lblVisitantes.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVisitantes.Location = new System.Drawing.Point(434, 46);
             this.lblVisitantes.Name = "lblVisitantes";
-            this.lblVisitantes.Size = new System.Drawing.Size(342, 63);
+            this.lblVisitantes.Size = new System.Drawing.Size(57, 63);
             this.lblVisitantes.TabIndex = 29;
-            this.lblVisitantes.Text = "VISITANTES";
+            this.lblVisitantes.Text = "0";
             // 
             // lblCapacidad
             // 
