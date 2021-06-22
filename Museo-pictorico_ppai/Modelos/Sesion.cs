@@ -19,8 +19,6 @@ namespace Museo_pictorico_ppai.Entidades
 
         }
 
-        
-
         public Usuario usuarioSesion
         {
             get => usuario;
@@ -31,12 +29,9 @@ namespace Museo_pictorico_ppai.Entidades
         public string FechaInicio { get => fechaInicio; set => fechaInicio = value; }
         public string FechaFin { get => fechaFin; set => fechaFin = value; }
 
-        public Empleado getEmpleadoEnSesion() {
+        public Empleado getEmpleadoEnSesion() 
+        {
             return this.usuario.empleadoUsuario;
         }
-
-
-
-
     }
 }

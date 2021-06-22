@@ -11,9 +11,5 @@ namespace Museo_pictorico_ppai.Modelos
         private string lugarAsignado { get; set; }
         private int obra { get; set; }
 
-        //public float BuscarDuracionExtObras(int obra)
-        //{
-
-        //}
     }
 }

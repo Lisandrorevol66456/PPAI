@@ -14,7 +14,6 @@ namespace Museo_pictorico_ppai.Entidades
         {
 
         }
-
         public string nombreTipoDeEntrada
         {
             get => nombre;

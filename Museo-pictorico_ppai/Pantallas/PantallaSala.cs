@@ -30,7 +30,7 @@ namespace Museo_pictorico_ppai.Pantallas
         }
         private void CargarVisitantes()
         {
-            var visitantes = _gestor.CalcularCantidadVisitantes();
+            var visitantes = 10;
             //var visitantes = _gestor.MostrarVisitantes(_sede.idSede).Rows;
             //foreach (DataRow vis in visitantes)
             //{

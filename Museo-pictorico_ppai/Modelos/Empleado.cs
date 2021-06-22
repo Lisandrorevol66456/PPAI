@@ -6,7 +6,6 @@ namespace Museo_pictorico_ppai.Entidades
 {
     public class Empleado
     {
-        AccesoBD _BD;
         private string apellido;
         private int codigoValidacion;
         private long cuit;
@@ -18,6 +17,8 @@ namespace Museo_pictorico_ppai.Entidades
         private string nombre;
         private string sexo;
         private long telefono;
+
+        AccesoBD _BD;
 
         public Empleado()
         {

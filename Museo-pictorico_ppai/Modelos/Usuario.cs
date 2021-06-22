@@ -9,11 +9,13 @@ namespace Museo_pictorico_ppai.Entidades
 {
     public class Usuario
     {
-        AccesoBD _BD = new AccesoBD();
+        
         private DateTime caducidad;
         private string contraseña;
         private string nombre;
         private Empleado empleado;
+
+        AccesoBD _BD = new AccesoBD();
 
         public Usuario()
         {
@@ -56,7 +58,6 @@ namespace Museo_pictorico_ppai.Entidades
                 usRes.nombreUsuario = row["nombre"].ToString();
                 Empleado emp = new Empleado() {dniEmpleado= Convert.ToInt64(row["dni"].ToString()) };
                 usRes.empleadoUsuario = emp;
-
             }
             return usRes;
 

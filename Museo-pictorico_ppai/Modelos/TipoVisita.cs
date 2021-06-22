@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Museo_pictorico_ppai.Gestores.Entidades
 {
-    class TipoVisita
+    public class TipoVisita
     {
        private string nombre;
 
@@ -15,7 +15,6 @@ namespace Museo_pictorico_ppai.Gestores.Entidades
 
         }
 
-        
         public string Nombre
         {
             get => nombre;

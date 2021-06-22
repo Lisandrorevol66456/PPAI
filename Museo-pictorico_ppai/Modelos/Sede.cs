@@ -13,16 +13,16 @@ namespace Museo_pictorico_ppai.Modelos
     
     public class Sede
     {
+        private int id;
+        private int cantidadMaximaVisitantes;
+        private int cantMaxPorGuia;
+        private long visitantes { get; set; }
+        private List<Empleado> empleados;
+        private List<int> exposiciones { get; set; }
         AccesoBD _BD = new AccesoBD();
         ReservaVisita _RV = new ReservaVisita();
         Entrada _E = new Entrada();
-        private int id;
-        private int cantidadMaximaVisitantes;
-        public long visitantes { get; set; }
-        private List<Empleado> empleados;
-        private int cantMaxPorGuia;
         Tarifa tarifa = new Tarifa();
-        private List<int> exposiciones { get; set; }
 
         public List<Empleado> empleadosSede
         {
@@ -45,21 +45,15 @@ namespace Museo_pictorico_ppai.Modelos
             set => cantMaxPorGuia = value;
         }
     
-        public bool CheckearCupo(long entradasIngresadas)
+        public int calcularOcupacion(DateTime fechahora)
         {
-            return cantidadMaximaVisitantes - (entradasIngresadas+ visitantes) >= 0 ? true : false;
-        }
-        public long CalcularVisitantes(long entradasIngresadas) => visitantes += entradasIngresadas;
-
-        public int CalcularOcupacion(DateTime fechahora)
-        {
-          int ocupacion = _E.EsDeFechaHora(fechahora) + _RV.EsDeFechaHora(fechahora);
+          int ocupacion = _E.esDeFechaHora(fechahora) + _RV.esDeFechaHora(fechahora);
             return ocupacion;
         }
 
-        public DataTable obtenerTarifasVigentes()
+        public DataTable obtenerTarifasVigentes(int sede)
         {
-            return tarifa.mostrarMontosVigentes();
+            return tarifa.mostrarMontosVigentes(sede);
         }
 
         public int calcularDuracionDeExposicionesVigentes()
