@@ -11,5 +11,9 @@ namespace Museo_pictorico_ppai.Modelos
         private string lugarAsignado { get; set; }
         private int obra { get; set; }
 
+
+
+        public static int buscarDuracionObras(int idSede, List<int> exposiciones)        {            return Obra.getDuracionResumida(idSede, exposiciones);        }
+
     }
 }
