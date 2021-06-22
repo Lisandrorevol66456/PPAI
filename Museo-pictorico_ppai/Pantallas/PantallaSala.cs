@@ -29,13 +29,13 @@ namespace Museo_pictorico_ppai.Pantallas
             lblCapacidad.Text = _sede.cantidadMaximaVisitantesSede.ToString();
             actualizarCantVisitantes();
         }
-        public void actualizarCantVisitantes()
+        public void actualizarCantVisitantes() // actualiza la cantidad de visitantes para la pantalla sala
         {
             lblVisitantes.Text = _sede.calcularOcupacion(DateTime.Now).ToString();
         }
         
 
-        private void BtnBack_Click(object sender, EventArgs e)
+        private void BtnBack_Click(object sender, EventArgs e) //evento click del boton volver, cierra la pantalla sala
         {
             this.Dispose();
         }

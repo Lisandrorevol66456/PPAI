@@ -26,7 +26,7 @@ namespace Museo_pictorico_ppai.Pantallas
 
             //this.reportViewer1.RefreshReport();
         }
-        public void imprimir(Entrada entrada)
+        public void imprimir(Entrada entrada) // genera pdf con los datos de la entrada vendida y lo guarda en la ruta elegida
         {
             FileStream fs = new FileStream(@"C:\Users\Windows 10\Desktop\Entradas impresas\" + DateTime.Now.Ticks.ToString() + ".pdf", FileMode.Create);
             Document doc = new Document(PageSize.LETTER, 5, 5, 7, 7);

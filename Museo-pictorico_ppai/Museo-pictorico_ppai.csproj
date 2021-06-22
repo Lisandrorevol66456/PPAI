@@ -98,11 +98,11 @@
     <Compile Include="Modelos\TipoDeEntrada.cs" />
     <Compile Include="Modelos\TipoVisita.cs" />
     <Compile Include="Modelos\Usuario.cs" />
-    <Compile Include="Pantallas\inicioForm.cs">
+    <Compile Include="Pantallas\PantallaPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pantallas\inicioForm.Designer.cs">
-      <DependentUpon>inicioForm.cs</DependentUpon>
+    <Compile Include="Pantallas\PantallaPrincipal.Designer.cs">
+      <DependentUpon>PantallaPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="DataBase\AccesoBD.cs" />
     <Compile Include="Pantallas\PantallaSala.cs">
@@ -148,8 +148,8 @@
     <EmbeddedResource Include="Pantallas\PantallaVentaEntradas.resx">
       <DependentUpon>PantallaVentaEntradas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pantallas\inicioForm.resx">
-      <DependentUpon>inicioForm.cs</DependentUpon>
+    <EmbeddedResource Include="Pantallas\PantallaPrincipal.resx">
+      <DependentUpon>PantallaPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pantallas\SoftwareDeImpresion.resx">
       <DependentUpon>SoftwareDeImpresion.cs</DependentUpon>

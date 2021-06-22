@@ -65,7 +65,7 @@ namespace Museo_pictorico_ppai.Entidades
             set => tipoVisita = value;
         }
 
-        public DataTable mostrarMontosVigentes(int sede)
+        public DataTable mostrarMontosVigentes(int sede) // funcion para obtener los montos de las tarifas vigentes para una sede
         {
             string sqlTxt = $"select t.id,tv.nombre as 'tipoVisita',te.nombre as'tipoEntrada',t.precio from tarifas t join tipoEntrada te on t.tipoEntrada = te.idTipo join TipoVisita tv on t.tipoVisita = tv.id WHERE t.sede = {sede} AND t.fechaFinVigencia is Null order by tv.nombre; ";
             var tarifasDTRows = BD.Consulta(sqlTxt);

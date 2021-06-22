@@ -81,7 +81,7 @@ namespace Museo_pictorico_ppai
         //funcion click del boton (?) verifica que la cantidad ingresada no supere cupo
         public void tomarCantidadEntradas(object sender, EventArgs e)
         {
-            if (RbguiaSi.Checked || RbGuiaNo.Checked)
+            if (RbguiaSi.Checked || RbGuiaNo.Checked) // valida que se seleccione guía o no
             {
 
                 try
@@ -126,14 +126,14 @@ namespace Museo_pictorico_ppai
                 MessageBox.Show("Debe seleccionar solo una tarifa");
         }
 
-        public void solicitarCantidadEntradas()
+        public void solicitarCantidadEntradas() // habilita el text box de cantidad de entradas para que se ingrese la cantidad de entradas deseadas 
         {
             txtCantentradas.Enabled = true;
             labelCantEntradas.Enabled = true;
             BtnCheckear.Enabled = true;
         }
 
-        public void mostrarDetalleVenta(int cantEntradas, int precioEntrada, int montoTotal)
+        public void mostrarDetalleVenta(int cantEntradas, int precioEntrada, int montoTotal) // habilita los label para mostrar el detalle de venta antes de confirmar
         {
             label5.Visible = false;
             dgvTarifas.Visible = false;
@@ -149,7 +149,7 @@ namespace Museo_pictorico_ppai
             LblMontoTotalNum.Text = montoTotal.ToString();
         }
 
-        public void solicitarConfirmacion()
+        public void solicitarConfirmacion() // habilita el boton para confirmar la venta de entrada(s)
         {
             btnConfirmar.Visible = true;
             btnConfirmar.Enabled = true;
@@ -185,25 +185,15 @@ namespace Museo_pictorico_ppai
             LimpiarCampos();
 
         }
-        // se crea esta funcion para resetar la cantidad de visitantes, llama a la funcion del gestor y vuelve a 0 la cant de visitas
-        private void ResetToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var confirmacion = MessageBox.Show($"Se volverá a 0 el valor 'Cantidad de visitantes'",
-                 "Confirmar operación",
-                   MessageBoxButtons.YesNo);
-            if (confirmacion.Equals(DialogResult.No))
-                return;
-            _gestorVentaEntrada.ResetearVisitantes(_sede.idSede);
-            MessageBox.Show("Se reseteó valor 'Cantidad de visitantes' ");
-        }
+       
 
-        public void mostrarTarifasVigentes(DataTable tarifas)
+        public void mostrarTarifasVigentes(DataTable tarifas) // carga el data grid tarifas con las tarifas vigentes
         {
             dgvTarifas.DataSource = tarifas;
             
         }
 
-        private void dgvTarifas_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvTarifas_CellClick(object sender, DataGridViewCellEventArgs e) // evento click de las filas del data grid tarifas
         {
             tomarSeleccionTarifa();
         }

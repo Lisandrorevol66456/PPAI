@@ -19,7 +19,7 @@ namespace Museo_pictorico_ppai.Modelos
         private string nombre { get; set; }
 
         
-        public static List<int> esVigente()
+        public static List<int> esVigente() // busca las exposciones vigentes
         {
             List<int> exposiciones = new List<int>();
             Exposicion e = new Exposicion();
@@ -36,7 +36,7 @@ namespace Museo_pictorico_ppai.Modelos
             return exposiciones;
         }
 
-        public static int calcularDuracionObrasExpuestas(int idSede, List<int> exposiciones)        {            return DetalleExposicion.buscarDuracionObras(idSede, exposiciones);        }
+        public static int calcularDuracionObrasExpuestas(int idSede, List<int> exposiciones) // obtiene la duracion de las obras expuestas        {            return DetalleExposicion.buscarDuracionObras(idSede, exposiciones);        }
 
 
     }

@@ -91,7 +91,7 @@ namespace Museo_pictorico_ppai.Entidades
             set => telefono = value;
         }
 
-        public Sede obtenerSede()
+        public Sede obtenerSede() // devuelve la sede del empleado logueado
         {
             _BD = new AccesoBD();
             Sede sedeRes = null;

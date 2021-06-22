@@ -70,7 +70,7 @@ namespace Museo_pictorico_ppai.Gestores.Entidades
         }
 
 
-        public int esDeFechaHora(DateTime fechahora)
+        public int esDeFechaHora(DateTime fechahora) // devuelve las reservas que hay para la fecha y hora ingresada como párametro
         {
            string sqlTxt = $"SELECT * from Reservas where DATEPART(HOUR, fechaHoraReserva) ={fechahora.ToString("HH")}" +
            $" and (DATEPART(DAY, fechaHoraReserva)= {fechahora.ToString("dd")})" +

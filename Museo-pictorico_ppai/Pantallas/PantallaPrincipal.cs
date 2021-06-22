@@ -35,20 +35,20 @@ namespace Museo_pictorico_ppai.Forms
             actualizarCantVisitantes();
         }
 
-        private void BtnRegistrarVenta_Click(object sender, EventArgs e)
+        private void BtnRegistrarVenta_Click(object sender, EventArgs e) // evento click del boton registrar venta de entrada
         {
             PantallaVentaEntradas ventana = new PantallaVentaEntradas(_sesion);
             ventana.ShowDialog();
             this.Close();
         }
 
-        private void BtnPantallaSala_Click(object sender, EventArgs e)
+        private void BtnPantallaSala_Click(object sender, EventArgs e) // evento click del botón pantalla sala, abre el formulario pantallaSala
         {
             PantallaSala ventana = new PantallaSala();
             ventana.ShowDialog();
         }
 
-        private void BtnSalir_Click(object sender, EventArgs e)
+        private void BtnSalir_Click(object sender, EventArgs e) // evento click del botón salir, finaliza la aplicación
         {
             var confirmacion = MessageBox.Show($"                      ¿Salir?",
                  "Finalizar aplicación",
@@ -57,7 +57,7 @@ namespace Museo_pictorico_ppai.Forms
                 return;
             this.Dispose();
         }
-        public void actualizarCantVisitantes()
+        public void actualizarCantVisitantes() // actualiza la candidad de visitantes en la pantalla principal 
         {
             labelVisitantes.Text = _sede.calcularOcupacion(DateTime.Now).ToString();
             this.Refresh();

@@ -45,7 +45,7 @@ namespace Museo_pictorico_ppai.Modelos
             set => cantMaxPorGuia = value;
         }
     
-        public int calcularOcupacion(DateTime fechahora)
+        public int calcularOcupacion(DateTime fechahora) // devuelve la ocupación de la sede para una fecha y hora ingresada como párametro
         {
           int ocupacion = _E.esDeFechaHora(fechahora) + _RV.esDeFechaHora(fechahora);
             return ocupacion;

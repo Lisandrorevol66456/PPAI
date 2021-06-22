@@ -19,7 +19,7 @@ namespace Museo_pictorico_ppai.Modelos
         AccesoBD _BD = new AccesoBD();
         
 
-        public DataTable getEntradas(DateTime fechahora)
+        public DataTable getEntradas(DateTime fechahora) // busca las entradas para la fecha ingresada como párametro
         {
             string sqlTxt = $"SELECT * from Entradas where DATEPART(HOUR, fechaHoraVenta) ={fechahora.ToString("HH")}" +
                 $" and (DATEPART(DAY, fechaHoraVenta)= {fechahora.ToString("dd")})" +
@@ -28,13 +28,13 @@ namespace Museo_pictorico_ppai.Modelos
             var entradasDTRows = _BD.Consulta(sqlTxt);
             return entradasDTRows;
         }
-        public int esDeFechaHora(DateTime fechahora)
+        public int esDeFechaHora(DateTime fechahora) // cantidad de entradas para la fecha y hora ingresada como párametro
         {
             return getEntradas(fechahora).Rows.Count;
                            
         }
 
-        public static int ultimoNumero() 
+        public static int getNroEntrada() // devuelve el último número de entrada vendido
         {
             int ultNum = 0;
             AccesoBD _BD = new AccesoBD();
@@ -48,7 +48,7 @@ namespace Museo_pictorico_ppai.Modelos
             return ultNum;
         }
 
-        public static void guardarEnBD(List<Entrada> entradas)
+        public static void guardarEnBD(List<Entrada> entradas) // funcion para insertar las n entradas a la base de datos
         {
             AccesoBD _BD = new AccesoBD();
             foreach (Entrada ent in entradas)

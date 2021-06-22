@@ -46,7 +46,7 @@ namespace Museo_pictorico_ppai.Entidades
             set => empleado = value;
         }
 
-        public Usuario sesionhardcodeada()
+        public Usuario sesionhardcodeada() // sesion mockeada
         {
             Usuario usRes = null;
             var sqlString = "SELECT U.nombre, E.dni FROM Usuario U JOIN Empleados E ON (U.dniEmpleado=E.dni) WHERE U.nombre='Bsalas'";

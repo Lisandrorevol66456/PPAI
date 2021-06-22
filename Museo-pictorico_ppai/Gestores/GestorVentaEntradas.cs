@@ -38,13 +38,13 @@ namespace Museo_pictorico_ppai.Repositorios
         }
         public GestorVentaEntradas() { }
 
-        public void opcionVtaEntrada()
+        public void opcionVtaEntrada() // Gestor empieza a ejecutar el método opcionVtaEntrada
         {
             buscarEmpleadoLogueado();
             buscarSede();
             buscarTarifasDeSede();
         }
-        public void buscarEmpleadoLogueado()
+        public void buscarEmpleadoLogueado()  // Busca el empleado logueado para la sesión actual
         {
             empleadoLogueado = sesionActual.getEmpleadoEnSesion();
             buscarSede();
@@ -57,7 +57,7 @@ namespace Museo_pictorico_ppai.Repositorios
         }
      
 
-        public void tomarTarifasSeleccionadas(Tarifa tarifasSeleccionadas, bool guia)
+        public void tomarTarifasSeleccionadas(Tarifa tarifasSeleccionadas, bool guia) // obtiene la tarifa seleccionada 
         {
             tarifaSelec = tarifasSeleccionadas;
             conGuia = guia;
@@ -91,11 +91,11 @@ namespace Museo_pictorico_ppai.Repositorios
 
         }
 
-        public void buscarExposicionVigente()
+        public void buscarExposicionVigente() // obtiene la duracion de las exposiciones vigentes
         {
             duracion = sedeActual.calcularDuracionDeExposicionesVigentes();
         }
-        public void tomarCantidadEntradas(int cantEntrada)
+        public void tomarCantidadEntradas(int cantEntrada) // toma la cantidad de entradas ingresadas y obtiene el monto total y la ocupación
         {
             cantidadEntradas = cantEntrada;
             long capacidadMax = buscarCapacidadMax();
@@ -106,23 +106,23 @@ namespace Museo_pictorico_ppai.Repositorios
             pantallaVentaEntradas.mostrarDetalleVenta(cantidadEntradas, tarifaSelec.montoTarifa, montoTotal);
             pantallaVentaEntradas.solicitarConfirmacion();
         }
-        public long buscarCapacidadMax()
+        public long buscarCapacidadMax() // busca la capacidad máxima de la sede actual
         {
             long capacidadMaxima = sedeActual.cantidadMaximaVisitantesSede;
             return capacidadMaxima;
 
         }
-        public DateTime ObtenerFechaActual()
+        public DateTime ObtenerFechaActual() // fecha al instante
         {
             DateTime fecha = DateTime.Now;
             return fecha;
         }
-        public long calcularCantidadVisitantes(DateTime fecha)
+        public long calcularCantidadVisitantes(DateTime fecha) // devuelve el numero actual de ocupacion
         {
             long ocup = sedeActual.calcularOcupacion(fecha);
             return ocup;
         }
-        public void validarCantidadVisitantes(long capacidadMax, long ocupacion)
+        public void validarCantidadVisitantes(long capacidadMax, long ocupacion) // valida que no se supere el cupo máximo
         {
             if (ocupacion + cantidadEntradas > capacidadMax)
             {
@@ -130,7 +130,7 @@ namespace Museo_pictorico_ppai.Repositorios
             }
         }
 
-        public void tomarConfirmacionVenta()
+        public void tomarConfirmacionVenta() // toma confirmacion de venta de entrada
         {
             
             ultNumEntrada = buscarUltimoNroEntrada();
@@ -140,12 +140,12 @@ namespace Museo_pictorico_ppai.Repositorios
             actVisitantesEnPantallas();
         }
 
-        public int buscarUltimoNroEntrada() 
+        public int buscarUltimoNroEntrada() //recorre las entradas y busca el nro de la última
         {
-            return Entrada.ultimoNumero();
+            return Entrada.getNroEntrada();
         }
 
-        public void generarEntradas()
+        public void generarEntradas() // genera las n entradas y las inserta en la bd
         {
             entradas = new List<Entrada>();
             for (int i = 0; i < cantidadEntradas; i++)
@@ -165,12 +165,12 @@ namespace Museo_pictorico_ppai.Repositorios
             Entrada.guardarEnBD(entradas);
 
         }
-        public void actVisitantesEnPantallas()
+        public void actVisitantesEnPantallas() // método actualizar la cantidad de visitantes en la pantalla de la sala 
         {
             PantallaSala _ps = new PantallaSala();
             _ps.actualizarCantVisitantes();
         }
-        public void imprimirEntrada(Entrada entrada)
+        public void imprimirEntrada(Entrada entrada) // funcion que llama al sw de impresion 
         {
             SoftwareDeImpresion si = new SoftwareDeImpresion();
             si.imprimir(entrada);

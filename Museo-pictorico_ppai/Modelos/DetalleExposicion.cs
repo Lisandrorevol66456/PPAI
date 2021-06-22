@@ -13,7 +13,7 @@ namespace Museo_pictorico_ppai.Modelos
 
 
 
-        public static int buscarDuracionObras(int idSede, List<int> exposiciones)        {            return Obra.getDuracionResumida(idSede, exposiciones);        }
+        public static int buscarDuracionObras(int idSede, List<int> exposiciones) // método para obtener la duración resumida de las obras        {            return Obra.getDuracionResumida(idSede, exposiciones);        }
 
     }
 }
