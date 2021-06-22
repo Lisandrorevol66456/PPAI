@@ -1,4 +1,5 @@
 ﻿using Museo_pictorico_ppai.DataBase;
+using Museo_pictorico_ppai.Entidades;
 using Museo_pictorico_ppai.Gestores.Entidades;
 using System;
 using System.Collections.Generic;
@@ -12,24 +13,56 @@ namespace Museo_pictorico_ppai.Modelos
     
     public class Sede
     {
+        private int id;
+        private int cantidadMaximaVisitantes;
+        private int cantMaxPorGuia;
+        private long visitantes { get; set; }
+        private List<Empleado> empleados;
+        private List<int> exposiciones { get; set; }
         AccesoBD _BD = new AccesoBD();
         ReservaVisita _RV = new ReservaVisita();
         Entrada _E = new Entrada();
-        public int idSede = 1;
-        public long CantidadMaximaVisitantes = 500;
-        public long visitantes { get; set; }
-    
-        public bool CheckearCupo(long entradasIngresadas)
-        {
-            return CantidadMaximaVisitantes - (entradasIngresadas+ visitantes) >= 0 ? true : false;
-        }
-        public long CalcularVisitantes(long entradasIngresadas) => visitantes += entradasIngresadas;
+        Tarifa tarifa = new Tarifa();
 
-        public int CalcularOcupacion(DateTime fechahora)
+        public List<Empleado> empleadosSede
         {
-          int ocupacion = _E.EsDeFechaHora(fechahora) + _RV.EsDeFechaHora(fechahora);
+            get => empleados;
+            set => empleados = value;
+        }
+        public int idSede
+        {
+            get => id;
+            set => id = value;
+        }
+        public int cantidadMaximaVisitantesSede
+        {
+            get => cantidadMaximaVisitantes;
+            set => cantidadMaximaVisitantes = value;
+        }
+        public int cantMaxPorGuiaSede
+        {
+            get => cantMaxPorGuia;
+            set => cantMaxPorGuia = value;
+        }
+    
+        public int calcularOcupacion(DateTime fechahora)
+        {
+          int ocupacion = _E.esDeFechaHora(fechahora) + _RV.esDeFechaHora(fechahora);
             return ocupacion;
         }
+
+        public DataTable obtenerTarifasVigentes(int sede)
+        {
+            return tarifa.mostrarMontosVigentes(sede);
+        }
+
+        public int calcularDuracionDeExposicionesVigentes()
+        {
+            exposiciones = Exposicion.esVigente();
+            int duracion = Exposicion.calcularDuracionObrasExpuestas(idSede, exposiciones);
+            return duracion;
+        }
+
 
     }
 }

@@ -8,10 +8,10 @@ namespace Museo_pictorico_ppai.Entidades
 {
     public class Sesion
     {
-        private DateTime fechaFin;
-        private DateTime fechaInicio;
-        private DateTime horaInicio;
-        private DateTime horaFin;
+        private string fechaFin;
+        private string fechaInicio;
+        private string horaInicio;
+        private string horaFin;
         private Usuario usuario;
 
         public Sesion()
@@ -19,40 +19,19 @@ namespace Museo_pictorico_ppai.Entidades
 
         }
 
-        public DateTime fechaFinalSesion
-        {
-            get => fechaFin;
-            set => fechaFin = value;
-        }
-
-        public DateTime fechaInicioSesion
-        {
-            get => fechaInicio;
-            set => fechaInicio = value;
-        }
-
-        public DateTime horaInicioSesion
-        {
-            get => horaInicio;
-            set => horaInicio = value;
-        }
-
-        public DateTime horaFinSesion
-        {
-            get => horaFin ;
-            set => horaFin = value;
-        }
-
         public Usuario usuarioSesion
         {
             get => usuario;
             set => usuario = value;
         }
+        public string HoraFin { get => horaFin; set => horaFin = value; }
+        public string HoraInicio { get => horaInicio; set => horaInicio = value; }
+        public string FechaInicio { get => fechaInicio; set => fechaInicio = value; }
+        public string FechaFin { get => fechaFin; set => fechaFin = value; }
 
-
-
-
-
-
+        public Empleado getEmpleadoEnSesion() 
+        {
+            return this.usuario.empleadoUsuario;
+        }
     }
 }

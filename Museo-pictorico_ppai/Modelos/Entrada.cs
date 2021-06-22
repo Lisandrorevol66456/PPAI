@@ -10,20 +10,16 @@ namespace Museo_pictorico_ppai.Modelos
 {
     public class Entrada
     {
-        AccesoBD _BD = new AccesoBD();
         public int nroEntrada { get; set; }
         public DateTime fechaHoraVenta { get; set; }
         public float monto { get; set; }
         public int tarifa { get; set; }
         public int idSede { get; set; }
+
+        AccesoBD _BD = new AccesoBD();
         
-        public DataTable getEntradas()
-        {
-            string sqlTxt = $"SELECT * from Entradas";
-            var entradasDTRows = _BD.Consulta(sqlTxt);
-            return entradasDTRows;
-        }
-        public DataTable getEntradasByFecha(DateTime fechahora)
+
+        public DataTable getEntradas(DateTime fechahora)
         {
             string sqlTxt = $"SELECT * from Entradas where DATEPART(HOUR, fechaHoraVenta) ={fechahora.ToString("HH")}" +
                 $" and (DATEPART(DAY, fechaHoraVenta)= {fechahora.ToString("dd")})" +
@@ -32,10 +28,34 @@ namespace Museo_pictorico_ppai.Modelos
             var entradasDTRows = _BD.Consulta(sqlTxt);
             return entradasDTRows;
         }
-        public int EsDeFechaHora(DateTime fechahora)
+        public int esDeFechaHora(DateTime fechahora)
         {
-            return getEntradasByFecha(fechahora).Rows.Count;
+            return getEntradas(fechahora).Rows.Count;
                            
+        }
+
+        public static int ultimoNumero() 
+        {
+            int ultNum = 0;
+            AccesoBD _BD = new AccesoBD();
+            string sqlTxt = $"SELECT nroEntrada from Entradas WHERE nroEntrada >= ALL (SELECT nroEntrada FROM Entradas)";
+            var tabla = _BD.Consulta(sqlTxt);
+            if (tabla.Rows.Count > 0)
+            {
+                var row = tabla.Rows[0];
+                ultNum = Convert.ToInt32(row["nroEntrada"].ToString());
+            }
+            return ultNum;
+        }
+
+        public static void guardarEnBD(List<Entrada> entradas)
+        {
+            AccesoBD _BD = new AccesoBD();
+            foreach (Entrada ent in entradas)
+            {
+                string sqlTxt = $"INSERT INTO Entradas (fechaHoraVenta, monto, tarifa, sede) VALUES ('{ent.fechaHoraVenta.ToString("yyyy-MM-dd HH:mm")}', {ent.monto}, {ent.tarifa}, {ent.idSede})";
+                _BD.EjecutarSQL(sqlTxt);
+            }
         }
     }
 }

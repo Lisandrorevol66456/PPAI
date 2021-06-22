@@ -15,7 +15,7 @@ namespace Museo_pictorico_ppai.Pantallas
     public partial class PantallaSala : Form
     {
         Sede _sede = new Sede();
-        GestorPantallaEntrada _gestor = new GestorPantallaEntrada();
+        GestorVentaEntradas _gestor = new GestorVentaEntradas();
 
 
         public PantallaSala()
@@ -25,12 +25,12 @@ namespace Museo_pictorico_ppai.Pantallas
 
         private void PantallaSala_Load(object sender, EventArgs e)
         {
-            lblCapacidad.Text = _sede.CantidadMaximaVisitantes.ToString();
+            lblCapacidad.Text = _sede.cantidadMaximaVisitantesSede.ToString();
             this.CargarVisitantes();
         }
         private void CargarVisitantes()
         {
-            var visitantes = _gestor.CalcularCantidadVisitantes();
+            var visitantes = 10;
             //var visitantes = _gestor.MostrarVisitantes(_sede.idSede).Rows;
             //foreach (DataRow vis in visitantes)
             //{

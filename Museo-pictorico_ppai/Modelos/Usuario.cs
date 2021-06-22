@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Museo_pictorico_ppai.DataBase;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,13 @@ namespace Museo_pictorico_ppai.Entidades
 {
     public class Usuario
     {
+        
         private DateTime caducidad;
         private string contraseña;
         private string nombre;
         private Empleado empleado;
+
+        AccesoBD _BD = new AccesoBD();
 
         public Usuario()
         {
@@ -27,7 +31,7 @@ namespace Museo_pictorico_ppai.Entidades
         public string contraseñaUsuario
         {
             get => contraseña;
-            set => contraseñaUsuario = value;
+            set => contraseña = value;
         }
 
         public string nombreUsuario
@@ -40,6 +44,23 @@ namespace Museo_pictorico_ppai.Entidades
         {
             get => empleado;
             set => empleado = value;
+        }
+
+        public Usuario sesionhardcodeada()
+        {
+            Usuario usRes = null;
+            var sqlString = "SELECT U.nombre, E.dni FROM Usuario U JOIN Empleados E ON (U.dniEmpleado=E.dni) WHERE U.nombre='Bsalas'";
+            var tabla = _BD.Consulta(sqlString);
+            if(tabla.Rows.Count > 0)
+            {
+                var row = tabla.Rows[0];
+                usRes = new Usuario();
+                usRes.nombreUsuario = row["nombre"].ToString();
+                Empleado emp = new Empleado() {dniEmpleado= Convert.ToInt64(row["dni"].ToString()) };
+                usRes.empleadoUsuario = emp;
+            }
+            return usRes;
+
         }
     }
 }

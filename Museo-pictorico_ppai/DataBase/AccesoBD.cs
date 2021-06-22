@@ -26,6 +26,16 @@ namespace Museo_pictorico_ppai.DataBase
             cmd.CommandType = CommandType.Text;
 
         }
+
+        public OleDbDataReader ConsultaDR(string comando)
+        {
+            Conectar();
+
+            cmd.CommandText = comando;
+
+            return cmd.ExecuteReader();
+        }
+
         public void Cerrar()
         {
 
