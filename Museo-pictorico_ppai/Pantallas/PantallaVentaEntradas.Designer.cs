@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PantallaVentaEntradas));
             this.dgvTarifas = new System.Windows.Forms.DataGridView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -78,15 +78,15 @@
             this.TipoVisita,
             this.TipoEntrada,
             this.precio});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvTarifas.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvTarifas.Location = new System.Drawing.Point(498, 111);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvTarifas.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvTarifas.Location = new System.Drawing.Point(502, 111);
             this.dgvTarifas.Name = "dgvTarifas";
             this.dgvTarifas.ReadOnly = true;
             this.dgvTarifas.RowHeadersWidth = 51;
@@ -343,11 +343,11 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(492, 75);
+            this.label5.Location = new System.Drawing.Point(457, 75);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(255, 33);
+            this.label5.Size = new System.Drawing.Size(439, 33);
             this.label5.TabIndex = 24;
-            this.label5.Text = "Listado de tarifas";
+            this.label5.Text = "Listado de tarifas (Seleccione)";
             // 
             // label6
             // 
@@ -364,7 +364,7 @@
             // 
             this.LblDetalleVenta.AutoSize = true;
             this.LblDetalleVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold);
-            this.LblDetalleVenta.Location = new System.Drawing.Point(497, 75);
+            this.LblDetalleVenta.Location = new System.Drawing.Point(500, 75);
             this.LblDetalleVenta.Name = "LblDetalleVenta";
             this.LblDetalleVenta.Size = new System.Drawing.Size(250, 33);
             this.LblDetalleVenta.TabIndex = 25;

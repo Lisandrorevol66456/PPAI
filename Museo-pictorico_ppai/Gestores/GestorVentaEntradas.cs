@@ -82,16 +82,7 @@ namespace Museo_pictorico_ppai.Repositorios
             pantallaVentaEntradas.mostrarTarifasVigentes(tablaTarifas);
         }
 
-        public bool ResetearVisitantes(int sede) // funcion para volver a 0 la cantidad de visitantes
-        {
-            string sqltxt = $"UPDATE [dbo].[visitantes] SET nroVisitantes = 0 " +
-                $" WHERE sede = {sede}";
-
-            return _BD.EjecutarSQL(sqltxt);
-
-        }
-
-        public void buscarExposicionVigente() // obtiene la duracion de las exposiciones vigentes
+        public void buscarExposicionVigente() // obtiene la duración de las exposiciones vigentes
         {
             duracion = sedeActual.calcularDuracionDeExposicionesVigentes();
         }
@@ -117,7 +108,7 @@ namespace Museo_pictorico_ppai.Repositorios
             DateTime fecha = DateTime.Now;
             return fecha;
         }
-        public long calcularCantidadVisitantes(DateTime fecha) // devuelve el numero actual de ocupacion
+        public long calcularCantidadVisitantes(DateTime fecha) // devuelve el número actual de ocupación
         {
             long ocup = sedeActual.calcularOcupacion(fecha);
             return ocup;
@@ -130,7 +121,7 @@ namespace Museo_pictorico_ppai.Repositorios
             }
         }
 
-        public void tomarConfirmacionVenta() // toma confirmacion de venta de entrada
+        public void tomarConfirmacionVenta() // toma confirmación de venta de entrada
         {
             
             ultNumEntrada = buscarUltimoNroEntrada();
@@ -140,22 +131,23 @@ namespace Museo_pictorico_ppai.Repositorios
             actVisitantesEnPantallas();
         }
 
-        public int buscarUltimoNroEntrada() //recorre las entradas y busca el nro de la última
+        public int buscarUltimoNroEntrada() //recorre las entradas y busca el número de la última
         {
             return Entrada.getNroEntrada();
         }
 
         public void generarEntradas() // genera las n entradas y las inserta en la bd
         {
+             
             entradas = new List<Entrada>();
             for (int i = 0; i < cantidadEntradas; i++)
-            {
-
+            {                
                 Entrada newEnt = new Entrada()
                 {
                     nroEntrada = buscarUltimoNroEntrada() + 1+i,
-                    fechaHoraVenta = ObtenerFechaActual(),
-                    monto = tarifaSelec.montoTarifa,
+                    fechaHoraVenta = ObtenerFechaActual(),                    
+                    monto = tarifaSelec.montoTarifa,             
+                    
                     tarifa = tarifaSelec.idTarifa,
                     idSede = sedeActual.idSede
                 };
@@ -170,7 +162,7 @@ namespace Museo_pictorico_ppai.Repositorios
             PantallaSala _ps = new PantallaSala();
             _ps.actualizarCantVisitantes();
         }
-        public void imprimirEntrada(Entrada entrada) // funcion que llama al sw de impresion 
+        public void imprimirEntrada(Entrada entrada) // función que llama al sw de impresión 
         {
             SoftwareDeImpresion si = new SoftwareDeImpresion();
             si.imprimir(entrada);

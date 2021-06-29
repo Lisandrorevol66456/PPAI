@@ -172,6 +172,17 @@ namespace Museo_pictorico_ppai
         // reseteo del formulario
         public void LimpiarCampos()
         {
+            label5.Visible = true;
+            dgvTarifas.Visible = true;
+            LblDetalleVenta.Visible = false;
+            LblCantEntradas.Visible = false;
+            LblCantEntradasNum.Visible = false;
+           
+            LblPrecioEntrada.Visible = false;
+            btnConfirmar.Visible = false;
+            LblPrecioEntradaNum.Visible = false;
+            LblMontoTotal.Visible = false;
+            LblMontoTotalNum.Visible = false;            
             txtCantentradas.Enabled = true;
             txtCantentradas.Clear();
             groupBox1.Enabled = true;
